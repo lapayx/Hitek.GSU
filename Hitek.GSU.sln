@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitek.GSU", "Hitek.GSU\Hitek.GSU.csproj", "{3146F24C-29B2-4E5B-8AA0-417B9FA2E2BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hitek.GSU.Tests", "Hitek.GSU.Tests\Hitek.GSU.Tests.csproj", "{B1E27DB8-D87C-43BF-9E91-0A9FEFA944EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3146F24C-29B2-4E5B-8AA0-417B9FA2E2BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3146F24C-29B2-4E5B-8AA0-417B9FA2E2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3146F24C-29B2-4E5B-8AA0-417B9FA2E2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3146F24C-29B2-4E5B-8AA0-417B9FA2E2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E27DB8-D87C-43BF-9E91-0A9FEFA944EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E27DB8-D87C-43BF-9E91-0A9FEFA944EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E27DB8-D87C-43BF-9E91-0A9FEFA944EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E27DB8-D87C-43BF-9E91-0A9FEFA944EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
