@@ -18,7 +18,7 @@ namespace Hitek.GSU
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DIConfig.Register();
+        //   DIConfig.Register();
         }
     }
 }

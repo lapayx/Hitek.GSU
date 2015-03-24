@@ -9,11 +9,5 @@ namespace Hitek.GSU.Logic.Database
 {
     public partial class Entities : IAccountRepository
     {
-
-        public IDbSet<Account> Account
-        {
-            get { return Accounts; }
-
-        }
     }
 }

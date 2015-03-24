@@ -212,6 +212,10 @@
     <Compile Include="Migrations\201503221909304_InitialCreate.Designer.cs">
       <DependentUpon>201503221909304_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503242104474_step2.cs" />
+    <Compile Include="Migrations\201503242104474_step2.Designer.cs">
+      <DependentUpon>201503242104474_step2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -292,6 +296,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201503221909304_InitialCreate.resx">
       <DependentUpon>201503221909304_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503242104474_step2.resx">
+      <DependentUpon>201503242104474_step2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

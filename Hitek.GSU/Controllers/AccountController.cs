@@ -17,27 +17,14 @@ namespace Hitek.GSU.Controllers
     {
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
+            this.AuthenticationManager = authenticationManager;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
+        public ApplicationUserManager UserManager;
 
         //
         // GET: /Account/Login
@@ -48,16 +35,8 @@ namespace Hitek.GSU.Controllers
             return View();
         }
 
-        private ApplicationSignInManager _signInManager;
 
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set { _signInManager = value; }
-        }
+        public ApplicationSignInManager SignInManager;
 
         //
         // POST: /Account/Login
@@ -410,13 +389,7 @@ namespace Hitek.GSU.Controllers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        private IAuthenticationManager AuthenticationManager;
 
         private void AddErrors(IdentityResult result)
         {

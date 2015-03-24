@@ -8,6 +8,7 @@ namespace Hitek.GSU
     {
         public void Configuration(IAppBuilder app)
         {
+            DIConfig.Register();
             ConfigureAuth(app);
         }
     }

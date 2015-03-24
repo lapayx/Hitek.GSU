@@ -2,12 +2,15 @@
 using Hitek.GSU.Logic.Interfaces;
 using LightInject;
 using LightInject.Mvc;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Hitek.GSU.Models;
 
 namespace Hitek.GSU
 {
@@ -45,7 +48,13 @@ namespace Hitek.GSU
 
 
         internal static void RegisterProviders(IServiceContainer container)
-        {/*
+        {
+            container.Register<IUserStore<MyAccount>, MyUserStore>();
+            container.Register<ApplicationSignInManager>();
+            container.Register<ApplicationUserManager>();
+            container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
+
+            /*
             container.Register<MedalForHero.Logic.IMembershipProvider, MedalForHero.Logic.Providers.MembershipProvider>();
             container.Register<MedalForHero.Logic.IRoleProvider, MedalForHero.Logic.Providers.RoleProvider>();
             container.Register<MedalForHero.Logic.IAuthentication, MedalForHero.Logic.Auth.Authentication>(new PerRequestLifeTime());*/
