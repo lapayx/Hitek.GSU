@@ -37,9 +37,9 @@ namespace Hitek.GSU
 
         internal static void RegisterRepositores(IServiceContainer container)
         {
-            container.Register<Entities>(new PerScopeLifetime());
+            container.Register<Repository>(new PerScopeLifetime());
 
-            container.Register<IAccountRepository, Entities>();
+            container.Register<IAccountRepository, Repository>();
 /*            container.Register<IAccountRepository, Entities>();
             container.Register<IMedalRepository, Entities>();
             container.Register<IVersionControlSystemRepository, Entities>();

@@ -8,11 +8,14 @@ namespace Hitek.GSU.Logic.Database
 {
     public class Account
     {
-        [StringLength(200)]
-        public string Id { get; set; }
+        [Key] 
+        public long Id { get; set; }
 
         [StringLength(200)]
+        [Required] 
         public string Name { get; set; }
+
+        public virtual List<Role> Role { get; set; }
     }
 
    

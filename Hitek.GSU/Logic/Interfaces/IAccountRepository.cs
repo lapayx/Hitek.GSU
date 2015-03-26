@@ -8,7 +8,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// <summary>
         /// 
         /// </summary>
-        DbSet<Account> Account { get; set; }
+        IDbSet<Account> Account { get; }
 
     }
 }

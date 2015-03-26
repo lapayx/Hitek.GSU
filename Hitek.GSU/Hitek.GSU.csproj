@@ -203,9 +203,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\Database\Account.cs" />
-    <Compile Include="Logic\Database\Account+Repository.cs" />
+    <Compile Include="Logic\Database\Model\Role.cs" />
+    <Compile Include="Logic\Database\Model\Account.cs" />
+    <Compile Include="Logic\Database\Repository+Account.cs" />
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Repository.cs" />
     <Compile Include="Logic\Interfaces\IAccountRepository.cs" />
     <Compile Include="Logic\Interfaces\ISavingRepository.cs" />
     <Compile Include="Migrations\201503221909304_InitialCreate.cs" />
@@ -215,6 +217,10 @@
     <Compile Include="Migrations\201503242104474_step2.cs" />
     <Compile Include="Migrations\201503242104474_step2.Designer.cs">
       <DependentUpon>201503242104474_step2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503261959446_test23.cs" />
+    <Compile Include="Migrations\201503261959446_test23.Designer.cs">
+      <DependentUpon>201503261959446_test23.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503242104474_step2.resx">
       <DependentUpon>201503242104474_step2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503261959446_test23.resx">
+      <DependentUpon>201503261959446_test23.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
