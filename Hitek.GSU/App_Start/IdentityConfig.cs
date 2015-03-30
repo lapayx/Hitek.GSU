@@ -44,14 +44,14 @@ namespace Hitek.GSU
 
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<MyAccount>
+    public class AppUserManager : UserManager<MyAccount, long> 
     {
-       public ApplicationUserManager(IUserStore<MyAccount> store)
+       public AppUserManager(IUserStore<MyAccount,long> store)
         : base(store)
        {
            
             // Configure validation logic for usernames
-            this.UserValidator = new UserValidator<MyAccount>(this)
+            this.UserValidator = new UserValidator<MyAccount,long>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -74,11 +74,11 @@ namespace Hitek.GSU
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyAccount>
+            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyAccount,long>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<MyAccount>
+            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<MyAccount,long>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -92,27 +92,27 @@ namespace Hitek.GSU
            
                 IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
 
-                this.UserTokenProvider = new DataProtectorTokenProvider<MyAccount>(dataProtector);
+                this.UserTokenProvider = new DataProtectorTokenProvider<MyAccount,long>(dataProtector);
             }
         }
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<MyAccount, string>
+    public class AppSignInManager : SignInManager<MyAccount, long>
     {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
+        public AppSignInManager(AppUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
         {
         }
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(MyAccount user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return user.GenerateUserIdentityAsync((AppUserManager)UserManager);
         }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+        public static AppSignInManager Create(IdentityFactoryOptions<AppSignInManager> options, IOwinContext context)
         {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+            return new AppSignInManager(context.GetUserManager<AppUserManager>(), context.Authentication);
         }
     }
 }

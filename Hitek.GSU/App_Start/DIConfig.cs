@@ -49,9 +49,9 @@ namespace Hitek.GSU
 
         internal static void RegisterProviders(IServiceContainer container)
         {
-            container.Register<IUserStore<MyAccount>, MyUserStore>();
-            container.Register<ApplicationSignInManager>();
-            container.Register<ApplicationUserManager>();
+            container.Register<IUserStore<MyAccount,long>, MyUserStore>();
+            container.Register<AppSignInManager>();
+            container.Register<AppUserManager>();
             container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
 
             /*

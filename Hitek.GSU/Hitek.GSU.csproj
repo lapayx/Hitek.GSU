@@ -222,6 +222,10 @@
     <Compile Include="Migrations\201503261959446_test23.Designer.cs">
       <DependentUpon>201503261959446_test23.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503301239291_addPassword.cs" />
+    <Compile Include="Migrations\201503301239291_addPassword.Designer.cs">
+      <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503261959446_test23.resx">
       <DependentUpon>201503261959446_test23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503301239291_addPassword.resx">
+      <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

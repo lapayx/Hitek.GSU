@@ -15,16 +15,16 @@ namespace Hitek.GSU.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationUserManager _userManager;
+        private AppUserManager _userManager;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authenticationManager)
+        public AccountController(AppUserManager userManager, AppSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
             this.UserManager = userManager;
             this.SignInManager = signInManager;
             this.AuthenticationManager = authenticationManager;
         }
 
-        public ApplicationUserManager UserManager;
+        public AppUserManager UserManager;
 
         //
         // GET: /Account/Login
@@ -36,7 +36,7 @@ namespace Hitek.GSU.Controllers
         }
 
 
-        public ApplicationSignInManager SignInManager;
+        public AppSignInManager SignInManager;
 
         //
         // POST: /Account/Login
@@ -157,7 +157,7 @@ namespace Hitek.GSU.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(long userId, string code)
         {
             if (userId == null || code == null)
             {

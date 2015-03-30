@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace Hitek.GSU.Models
 {
-    public class MyUserStore : IUserLoginStore<MyAccount>, IUserClaimStore<MyAccount>,
-        IUserRoleStore<MyAccount>, IUserPasswordStore<MyAccount>,
-        IUserSecurityStampStore<MyAccount>, IUserStore<MyAccount>
+    public class MyUserStore : IUserLoginStore<MyAccount,long>, IUserClaimStore<MyAccount,long>,
+        IUserRoleStore<MyAccount,long>, IUserPasswordStore<MyAccount,long>,
+        IUserSecurityStampStore<MyAccount,long>, IUserStore<MyAccount,long>, IUserLockoutStore<MyAccount, long>
     {
         readonly IAccountRepository rep;
 
@@ -48,17 +48,15 @@ namespace Hitek.GSU.Models
             throw new NotImplementedException();
         }
 
-        public Task<MyAccount> FindByIdAsync(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<MyAccount> FindByNameAsync(string userName)
         {
+         
             MyAccount res = new MyAccount();
             var t = rep.Account.Where(x => x.Name == userName).FirstOrDefault();
             if (t != null) {
+                res.Id = t.Id;
                 res.UserName = t.Name;
+                res.Password = t.Password;
             }
             await Task.Delay(10);
             if(t!=null)
@@ -107,15 +105,16 @@ namespace Hitek.GSU.Models
         {
             throw new NotImplementedException();
         }
+        
 
         public Task RemoveFromRoleAsync(MyAccount user, string roleName)
         {
             throw new NotImplementedException();
         }
 
-        public Task<string> GetPasswordHashAsync(MyAccount user)
+        public  Task<string> GetPasswordHashAsync(MyAccount user)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.Password);
         }
 
         public Task<bool> HasPasswordAsync(MyAccount user)
@@ -132,6 +131,66 @@ namespace Hitek.GSU.Models
         {
             throw new NotImplementedException();
         }
+
+
+
+        public Task<int> GetAccessFailedCountAsync(MyAccount user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public  Task<bool> GetLockoutEnabledAsync(MyAccount user)
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task<DateTimeOffset> GetLockoutEndDateAsync(MyAccount user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> IncrementAccessFailedCountAsync(MyAccount user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task ResetAccessFailedCountAsync(MyAccount user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetLockoutEnabledAsync(MyAccount user, bool enabled)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetLockoutEndDateAsync(MyAccount user, DateTimeOffset lockoutEnd)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public async Task<MyAccount> FindByIdAsync(long userId)
+        {
+            var t = rep.Account.Where(x => x.Id == userId).FirstOrDefault();
+            MyAccount res = new MyAccount();
+            if (t != null)
+            {
+                res.Id = t.Id;
+                res.UserName = t.Name;
+                res.Password = t.Password;
+            }
+            await Task.Delay(10);
+            if (t != null)
+                return res;
+            else
+                return null;
+        }
+
+
+
+
+
 
         public Task SetSecurityStampAsync(MyAccount user, string stamp)
         {
