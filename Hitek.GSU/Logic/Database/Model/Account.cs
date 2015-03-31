@@ -18,8 +18,7 @@ namespace Hitek.GSU.Logic.Database
         [StringLength(200)]
         [Required]
         public string Password { get; set; }
-
-
+        public string SecurityStamp { get; set; }
         public virtual List<Role> Role { get; set; }
     }
 

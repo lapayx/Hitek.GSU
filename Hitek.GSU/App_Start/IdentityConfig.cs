@@ -66,7 +66,7 @@ namespace Hitek.GSU
                 RequireLowercase = true,
                 RequireUppercase = true,*/
             };
-
+            this.PasswordHasher = new OldSystemPasswordHasher();    
             // Configure user lockout defaults
             this.UserLockoutEnabledByDefault = true;
             this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -74,7 +74,7 @@ namespace Hitek.GSU
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyAccount,long>
+            /*this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyAccount,long>
             {
                 MessageFormat = "Your security code is {0}"
             });
@@ -82,7 +82,7 @@ namespace Hitek.GSU
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
-            });
+            });*/
             this.EmailService = new EmailService();
             this.SmsService = new SmsService();
 
@@ -95,6 +95,33 @@ namespace Hitek.GSU
                 this.UserTokenProvider = new DataProtectorTokenProvider<MyAccount,long>(dataProtector);
             }
         }
+       /// <summary> 
+       /// Use Custom approach to verify password 
+       /// </summary> 
+       public class OldSystemPasswordHasher : PasswordHasher
+       {
+           public override string HashPassword(string password)
+           {
+               return base.HashPassword(password);
+           }
+
+           public override PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
+           {
+
+               //Here we will place the code of password hashing that is there in our current solucion.This will take cleartext anad hash 
+               //Just for demonstration purpose I always return true.     
+               if (hashedPassword == providedPassword)
+               {
+
+
+                   return PasswordVerificationResult.SuccessRehashNeeded;
+               }
+               else
+               {
+                   return PasswordVerificationResult.Failed;
+               }
+           }
+       }
     }
 
     // Configure the application sign-in manager which is used in this application.

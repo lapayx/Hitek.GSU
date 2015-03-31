@@ -6,12 +6,16 @@ using System.Web;
 using System.Threading.Tasks;
 using Hitek.GSU.Logic.Interfaces;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Hitek.GSU.Models
 {
-    public class MyUserStore : IUserLoginStore<MyAccount,long>, IUserClaimStore<MyAccount,long>,
+    public class MyUserStore : IUserLoginStore<MyAccount, long>, IUserClaimStore<MyAccount, long>,
         IUserRoleStore<MyAccount,long>, IUserPasswordStore<MyAccount,long>,
-        IUserSecurityStampStore<MyAccount,long>, IUserStore<MyAccount,long>, IUserLockoutStore<MyAccount, long>
+        IUserSecurityStampStore<MyAccount, long>, IUserStore<MyAccount, long>, 
+        IUserLockoutStore<MyAccount, long>, IUserEmailStore<MyAccount,long>,
+        IUserTwoFactorStore<MyAccount,long>
+
     {
         readonly IAccountRepository rep;
 
@@ -57,6 +61,7 @@ namespace Hitek.GSU.Models
                 res.Id = t.Id;
                 res.UserName = t.Name;
                 res.Password = t.Password;
+                res.SecurityStamp = t.SecurityStamp;
             }
             await Task.Delay(10);
             if(t!=null)
@@ -98,7 +103,9 @@ namespace Hitek.GSU.Models
 
         public Task<IList<string>> GetRolesAsync(MyAccount user)
         {
-            throw new NotImplementedException();
+            var t = this.rep.Account.Where(x => x.Id == user.Id).FirstOrDefault();
+            IList<string> r = t.Role.Select(x => "sdd").ToList();
+            return Task.FromResult(r);
         }
 
         public Task<bool> IsInRoleAsync(MyAccount user, string roleName)
@@ -127,9 +134,19 @@ namespace Hitek.GSU.Models
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get the security stamp for a user
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public Task<string> GetSecurityStampAsync(MyAccount user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+            //return Task.FromResult(user.SecurityStamp);
+            return Task.FromResult("sdfsdfsdfsd23sd1f32sd132f1sd32f1d32s1f32sd1fsd");
         }
 
 
@@ -156,7 +173,7 @@ namespace Hitek.GSU.Models
 
         public Task ResetAccessFailedCountAsync(MyAccount user)
         {
-            throw new NotImplementedException();
+            return Task.Delay(1);
         }
 
         public Task SetLockoutEnabledAsync(MyAccount user, bool enabled)
@@ -193,6 +210,41 @@ namespace Hitek.GSU.Models
 
 
         public Task SetSecurityStampAsync(MyAccount user, string stamp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<MyAccount> FindByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetEmailAsync(MyAccount user)
+        {
+            return Task.FromResult(user.Email);
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(MyAccount user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailAsync(MyAccount user, string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SetEmailConfirmedAsync(MyAccount user, bool confirmed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetTwoFactorEnabledAsync(MyAccount user)
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task SetTwoFactorEnabledAsync(MyAccount user, bool enabled)
         {
             throw new NotImplementedException();
         }

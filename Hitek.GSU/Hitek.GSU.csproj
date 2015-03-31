@@ -226,6 +226,10 @@
     <Compile Include="Migrations\201503301239291_addPassword.Designer.cs">
       <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503311023496_stamp.cs" />
+    <Compile Include="Migrations\201503311023496_stamp.Designer.cs">
+      <DependentUpon>201503311023496_stamp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -315,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503301239291_addPassword.resx">
       <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503311023496_stamp.resx">
+      <DependentUpon>201503311023496_stamp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

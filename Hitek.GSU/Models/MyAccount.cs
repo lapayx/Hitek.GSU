@@ -15,7 +15,7 @@ namespace Hitek.GSU.Models
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-
+        public string SecurityStamp { get; set; }
         internal async Task<ClaimsIdentity> GenerateUserIdentityAsync(AppUserManager manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
