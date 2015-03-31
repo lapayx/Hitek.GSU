@@ -32,11 +32,11 @@ namespace Hitek.GSU
             return Task.FromResult(0);
         }
     }
-    public class ACService : IIdentityValidator<MyAccount>
+    public class ACService : IIdentityValidator<ApplicationUser>
         {
-         
 
-            public Task<IdentityResult> ValidateAsync(MyAccount item)
+
+        public Task<IdentityResult> ValidateAsync(ApplicationUser item)
             {
                 throw new NotImplementedException();
             }
@@ -44,14 +44,14 @@ namespace Hitek.GSU
 
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class AppUserManager : UserManager<MyAccount, long> 
+    public class AppUserManager : UserManager<ApplicationUser, long> 
     {
-       public AppUserManager(IUserStore<MyAccount,long> store)
+        public AppUserManager(IUserStore<ApplicationUser, long> store)
         : base(store)
        {
            
             // Configure validation logic for usernames
-            this.UserValidator = new UserValidator<MyAccount,long>(this)
+           this.UserValidator = new UserValidator<ApplicationUser, long>(this)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -74,15 +74,15 @@ namespace Hitek.GSU
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            /*this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<MyAccount,long>
+            this.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser, long>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<MyAccount,long>
+            this.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser, long>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
-            });*/
+            });
             this.EmailService = new EmailService();
             this.SmsService = new SmsService();
 
@@ -92,7 +92,7 @@ namespace Hitek.GSU
            
                 IDataProtector dataProtector = dataProtectionProvider.Create("ASP.NET Identity");
 
-                this.UserTokenProvider = new DataProtectorTokenProvider<MyAccount,long>(dataProtector);
+                this.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, long>(dataProtector);
             }
         }
        /// <summary> 
@@ -125,14 +125,14 @@ namespace Hitek.GSU
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class AppSignInManager : SignInManager<MyAccount, long>
+    public class AppSignInManager : SignInManager<ApplicationUser, long>
     {
         public AppSignInManager(AppUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
         {
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(MyAccount user)
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
             return user.GenerateUserIdentityAsync((AppUserManager)UserManager);
         }

@@ -9,7 +9,7 @@ using Hitek.GSU.Logic.Database;
 
 namespace Hitek.GSU.Models
 {
-    public class MyAccount : IUser<long>
+  /*  public class MyAccount : IUser<long>
     {
         public long Id  { get; set; }
         public string UserName { get; set; }
@@ -27,5 +27,5 @@ namespace Hitek.GSU.Models
 
 
      
-    }
+    }*/
 }

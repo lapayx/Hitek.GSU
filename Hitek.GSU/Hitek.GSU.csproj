@@ -203,38 +203,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logic\Database\Model\Role.cs" />
-    <Compile Include="Logic\Database\Model\Account.cs" />
-    <Compile Include="Logic\Database\Repository+Account.cs" />
     <Compile Include="Logic\Database\Entities.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
-    <Compile Include="Logic\Interfaces\IAccountRepository.cs" />
     <Compile Include="Logic\Interfaces\ISavingRepository.cs" />
-    <Compile Include="Migrations\201503221909304_InitialCreate.cs" />
-    <Compile Include="Migrations\201503221909304_InitialCreate.Designer.cs">
-      <DependentUpon>201503221909304_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503242104474_step2.cs" />
-    <Compile Include="Migrations\201503242104474_step2.Designer.cs">
-      <DependentUpon>201503242104474_step2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503261959446_test23.cs" />
-    <Compile Include="Migrations\201503261959446_test23.Designer.cs">
-      <DependentUpon>201503261959446_test23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503301239291_addPassword.cs" />
-    <Compile Include="Migrations\201503301239291_addPassword.Designer.cs">
-      <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201503311023496_stamp.cs" />
-    <Compile Include="Migrations\201503311023496_stamp.Designer.cs">
-      <DependentUpon>201503311023496_stamp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyAccount.cs" />
-    <Compile Include="Models\MyUserStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -301,28 +277,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\image\" />
+    <Folder Include="Logic\Database\Model\" />
     <Folder Include="Logic\Providers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503221909304_InitialCreate.resx">
-      <DependentUpon>201503221909304_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503242104474_step2.resx">
-      <DependentUpon>201503242104474_step2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503261959446_test23.resx">
-      <DependentUpon>201503261959446_test23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503301239291_addPassword.resx">
-      <DependentUpon>201503301239291_addPassword.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201503311023496_stamp.resx">
-      <DependentUpon>201503311023496_stamp.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

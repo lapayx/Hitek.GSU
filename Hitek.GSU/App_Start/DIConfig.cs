@@ -39,7 +39,7 @@ namespace Hitek.GSU
         {
             container.Register<Repository>(new PerScopeLifetime());
 
-            container.Register<IAccountRepository, Repository>();
+          //  container.Register<IAccountRepository, Repository>();
 /*            container.Register<IAccountRepository, Entities>();
             container.Register<IMedalRepository, Entities>();
             container.Register<IVersionControlSystemRepository, Entities>();
@@ -49,7 +49,9 @@ namespace Hitek.GSU
 
         internal static void RegisterProviders(IServiceContainer container)
         {
-            container.Register<IUserStore<MyAccount,long>, MyUserStore>();
+       //     container.Register<IUserStore<MyAccount,long>, MyUserStore>(); 
+            container.Register<ApplicationDbContext>();
+            container.Register<IUserStore<ApplicationUser, long>, UserStoreIntPk>();
             container.Register<AppSignInManager>();
             container.Register<AppUserManager>();
             container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
