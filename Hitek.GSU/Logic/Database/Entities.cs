@@ -13,7 +13,10 @@ namespace Hitek.GSU.Logic.Database
         {
         }
 
-    //   public virtual DbSet<Account> Account { get; set; }
+      //  public virtual DbSet<Account> Account { get; set; }
+        public virtual DbSet<Test> Test { get; set; }
+        public virtual DbSet<TestQuestion> TestQuestion { get; set; }
+        public virtual DbSet<TestAnswer> TestAnswer { get; set; }
     //    public virtual DbSet<Role> Role { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

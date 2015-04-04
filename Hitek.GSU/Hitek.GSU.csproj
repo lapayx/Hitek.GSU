@@ -122,6 +122,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -204,8 +206,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Model\TestAnswer.cs" />
+    <Compile Include="Logic\Database\Model\TestQuestion.cs" />
+    <Compile Include="Logic\Database\Model\Test.cs" />
+    <Compile Include="Logic\Database\Repository+Test.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
-    <Compile Include="Logic\Interfaces\ISavingRepository.cs" />
+    <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
+    <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
+    <Compile Include="Migrations\201504042130294_Create.cs" />
+    <Compile Include="Migrations\201504042130294_Create.Designer.cs">
+      <DependentUpon>201504042130294_Create.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -319,12 +330,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\image\" />
-    <Folder Include="Logic\Database\Model\" />
     <Folder Include="Logic\Providers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504042130294_Create.resx">
+      <DependentUpon>201504042130294_Create.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

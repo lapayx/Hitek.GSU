@@ -6,20 +6,22 @@ using System.Web;
 
 namespace Hitek.GSU.Logic.Database
 {
-    public class Account
+    public class TestAnswer
     {
         [Key] 
         public long Id { get; set; }
 
         [StringLength(200)]
         [Required] 
-        public string Name { get; set; }
+        public string Text { get; set; }
 
-        [StringLength(200)]
-        [Required]
-        public string Password { get; set; }
-        public string SecurityStamp { get; set; }
-       // public virtual List<Role> Role { get; set; }
+        public string IsRight { get; set; }
+
+        public long TestQuestionId { get; set; }
+
+
+        public TestQuestion TestQuestion { get; set; } 
+
     }
 
    

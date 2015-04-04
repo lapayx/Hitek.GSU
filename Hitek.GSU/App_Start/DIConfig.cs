@@ -39,7 +39,7 @@ namespace Hitek.GSU
         {
             container.Register<Repository>(new PerScopeLifetime());
 
-          //  container.Register<IAccountRepository, Repository>();
+              container.Register<ITestRepository, Repository>();
 /*            container.Register<IAccountRepository, Entities>();
             container.Register<IMedalRepository, Entities>();
             container.Register<IVersionControlSystemRepository, Entities>();
