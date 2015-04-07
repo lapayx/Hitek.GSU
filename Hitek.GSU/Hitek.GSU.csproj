@@ -202,6 +202,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,27 +247,27 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Scripts\app\Action\ModalWindow\PresentationMedal.js" />
-    <Content Include="Scripts\app\Action\Page\LastAction.js" />
-    <Content Include="Scripts\app\Action\Page\Personnel.js" />
-    <Content Include="Scripts\app\Action\Page\UserInfo.js" />
+    <Content Include="Scripts\unbandle\Action\ModalWindow\PresentationMedal.js" />
+    <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
+    <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />
+    <Content Include="Scripts\unbandle\Action\Page\UserInfo.js" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\Item\InfoOnMainPage\InfoOnMainPage.view.js" />
-    <Content Include="Scripts\app\Item\LastAction\LastAction.collection.collection.js" />
-    <Content Include="Scripts\app\Item\LastAction\LastAction.collection.model.js" />
-    <Content Include="Scripts\app\Item\LastAction\LastAction.collection.view.js" />
-    <Content Include="Scripts\app\Item\LastAction\LastAction.view.js" />
-    <Content Include="Scripts\app\Item\Personnel\Personnel.collection.collection.js" />
-    <Content Include="Scripts\app\Item\Personnel\Personnel.collection.model.js" />
-    <Content Include="Scripts\app\Item\Personnel\Personnel.collection.view.js" />
-    <Content Include="Scripts\app\Item\Personnel\Personnel.view.js" />
-    <Content Include="Scripts\app\Item\PresentationMedal\PresentationMedal.view.js" />
-    <Content Include="Scripts\app\Item\ReceivedMedal\ReceivedMedal.collection.collection.js" />
-    <Content Include="Scripts\app\Item\ReceivedMedal\ReceivedMedal.collection.model.js" />
-    <Content Include="Scripts\app\Item\ReceivedMedal\ReceivedMedal.collection.view.js" />
-    <Content Include="Scripts\app\Item\ReceivedMedal\ReceivedMedal.view.js" />
-    <Content Include="Scripts\app\Item\UserInfo\UserInfo.model.js" />
-    <Content Include="Scripts\app\Item\UserInfo\UserInfo.view.js" />
+    <Content Include="Scripts\unbandle\Item\InfoOnMainPage\InfoOnMainPage.view.js" />
+    <Content Include="Scripts\unbandle\Item\LastAction\LastAction.collection.collection.js" />
+    <Content Include="Scripts\unbandle\Item\LastAction\LastAction.collection.model.js" />
+    <Content Include="Scripts\unbandle\Item\LastAction\LastAction.collection.view.js" />
+    <Content Include="Scripts\unbandle\Item\LastAction\LastAction.view.js" />
+    <Content Include="Scripts\unbandle\Item\Personnel\Personnel.collection.collection.js" />
+    <Content Include="Scripts\unbandle\Item\Personnel\Personnel.collection.model.js" />
+    <Content Include="Scripts\unbandle\Item\Personnel\Personnel.collection.view.js" />
+    <Content Include="Scripts\unbandle\Item\Personnel\Personnel.view.js" />
+    <Content Include="Scripts\unbandle\Item\PresentationMedal\PresentationMedal.view.js" />
+    <Content Include="Scripts\unbandle\Item\ReceivedMedal\ReceivedMedal.collection.collection.js" />
+    <Content Include="Scripts\unbandle\Item\ReceivedMedal\ReceivedMedal.collection.model.js" />
+    <Content Include="Scripts\unbandle\Item\ReceivedMedal\ReceivedMedal.collection.view.js" />
+    <Content Include="Scripts\unbandle\Item\ReceivedMedal\ReceivedMedal.view.js" />
+    <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.model.js" />
+    <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.view.js" />
     <Content Include="Scripts\app\model\viewInfoMedal.js" />
     <Content Include="Scripts\app\Pages\Main.js" />
     <Content Include="Scripts\override\Backbone.Marionette.CompositeView.prototype.attachElContent.js" />
@@ -285,9 +286,8 @@
     <Content Include="Scripts\vendor\bootstrap.js" />
     <Content Include="Scripts\vendor\bootstrap.min.js" />
     <Content Include="Scripts\vendor\backbone.min.map" />
-    <None Include="Scripts\vendor\jquery-2.1.3.intellisense.js" />
-    <Content Include="Scripts\vendor\jquery-2.1.3.js" />
-    <Content Include="Scripts\vendor\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\vendor\jquery-1.11.2.js" />
+    <Content Include="Scripts\vendor\jquery-1.11.2.min.js" />
     <Content Include="Scripts\vendor\npm.js" />
     <Content Include="Scripts\vendor\respond.js" />
     <Content Include="Scripts\vendor\respond.matchmedia.addListener.js" />
@@ -310,7 +310,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\vendor\jquery-2.1.3.min.map" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -331,10 +330,13 @@
   <ItemGroup>
     <Folder Include="Content\image\" />
     <Folder Include="Logic\Providers\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+    <Content Include="Scripts\vendor\jquery-1.11.2.min.map" />
+    <Content Include="Views\Home\Temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504042130294_Create.resx">

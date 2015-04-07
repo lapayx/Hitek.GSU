@@ -21,17 +21,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                   <!-- <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
+                    <!-- <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                     <li>@Html.ActionLink("About", "About", "Home")</li>
+                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
                 </ul>
-
             </div>
         </div>
     </div>
     <div class="container body-content" id="main-region">
         @RenderBody()
-
+    </div>
+    <div class="container body-content" id="main-region">
     </div>
     <div class="container">
         <hr />
@@ -41,7 +41,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    Scripts.Render("~/Scripts/app")
+    @Scripts.Render("~/Scripts/app")
     @RenderSection("scripts", required: false)
 </body>
 </html>

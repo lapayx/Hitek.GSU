@@ -11,17 +11,17 @@ namespace Hitek.GSU.Logic.Database
 
         public IDbSet<Test> Test
         {
-            get { return this.Test; }
+            get { return this.entity.Test; }
         }
 
         public IDbSet<TestAnswer> TestAnswer
         {
-            get { return this.TestAnswer; }
+            get { return this.entity.TestAnswer; }
         }
 
         public IDbSet<TestQuestion> TestQuestion
         {
-            get { return this.TestQuestion; }
+            get { return this.entity.TestQuestion; }
         }
     }
 }
