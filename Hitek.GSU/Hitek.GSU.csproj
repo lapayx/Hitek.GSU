@@ -212,17 +212,23 @@
     <Compile Include="Logic\Database\Model\Test.cs" />
     <Compile Include="Logic\Database\Repository+Test.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
+    <Compile Include="Logic\Interfaces\ITestService.cs" />
     <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
     <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
+    <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Migrations\201504042130294_Create.cs" />
     <Compile Include="Migrations\201504042130294_Create.Designer.cs">
       <DependentUpon>201504042130294_Create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\some to remove\AccountViewModels.cs" />
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyAccount.cs" />
+    <Compile Include="Models\some to remove\ManageViewModels.cs" />
+    <Compile Include="Models\some to remove\MyAccount.cs" />
+    <Compile Include="Models\TestAnswer.cs" />
+    <Compile Include="Models\TestFull.cs" />
+    <Compile Include="Models\TestQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -237,6 +243,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\tpl\main.html" />
     <Content Include="Content\tpl\none.html" />
+    <Content Include="Content\tpl\test\fullTestTemplate.html" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -247,6 +254,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Scripts\app\Test\FullTest.js" />
     <Content Include="Scripts\unbandle\Action\ModalWindow\PresentationMedal.js" />
     <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
     <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />
@@ -268,7 +276,7 @@
     <Content Include="Scripts\unbandle\Item\ReceivedMedal\ReceivedMedal.view.js" />
     <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.model.js" />
     <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.view.js" />
-    <Content Include="Scripts\app\model\viewInfoMedal.js" />
+    <Content Include="Scripts\unbandle\model\viewInfoMedal.js" />
     <Content Include="Scripts\app\Pages\Main.js" />
     <Content Include="Scripts\override\Backbone.Marionette.CompositeView.prototype.attachElContent.js" />
     <Content Include="Scripts\override\Backbone.Marionette.ItemView.prototype.attachElContent.js" />

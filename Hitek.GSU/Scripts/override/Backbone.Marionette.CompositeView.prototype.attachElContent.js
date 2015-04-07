@@ -1,7 +1,7 @@
-﻿/*Backbone.Marionette.CompositeView.prototype.attachElContent = function (html) {
+﻿Backbone.Marionette.CompositeView.prototype.attachElContent = function (html) {
    
     this.$el.html(html);
-    if (this.el.tagName.toLowerCase == Backbone.Marionette.View.prototype.tagName.toLowerCase) {
+    if (this.el.tagName.toLowerCase() == Backbone.Marionette.View.prototype.tagName.toLowerCase()) {
         // Unwrap the element to prevent infinitely 
         // nesting elements during re-render.
         var child = this.el.children[0];
@@ -11,8 +11,8 @@
         if (this.id) {
             child.id = this.id;
         }
+        debugger;
         this.setElement(child);
     }
     return this;
 }
-*/

@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Hitek.GSU.Models;
+using Hitek.GSU.Logic.Service;
 
 namespace Hitek.GSU
 {
@@ -63,7 +64,10 @@ namespace Hitek.GSU
         }
 
         internal static void Register(IServiceContainer container)
-        {/*
+        {
+            container.Register<ITestService, TestService>();
+            
+            /*
             container.Register<IImportService, ImportService>();
             container.Register<ISearchService, SearchSevice>();
             container.Register<IVcsService, VcsService>();

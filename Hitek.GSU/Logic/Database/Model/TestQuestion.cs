@@ -23,7 +23,7 @@ namespace Hitek.GSU.Logic.Database
 
 
         public Test Test { get; set; } 
-        public virtual List<TestAnswer> TestAnswers { get; set; }
+        public virtual ICollection<TestAnswer> TestAnswers { get; set; }
     }
 
    

@@ -16,7 +16,7 @@ namespace Hitek.GSU.Logic.Database
         public string Name { get; set; }
 
 
-        public virtual List<TestQuestion> TestQuestions { get; set; }
+        public virtual ICollection<TestQuestion> TestQuestions { get; set; }
     }
 
    

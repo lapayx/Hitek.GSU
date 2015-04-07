@@ -33,7 +33,7 @@ namespace Hitek.GSU
                 .Include("~/Scripts/app/app.js")
 
 
-                .IncludeDirectory("~/Scripts/app/Pages/", "*.js", true)/*
+                .IncludeDirectory("~/Scripts/app/", "*.js", true)/*
                 .IncludeDirectory("~/Scripts/app/Item/", "*.model.js", true)
                 .IncludeDirectory("~/Scripts/app/Item/", "*.collection.js", true)
                 .IncludeDirectory("~/Scripts/app/Item/", "*.view.js", true)
