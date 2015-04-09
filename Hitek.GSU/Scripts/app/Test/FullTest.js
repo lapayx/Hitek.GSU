@@ -81,6 +81,7 @@
         template: "test/fullTestTemplate",
 
         initialize: function () {
+           // debugger;
             this.model = new FullTest.testModel();
             this.model.on("change", this.render);
             this.model.fetch();
