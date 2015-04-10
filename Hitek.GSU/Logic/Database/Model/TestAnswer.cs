@@ -15,7 +15,7 @@ namespace Hitek.GSU.Logic.Database
         [Required] 
         public string Text { get; set; }
 
-        public string IsRight { get; set; }
+        public bool IsRight { get; set; }
 
         public long TestQuestionId { get; set; }
 

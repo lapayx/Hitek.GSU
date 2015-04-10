@@ -38,7 +38,8 @@ namespace Hitek.GSU.Logic.Service
                         qu.Answers.Add(new TestAnswer
                         {
                             Id = a.Id,
-                            Text = a.Text
+                            Text = a.Text,
+                            Name =""
 
                         });
                     }

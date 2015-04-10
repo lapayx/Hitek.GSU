@@ -95,6 +95,7 @@
     <Compile Include="DataBase\TestContext+TestRepository.cs" />
     <Compile Include="DataBase\TestContext.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="Helpers\JSONHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Service\Test.cs" />
