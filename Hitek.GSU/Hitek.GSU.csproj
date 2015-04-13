@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201504042130294_Create.Designer.cs">
       <DependentUpon>201504042130294_Create.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504131132038_1d.cs" />
+    <Compile Include="Migrations\201504131132038_1d.Designer.cs">
+      <DependentUpon>201504131132038_1d.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
     <Compile Include="Models\Entity.cs" />
@@ -243,6 +247,8 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\tpl\main.html" />
     <Content Include="Content\tpl\none.html" />
+    <Content Include="Content\tpl\test\question.html" />
+    <Content Include="Content\tpl\test\answer.html" />
     <Content Include="Content\tpl\test\fullTestTemplate.html" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
@@ -349,6 +355,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504042130294_Create.resx">
       <DependentUpon>201504042130294_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504131132038_1d.resx">
+      <DependentUpon>201504131132038_1d.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

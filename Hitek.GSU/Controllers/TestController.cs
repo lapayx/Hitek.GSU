@@ -17,9 +17,9 @@ namespace Hitek.GSU.Controllers
         }
 
         // GET: Test
-        public ActionResult Index()
+        public ActionResult Index(long id)
         {
-            var res = testservice.GetTestById(1);
+            var res = testservice.GetTestById(id);
             return Json(res,JsonRequestBehavior.AllowGet);
         }
     }

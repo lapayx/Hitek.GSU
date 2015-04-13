@@ -16,7 +16,9 @@ namespace Hitek.GSU.Tests.Service
     {
 
         ITestService testService;
-        public Test()
+
+
+        public  Test()
         {
             var context = new TestContext();
             DB.TestQuestion question1 = new DB.TestQuestion()
@@ -74,5 +76,7 @@ namespace Hitek.GSU.Tests.Service
             Assert.AreEqual(etalon.ToJSON(),testRes.ToJSON() ,"Не совпадают"); 
   
         }
+
+
     }
 }
