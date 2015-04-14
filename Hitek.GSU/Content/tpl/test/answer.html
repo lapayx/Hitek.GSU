@@ -1,7 +1,7 @@
-﻿<div class="col-sm-offset-2 col-sm-10">
+﻿<div class="col-sm-12">
     <div class="radio">
         <label>
-            <input type="radio" name="answer"> <%- text %>
+            <input type="radio" name="answer" value="<%- id %>" <% if(isChecked) print('checked="checked"'); %>> <%- text %>
         </label>
     </div>
 </div>

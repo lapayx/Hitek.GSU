@@ -26,6 +26,9 @@
 
 
 
+
+    /* -------------------------- MODEL --------------------*/
+
     FullTest.TestModel = Backbone.Model.extend({
         constructor: function () {
             this.questions = new FullTest.QuestionCollection();
@@ -78,9 +81,16 @@
             return raw;
         }
     });
-    FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
-        template: "test/answer"
+
+    FullTestюQuestionPaginator = Backbone.Model.extend({
+        defaults: {
+            num: 0,
+            isAnswered: false,
+            isCurrent: false
+        }
     });
+    /* -------------------------- COLLECTION --------------------*/
+   
      FullTest.AnswerCollection = Backbone.Collection.extend({
          model: FullTest.AnswerModel
      });
@@ -88,8 +98,13 @@
          model: FullTest.QuestionModel
      });
 
+    /* -------------------------- VIEW --------------------*/
+    FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
+        template: "test/answer"
+    });
     FullTest.QuestionView = Backbone.Marionette.CompositeView.extend({
-        tagName:"div",
+        tagName: "div",
+        className: "panel-body",
         template: "test/question",
         childViewContainer: ".test-aswers",
         childView: FullTest.AnswerView,
@@ -97,7 +112,7 @@
         initialize: function () {
             console.log(this.model);
             this.collection = this.model.answers;
-        },
+        }
         
       });
 
@@ -106,12 +121,11 @@
 
     FullTest.view = Backbone.Marionette.LayoutView.extend({
         template: "test/fullTestTemplate",
-        regions: {
+        "regions": {
           //  menu: "#menu",
-            content: ".test-сontent"
+            "content": ".test-сontent"
         },
         initialize: function (paramId) {
-           // debugger;
             this.model = new FullTest.TestModel();
             this.model.on("change", this.render);
             this.model.fetch({ data: { id: paramId.id } });
@@ -120,7 +134,6 @@
            
         },
         onRender: function () {
-          //  debugger;
             if (this.model.get("Questions")) {
                 var v = new FullTest.QuestionView({ model: this.model.questions.at(0) })
                 this.content.show(v);
@@ -128,6 +141,8 @@
 
         }
     });
+
+
 
 
 

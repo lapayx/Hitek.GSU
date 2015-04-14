@@ -250,6 +250,8 @@
     <Content Include="Content\tpl\test\question.html" />
     <Content Include="Content\tpl\test\answer.html" />
     <Content Include="Content\tpl\test\fullTestTemplate.html" />
+    <Content Include="Content\tpl\test\questionPagination.html" />
+    <Content Include="Content\tpl\test\questionPaginationItem.html" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -260,7 +262,11 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Scripts\app\Test\FullTest.js" />
+    <Content Include="Scripts\app\Test\FullTest.model.js" />
+    <Content Include="Scripts\app\Test\FullTest.collection.js" />
+    <Content Include="Scripts\app\Test\FullTest.backup.js" />
+    <Content Include="Scripts\app\Test\FullTest.view.js" />
+    <Content Include="Scripts\app\Test\FullTest.route.js" />
     <Content Include="Scripts\unbandle\Action\ModalWindow\PresentationMedal.js" />
     <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
     <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />
@@ -283,7 +289,7 @@
     <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.model.js" />
     <Content Include="Scripts\unbandle\Item\UserInfo\UserInfo.view.js" />
     <Content Include="Scripts\unbandle\model\viewInfoMedal.js" />
-    <Content Include="Scripts\app\Pages\Main.js" />
+    <Content Include="Scripts\app\Pages\Main.route.js" />
     <Content Include="Scripts\override\Backbone.Marionette.CompositeView.prototype.attachElContent.js" />
     <Content Include="Scripts\override\Backbone.Marionette.ItemView.prototype.attachElContent.js" />
     <Content Include="Scripts\override\Backbone.Marionette.StackView.js" />
@@ -292,8 +298,8 @@
     <Content Include="Scripts\vendor\backbone.babysitter.js" />
     <Content Include="Scripts\vendor\backbone.babysitter.min.js" />
     <Content Include="Scripts\vendor\backbone.js" />
-    <Content Include="Scripts\vendor\backbone.marionette.js" />
-    <Content Include="Scripts\vendor\backbone.marionette.min.js" />
+    <Content Include="Scripts\vendor\backbone.marionette-2.4.1.js" />
+    <Content Include="Scripts\vendor\backbone.marionette-2.4.1.min.js" />
     <Content Include="Scripts\vendor\backbone.min.js" />
     <Content Include="Scripts\vendor\backbone.wreqr.js" />
     <Content Include="Scripts\vendor\backbone.wreqr.min.js" />

@@ -20,7 +20,7 @@ namespace Hitek.GSU
 
                         "~/Scripts/vendor/backbone.wreqr.js",
                         "~/Scripts/vendor/backbone.babysitter.js",
-                        "~/Scripts/vendor/backbone.marionette.js"
+                        "~/Scripts/vendor/backbone.marionette-{version}.js"
                         )
                         .IncludeDirectory("~/Scripts/override/", "*.js", true)
                     );
@@ -33,10 +33,12 @@ namespace Hitek.GSU
                 .Include("~/Scripts/app/app.js")
 
 
-                .IncludeDirectory("~/Scripts/app/", "*.js", true)/*
-                .IncludeDirectory("~/Scripts/app/Item/", "*.model.js", true)
-                .IncludeDirectory("~/Scripts/app/Item/", "*.collection.js", true)
-                .IncludeDirectory("~/Scripts/app/Item/", "*.view.js", true)
+              //  .IncludeDirectory("~/Scripts/app/", "*.js", true)
+                .IncludeDirectory("~/Scripts/app/", "*.model.js", true)
+                .IncludeDirectory("~/Scripts/app/", "*.collection.js", true)
+                .IncludeDirectory("~/Scripts/app/", "*.view.js", true)
+                .IncludeDirectory("~/Scripts/app/", "*.route.js", true)
+                /*
                 .IncludeDirectory("~/Scripts/app/Action/", "*.js", true)*/
                         //.IncludeDirectory("~/Scripts/app/modul/", "*.js", true)
                         // .IncludeDirectory("~/Scripts/app/model/", "*.js", true)
