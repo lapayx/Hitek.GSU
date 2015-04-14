@@ -14,7 +14,8 @@
          model: FullTest.AnswerForViewModel
      });
      FullTest.AnswerForSyncCollection = Backbone.Collection.extend({
-         model: FullTest.AnswerForSyncModel
+         model: FullTest.AnswerForSyncModel,
+         url:"ddd/"
      });
   
 });

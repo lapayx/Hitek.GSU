@@ -15,5 +15,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// <param name="id">ID Теста</param>
         /// <returns></returns>
         TestFull GetTestById(long id);
+
+        object CheackTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
     }
 }

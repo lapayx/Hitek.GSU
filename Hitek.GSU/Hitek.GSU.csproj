@@ -207,6 +207,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Model\TestHistory.cs" />
     <Compile Include="Logic\Database\Model\TestAnswer.cs" />
     <Compile Include="Logic\Database\Model\TestQuestion.cs" />
     <Compile Include="Logic\Database\Model\Test.cs" />
@@ -224,6 +225,14 @@
     <Compile Include="Migrations\201504131132038_1d.Designer.cs">
       <DependentUpon>201504131132038_1d.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504142037347_add_history.cs" />
+    <Compile Include="Migrations\201504142037347_add_history.Designer.cs">
+      <DependentUpon>201504142037347_add_history.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504142045159_add_history2.cs" />
+    <Compile Include="Migrations\201504142045159_add_history2.Designer.cs">
+      <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
     <Compile Include="Models\Entity.cs" />
@@ -233,6 +242,8 @@
     <Compile Include="Models\TestAnswer.cs" />
     <Compile Include="Models\TestFull.cs" />
     <Compile Include="Models\TestQuestion.cs" />
+    <Compile Include="Models\Validation\Test\Answer.cs" />
+    <Compile Include="Models\Validation\Test\TestForCheack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -364,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504131132038_1d.resx">
       <DependentUpon>201504131132038_1d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504142037347_add_history.resx">
+      <DependentUpon>201504142037347_add_history.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504142045159_add_history2.resx">
+      <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

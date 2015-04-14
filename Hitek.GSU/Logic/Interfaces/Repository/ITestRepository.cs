@@ -13,5 +13,7 @@ namespace Hitek.GSU.Logic.Interfaces
         IDbSet<TestAnswer> TestAnswer { get; }
 
         IDbSet<TestQuestion> TestQuestion { get; }
+        
+        IDbSet<TestHistory> TestHistory { get; }
     }
 }

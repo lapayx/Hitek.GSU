@@ -15,7 +15,7 @@
 
     FullTest.QuestionView = Backbone.Marionette.CompositeView.extend({
         tagName: "div",
-        className: "panel-body",
+        className: "panel-body test-cart",
         template: "test/question",
         childViewContainer: ".test-aswers",
         childView: FullTest.AnswerView,
@@ -53,6 +53,7 @@
         template: "test/questionPaginationItem",
         events: {
             "click": "click"
+            
         },
         click: function () {
             this.triggerMethod('show:changeQuestion', this.model.get("questionId"));
@@ -63,7 +64,13 @@
     FullTest.QuestionPaginationView = Backbone.Marionette.CompositeView.extend({
         template: "test/questionPagination",
         childViewContainer: ".question-pagination",
-        childView: FullTest.QuestionPaginationItemView
+        childView: FullTest.QuestionPaginationItemView,
+        events: {
+            "click .test-complite": "onClickEndTest"
+        },
+        onClickEndTest: function () {
+            this.triggerMethod('test:complite');
+        }
 
     });
 
@@ -97,7 +104,8 @@
                     this.model.set("currentQuestionId", nextQuestion);
                 else
                     this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
-            }
+            },
+            'test:complite': "onComliteTest"
         },
         initialize: function (paramId) {
             this.model = new FullTest.TestModel();
@@ -106,6 +114,7 @@
 
         onSyncModel: function () {
             this.render();
+            t = this.model;
             this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
 
         },
@@ -115,6 +124,16 @@
             var v = new FullTest.QuestionView({ model: this.model.questions.get(cq) })
             this.content.show(v);
             this.questionPagination.show(new FullTest.QuestionPaginationView({ collection: this.model.answers }));
+        },
+        onComliteTest: function () {
+            var c = new Backbone.Model();
+            c.url = "Test/Index2";
+            c.set("id", this.model.get("id"));
+            c.set("answers", this.model.answers.toJSON());
+            c.save(
+           
+                );
+                            
         }
     });
 

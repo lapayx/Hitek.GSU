@@ -49,5 +49,27 @@ namespace Hitek.GSU.Logic.Service
             }
             return res;
         }
+
+        public object CheackTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw) {
+
+            int right = 0;
+            foreach (var q in raw.answers) {
+                long ra = testRepository.TestAnswer.Where(x => x.TestQuestionId == q.questionId && x.IsRight == true).Select(x => x.Id).FirstOrDefault();
+                if (ra == q.answerId)
+                    right += 1;
+
+            }
+            float r = (float)right/raw.answers.Count ;
+
+            Hitek.GSU.Logic.Database.TestHistory tt = new Hitek.GSU.Logic.Database.TestHistory(){
+                Result = r,
+                TestId = raw.id
+            };
+
+            testRepository.TestHistory.Add(tt);
+            testRepository.SaveChanges();
+
+            return new { id =tt.Id,res = r,total = raw.answers.Count, right=right };
+        }
     }
 }
