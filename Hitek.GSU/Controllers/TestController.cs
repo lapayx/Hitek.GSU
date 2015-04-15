@@ -28,11 +28,21 @@ namespace Hitek.GSU.Controllers
 
 
         [HttpPut]
-    public ActionResult Index2(TestForCheack mod)
+        public ActionResult Index2(TestForCheack mod)
         {
             //var res = testservice.GetTestById(id);
             //return Json(res,JsonRequestBehavior.AllowGet);
             return Json( testservice.CheackTest(mod), JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public ActionResult TestResultById(long id)
+        {
+            return Json(testservice.GetHistoryTestById(id), JsonRequestBehavior.AllowGet);
+        } 
+        [HttpGet]
+        public ActionResult AllResultByUserId(long id)
+        {
+            return Json(testservice.GetAllHistoryTestByUserId(id), JsonRequestBehavior.AllowGet);
         }
 
     }

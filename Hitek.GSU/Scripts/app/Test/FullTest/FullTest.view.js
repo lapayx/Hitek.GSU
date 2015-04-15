@@ -3,7 +3,7 @@
 
     
     FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
-        template: "test/answer",
+        template: "Test/FullTest/answer",
         events: {
             "change input": function (e) {
                
@@ -16,7 +16,7 @@
     FullTest.QuestionView = Backbone.Marionette.CompositeView.extend({
         tagName: "div",
         className: "panel-body test-cart",
-        template: "test/question",
+        template: "Test/FullTest/question",
         childViewContainer: ".test-aswers",
         childView: FullTest.AnswerView,
         events: {
@@ -50,7 +50,7 @@
     FullTest.QuestionPaginationItemView = Backbone.Marionette.ItemView.extend({
         
 
-        template: "test/questionPaginationItem",
+        template: "Test/FullTest/questionPaginationItem",
         events: {
             "click": "click"
             
@@ -62,7 +62,7 @@
     });
 
     FullTest.QuestionPaginationView = Backbone.Marionette.CompositeView.extend({
-        template: "test/questionPagination",
+        template: "Test/FullTest/questionPagination",
         childViewContainer: ".question-pagination",
         childView: FullTest.QuestionPaginationItemView,
         events: {
@@ -77,7 +77,7 @@
 
     FullTest.view = Backbone.Marionette.LayoutView.extend({
 
-        template: "test/fullTestTemplate",
+        template: "Test/FullTest/fullTestTemplate",
         "regions": {
             questionPagination: ".test-question-pagination",
             content: ".test-сontent"
@@ -113,9 +113,13 @@
         },
 
         onSyncModel: function () {
-            this.render();
-            t = this.model;
-            this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
+            if (this.model.get("id") && this.model.get("id") > 0) {
+                this.render();
+                this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
+            }
+            else {
+                GSU.trigger("Error:404");
+            }
 
         },
         onChangeCurrentQuestionId: function (model) {

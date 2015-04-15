@@ -10,7 +10,7 @@
         },
         url: "/Test/",
         defaults: {
-            id: 0,
+            id: null,
             name: "Заголовок",
             currentQuestionId: 0
             
@@ -58,7 +58,7 @@
             Backbone.Model.apply(this, arguments);
         },
         defaults: {
-            id:0,
+            id:null,
             name: "",
             text: "",
             isSingleAnswer: true,

@@ -234,6 +234,7 @@
       <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -256,13 +257,17 @@
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\tpl\Error\404.html" />
     <Content Include="Content\tpl\main.html" />
     <Content Include="Content\tpl\none.html" />
-    <Content Include="Content\tpl\test\question.html" />
-    <Content Include="Content\tpl\test\answer.html" />
-    <Content Include="Content\tpl\test\fullTestTemplate.html" />
-    <Content Include="Content\tpl\test\questionPagination.html" />
-    <Content Include="Content\tpl\test\questionPaginationItem.html" />
+    <Content Include="Content\tpl\Test\FullTest\question.html" />
+    <Content Include="Content\tpl\Test\FullTest\answer.html" />
+    <Content Include="Content\tpl\Test\FullTest\fullTestTemplate.html" />
+    <Content Include="Content\tpl\Test\FullTest\questionPagination.html" />
+    <Content Include="Content\tpl\Test\FullTest\questionPaginationItem.html" />
+    <Content Include="Content\tpl\Test\ResultTest\main.html" />
+    <Content Include="Content\tpl\Test\ResultTestAll\item.html" />
+    <Content Include="Content\tpl\Test\ResultTestAll\main.html" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -273,11 +278,17 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Scripts\app\Test\FullTest.model.js" />
-    <Content Include="Scripts\app\Test\FullTest.collection.js" />
-    <Content Include="Scripts\app\Test\FullTest.backup.js" />
-    <Content Include="Scripts\app\Test\FullTest.view.js" />
-    <Content Include="Scripts\app\Test\FullTest.route.js" />
+    <Content Include="Scripts\app\Error\Error.route.js" />
+    <Content Include="Scripts\app\Test\FullTest\FullTest.model.js" />
+    <Content Include="Scripts\app\Test\FullTest\FullTest.collection.js" />
+    <Content Include="Scripts\app\Test\FullTest\FullTest.backup.js" />
+    <Content Include="Scripts\app\Test\FullTest\FullTest.view.js" />
+    <Content Include="Scripts\app\Test\Test.route.js" />
+    <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.collection.js" />
+    <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.model.js" />
+    <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.view.js" />
+    <Content Include="Scripts\app\Test\ResultTest\ResultTest.model.js" />
+    <Content Include="Scripts\app\Test\ResultTest\ResultTest.view.js" />
     <Content Include="Scripts\unbandle\Action\ModalWindow\PresentationMedal.js" />
     <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
     <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />

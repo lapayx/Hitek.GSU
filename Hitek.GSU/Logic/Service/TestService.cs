@@ -16,7 +16,7 @@ namespace Hitek.GSU.Logic.Service
 
         public TestFull GetTestById(long id)
         {
-            TestFull res = null;;
+            TestFull res = new TestFull(); 
             var t = testRepository.Test.FirstOrDefault(x => x.Id == id);
 
             if (t != null) {
@@ -70,6 +70,19 @@ namespace Hitek.GSU.Logic.Service
             testRepository.SaveChanges();
 
             return new { id =tt.Id,res = r,total = raw.answers.Count, right=right };
+        }
+
+        public HistoryResult GetHistoryTestById(long id)
+        {
+            HistoryResult res = testRepository.TestHistory.Where(x => x.Id == id).Select(x => new HistoryResult() { Id = x.Id,Name = x.Test.Name, Result = x.Result }).FirstOrDefault();
+            if (res == null)
+                res = new HistoryResult();
+            return res;
+        }
+        public ICollection<HistoryResult> GetAllHistoryTestByUserId(long id)
+        {
+            ICollection<HistoryResult> res= testRepository.TestHistory.Select(x => new HistoryResult() { Id= x.Id, Name = x.Test.Name, Result = x.Result }).ToList();
+            return res;
         }
     }
 }
