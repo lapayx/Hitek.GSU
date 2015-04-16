@@ -98,13 +98,17 @@
             },
             'question:commitAnswer': function (childView, id, answer, nextQuestion) {
                 console.log(arguments);
-                this.model.answers.get(id).set("answerId", answer);
-                this.model.questions.get(id).answers.get(answer).set("isChecked", true)
+                if (answer) {
+                    this.model.answers.get(id).set("answerId", answer);
+                    this.model.questions.get(id).answers.get(answer).set("isChecked", true)
+                }
+                this.model.answers.get(this.model.get("currentQuestionId")).set("isCurrent", false);
                 if (nextQuestion)
                     this.model.set("currentQuestionId", nextQuestion);
                 else
                     this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
             },
+
             'test:complite': "onComliteTest"
         },
         initialize: function (paramId) {

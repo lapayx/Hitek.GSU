@@ -2,7 +2,15 @@
 
 
     ResultTestAll.ItemView = Backbone.Marionette.ItemView.extend({
-        template: "Test/ResultTestAll/item"
+        template: "Test/ResultTestAll/item",
+        events: {
+            "click button":"showDeteil"
+
+        },
+        showDeteil: function () {
+            GSU.trigger("Test:showResult", this.model.get("id"));
+
+        }
     });
 
     ResultTestAll.view = Backbone.Marionette.CompositeView.extend({
