@@ -2,6 +2,7 @@
 using Hitek.GSU.Logic.Interfaces;
 using LightInject;
 using LightInject.Mvc;
+using LightInject.WebApi;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Hitek.GSU.Models;
 using Hitek.GSU.Logic.Service;
+using System.Web.Http;
 
 namespace Hitek.GSU
 {
@@ -27,13 +29,17 @@ namespace Hitek.GSU
         {
             IServiceContainer container = new ServiceContainer();
             container.RegisterControllers(Assembly.GetExecutingAssembly());
-
+             container.RegisterApiControllers();        
+    //registe other services
+     
             Register(container);
             RegisterRepositores(container);
             RegisterProviders(container);
             //LightInjectHttpModule.SetServiceContainer(container);
             DependencyResolver.SetResolver(new LightInjectMvcDependencyResolver(container));
             container.EnableMvc();
+          //  container.EnablePerWebRequestScope();
+            container.EnableWebApi(GlobalConfiguration.Configuration); 
         }
 
         internal static void RegisterRepositores(IServiceContainer container)

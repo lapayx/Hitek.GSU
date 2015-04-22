@@ -33,6 +33,7 @@ GSU.addInitializer(function () {
     
 });
 */
+GSU.token = "azaza";
 GSU.message = function(msg, type){
     alert(msg);
 };

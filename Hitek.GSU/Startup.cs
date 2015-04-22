@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Http;
 
 [assembly: OwinStartupAttribute(typeof(Hitek.GSU.Startup))]
 namespace Hitek.GSU
@@ -10,6 +11,9 @@ namespace Hitek.GSU
         {
             DIConfig.Register();
             ConfigureAuth(app);
+            //HttpConfiguration config = new HttpConfiguration();
+           // WebApiConfig.Register(config);
+          //  app.UseWebApi(config);
         }
     }
 }
