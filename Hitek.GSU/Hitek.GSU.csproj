@@ -142,6 +142,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -220,6 +223,7 @@
     <Compile Include="Logic\Interfaces\ITestService.cs" />
     <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
     <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
+    <Compile Include="Logic\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Migrations\201504042130294_Create.cs" />
     <Compile Include="Migrations\201504042130294_Create.Designer.cs">
@@ -375,7 +379,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\image\" />
-    <Folder Include="Logic\Providers\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
@@ -383,6 +386,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\vendor\jquery-1.11.2.min.map" />
     <Content Include="Views\Home\Temp.cshtml" />
+    <Content Include="Scripts\override\Backbone.sync.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504042130294_Create.resx">

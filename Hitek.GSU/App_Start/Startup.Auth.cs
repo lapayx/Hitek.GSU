@@ -8,12 +8,16 @@ using Owin;
 using Hitek.GSU.Models;
 using Microsoft.Owin.Security.DataProtection;
 using System.Web.Mvc;
+using Microsoft.Owin.Security.OAuth;
+using Hitek.GSU.Logic.Providers;
 
 namespace Hitek.GSU
 {
     public partial class Startup
     {
         internal static IDataProtectionProvider DataProtectionProvider { get; private set; }
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+        public static string PublicClientId { get; private set; }
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
@@ -69,6 +73,19 @@ namespace Hitek.GSU
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            PublicClientId = "self";
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new ApplicationOAuthProvider(PublicClientId),
+                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AllowInsecureHttp = true
+            };
+
+            // Enable the application to use bearer tokens to authenticate users
+            app.UseOAuthBearerTokens(OAuthOptions);
         }
     }
 }

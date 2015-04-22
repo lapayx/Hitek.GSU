@@ -53,6 +53,13 @@ namespace Hitek.GSU.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(AppUserManager manager, string authenticationType)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            // Add custom user claims here
+            return userIdentity;
+        }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleIntPk, long,

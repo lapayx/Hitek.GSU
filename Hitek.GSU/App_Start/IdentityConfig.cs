@@ -66,7 +66,7 @@ namespace Hitek.GSU
                 RequireLowercase = true,
                 RequireUppercase = true,*/
             };
-            this.PasswordHasher = new OldSystemPasswordHasher();    
+          //  this.PasswordHasher = new OldSystemPasswordHasher();    
             // Configure user lockout defaults
             this.UserLockoutEnabledByDefault = true;
             this.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);

@@ -48,3 +48,4 @@
 /// <reference path="app/test/resulttestall/resulttestall.collection.js" />
 /// <reference path="app/test/resulttestall/resulttestall.model.js" />
 /// <reference path="app/test/resulttestall/resulttestall.view.js" />
+/// <reference path="override/backbone.sync.js" />

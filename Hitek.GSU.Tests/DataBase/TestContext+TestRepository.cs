@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hitek.GSU.Tests
 {
-    public partial class TestContext : ITestRepository
+    public partial class TestContextq : ITestRepository
     {
 
         public IDbSet<Logic.Database.Test> Test
@@ -24,6 +24,12 @@ namespace Hitek.GSU.Tests
         public IDbSet<Logic.Database.TestQuestion> TestQuestion
         {
             get { return this.TestQuestions; }
+        }
+
+
+        public IDbSet<Logic.Database.TestHistory> TestHistory
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

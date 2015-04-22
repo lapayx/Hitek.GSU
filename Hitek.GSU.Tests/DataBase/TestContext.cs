@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Hitek.GSU.Tests
 {
-    public partial class TestContext : ISavingRepository
+    public partial class TestContextq : ISavingRepository
     {
-        public TestContext()
+        public TestContextq()
         {
             this.Tests = new TestDbSet<Hitek.GSU.Logic.Database.Test>();
             this.TestQuestions = new TestDbSet<Hitek.GSU.Logic.Database.TestQuestion>();

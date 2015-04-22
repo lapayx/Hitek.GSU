@@ -20,7 +20,7 @@ namespace Hitek.GSU.Tests.Service
 
         public  Test()
         {
-            var context = new TestContext();
+            var context = new TestContextq();
             DB.TestQuestion question1 = new DB.TestQuestion()
             {
                 Id=1,
