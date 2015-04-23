@@ -97,7 +97,6 @@
                 this.model.set("currentQuestionId", id);
             },
             'question:commitAnswer': function (childView, id, answer, nextQuestion) {
-                console.log(arguments);
                 if (answer) {
                     this.model.answers.get(id).set("answerId", answer);
                     this.model.questions.get(id).answers.get(answer).set("isChecked", true)
@@ -138,9 +137,13 @@
             c.url = "Test/Index2";
             c.set("id", this.model.get("id"));
             c.set("answers", this.model.answers.toJSON());
-            c.save(
-           
-                );
+            c.on("sync", function (r,mod,xht) {
+                if (mod.id) {
+                    GSU.trigger("Test:showResult", mod.id);
+
+                }
+            });
+            c.save();
                             
         }
     });
