@@ -10,7 +10,7 @@ namespace Hitek.GSU.Models.Validation.Test
 
     {
         [Required]
-        public long id { get; set; }
+        public long idTest { get; set; }
         public ICollection<Answer> answers { get; set; }
     }
 }

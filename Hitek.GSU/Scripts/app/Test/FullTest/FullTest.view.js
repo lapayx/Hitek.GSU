@@ -134,8 +134,8 @@
         },
         onComliteTest: function () {
             var c = new Backbone.Model();
-            c.url = "Test/Index2";
-            c.set("id", this.model.get("id"));
+            c.url = "api/Test/Check";
+            c.set("idTest", this.model.get("id"));
             c.set("answers", this.model.answers.toJSON());
             c.on("sync", function (r,mod,xht) {
                 if (mod.id) {
@@ -143,6 +143,7 @@
 
                 }
             });
+            debugger;
             c.save();
                             
         }

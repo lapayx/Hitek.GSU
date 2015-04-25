@@ -23,12 +23,14 @@ namespace Hitek.GSU
                         "~/Scripts/vendor/backbone.marionette-{version}.js"
                         )
                         .IncludeDirectory("~/Scripts/override/", "*.js", true)
+                        .IncludeDirectory("~/Scripts/plugin/", "*.js", true)
                     );
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/bootstrap-theme.css",
                       "~/Content/css/site.css"));
+
             bundles.Add(new ScriptBundle("~/Scripts/app")
                 .Include("~/Scripts/app/app.js")
 

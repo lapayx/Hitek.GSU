@@ -16,7 +16,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// <returns></returns>
         TestFull GetTestById(long id);
 
-        object CheackTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
+        object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
         HistoryResult GetHistoryTestById(long id);
         ICollection<HistoryResult> GetAllHistoryTestByUserId(long id);
     }

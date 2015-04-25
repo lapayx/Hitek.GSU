@@ -3,7 +3,7 @@
 
 
     ResultTestAll.ResultModel = Backbone.Model.extend({
-        url: "/Test/TestResultById",
+        url: "api/TestHistory/",
         defaults: {
             id: 0,
             name: "Заголовок",
@@ -12,9 +12,9 @@
              
         },
         parse: function (raw) {
-            raw.name = raw.Name;
-            raw.id = raw.Id;
-            raw.result = raw.Result*100;
+           // raw.name = raw.Name;
+           // raw.id = raw.Id;
+            raw.result = raw.result*100;
             
             return raw;
         }

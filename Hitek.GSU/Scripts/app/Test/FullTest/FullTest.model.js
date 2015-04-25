@@ -8,7 +8,7 @@
             this.answers = new FullTest.AnswerForViewCollection();
             Backbone.Model.apply(this, arguments);
         },
-        url: "/Test/",
+        url: "api/Test/",
         defaults: {
             id: null,
             name: "Заголовок",
@@ -18,9 +18,9 @@
         },
           
         parse: function (raw) {
-            raw.name = raw.Name;
-            raw.id = raw.Id;
-            this.questions.reset(raw.Questions, { parse: true });
+           // raw.name = raw.Name;
+           // raw.id = raw.Id;
+            this.questions.reset(raw.questions, { parse: true });
             this.addNavigationQuestion();
             var cq = 1
             for(var i = 1; i <= this.questions.length; i++)
@@ -67,10 +67,10 @@
             previosQuestion:null
         },
         parse: function (raw) {
-            this.answers.reset(raw.Answers, {parse:true});
-            raw.name = raw.Name;
-            raw.id = raw.Id;
-            raw.text = raw.Text;
+            this.answers.reset(raw.answers, {parse:true});
+            //raw.name = raw.Name;
+           // raw.id = raw.Id;
+           // raw.text = raw.Text;
             return raw;
         }
     });
@@ -82,9 +82,9 @@
             isChecked:false
         },
         parse: function (raw) {
-            raw.name = raw.Name;
-            raw.text = raw.Text;
-            raw.id = raw.Id;
+           // raw.name = raw.Name;
+           // raw.text = raw.Text;
+            //raw.id = raw.Id;
             return raw;
         }
     });

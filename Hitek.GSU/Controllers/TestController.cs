@@ -32,7 +32,7 @@ namespace Hitek.GSU.Controllers
         {
             //var res = testservice.GetTestById(id);
             //return Json(res,JsonRequestBehavior.AllowGet);
-            return Json( testservice.CheackTest(mod), JsonRequestBehavior.AllowGet);
+            return Json( testservice.CheckTest(mod), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult TestResultById(long id)

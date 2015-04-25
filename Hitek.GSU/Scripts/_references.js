@@ -49,3 +49,7 @@
 /// <reference path="app/test/resulttestall/resulttestall.model.js" />
 /// <reference path="app/test/resulttestall/resulttestall.view.js" />
 /// <reference path="override/backbone.sync.js" />
+/// <reference path="plugin/tree.js" />
+/// <reference path="app/test/listtest/listtest.collection.js" />
+/// <reference path="app/test/listtest/listtest.model.js" />
+/// <reference path="app/test/listtest/listtest.view.js" />

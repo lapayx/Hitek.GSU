@@ -22,7 +22,7 @@
         },
         initialize: function (paramId) {
             this.collection = new ResultTestAll.ResultCollection();
-            this.collection.fetch({ data: { id: paramId.id } });
+            this.collection.fetch();
 
         },
         onSyncModel: function () {

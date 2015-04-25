@@ -5,7 +5,7 @@
 
     ResultTestAll.ResultCollection = Backbone.Collection.extend({
         model: ResultTestAll.ResultModel,
-        url: "Test/AllResultByUserId"
+        url: "api/TestHistory/"
      });
   
 });

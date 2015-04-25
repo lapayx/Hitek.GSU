@@ -50,7 +50,7 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-        public object CheackTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw) {
+        public object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw) {
 
             int right = 0;
             foreach (var q in raw.answers) {
@@ -63,7 +63,7 @@ namespace Hitek.GSU.Logic.Service
 
             Hitek.GSU.Logic.Database.TestHistory tt = new Hitek.GSU.Logic.Database.TestHistory(){
                 Result = r,
-                TestId = raw.id
+                TestId = raw.idTest
             };
 
             testRepository.TestHistory.Add(tt);

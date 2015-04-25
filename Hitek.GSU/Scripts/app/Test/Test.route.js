@@ -8,6 +8,7 @@
             
             "Test/Result/:id": "showResult",
             "Test/Result": "showResultAll",
+            "Test/List": "showList",
             "Test/:id": "show",
         }
     });
@@ -25,6 +26,11 @@
         },
         showResult: function (id) {
             var view = new Test.ResultTest.view({ id: id });
+            GSU.mainRegion.show(view);
+
+        },
+        showList: function (id) {
+            var view = new Test.ListTest.view({ id: id });
             GSU.mainRegion.show(view);
 
         }
