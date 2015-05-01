@@ -111,8 +111,8 @@
             'test:complite': "onComliteTest"
         },
         initialize: function (paramId) {
-            this.model = new FullTest.TestModel();
-            this.model.fetch({ data: { id: paramId.id } });
+            this.model = new FullTest.TestModel({ id: paramId.id });
+            this.model.fetch();
         },
 
         onSyncModel: function () {

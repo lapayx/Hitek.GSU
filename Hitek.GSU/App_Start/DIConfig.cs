@@ -72,7 +72,7 @@ namespace Hitek.GSU
         internal static void Register(IServiceContainer container)
         {
             container.Register<ITestService, TestService>();
-            
+            container.Register<ITestSubjectService, TestSubjectService>();
             /*
             container.Register<IImportService, ImportService>();
             container.Register<ISearchService, SearchSevice>();

@@ -213,12 +213,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
+    <Compile Include="Controllers\API\TestSubjectController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Model\TestSubject.cs" />
     <Compile Include="Logic\Database\Model\TestHistory.cs" />
     <Compile Include="Logic\Database\Model\TestAnswer.cs" />
     <Compile Include="Logic\Database\Model\TestQuestion.cs" />
@@ -226,10 +228,12 @@
     <Compile Include="Logic\Database\Repository+Test.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
     <Compile Include="Logic\Interfaces\ITestService.cs" />
+    <Compile Include="Logic\Interfaces\ITestSubjectService.cs" />
     <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
     <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
     <Compile Include="Logic\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
+    <Compile Include="Logic\Service\TestSubjectService.cs" />
     <Compile Include="Migrations\201504042130294_Create.cs" />
     <Compile Include="Migrations\201504042130294_Create.Designer.cs">
       <DependentUpon>201504042130294_Create.cs</DependentUpon>
@@ -246,6 +250,10 @@
     <Compile Include="Migrations\201504142045159_add_history2.Designer.cs">
       <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504301834276_add_test_subject.cs" />
+    <Compile Include="Migrations\201504301834276_add_test_subject.Designer.cs">
+      <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
@@ -255,7 +263,9 @@
     <Compile Include="Models\some to remove\MyAccount.cs" />
     <Compile Include="Models\TestAnswer.cs" />
     <Compile Include="Models\TestFull.cs" />
+    <Compile Include="Models\TestInfo.cs" />
     <Compile Include="Models\TestQuestion.cs" />
+    <Compile Include="Models\TestSubject.cs" />
     <Compile Include="Models\Validation\Test\Answer.cs" />
     <Compile Include="Models\Validation\Test\TestForCheack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -278,6 +288,9 @@
     <Content Include="Content\tpl\Test\FullTest\fullTestTemplate.html" />
     <Content Include="Content\tpl\Test\FullTest\questionPagination.html" />
     <Content Include="Content\tpl\Test\FullTest\questionPaginationItem.html" />
+    <Content Include="Content\tpl\Test\ListTestDetail\noItem.html" />
+    <Content Include="Content\tpl\Test\ListTestDetail\item.html" />
+    <Content Include="Content\tpl\Test\ListTestDetail\main.html" />
     <Content Include="Content\tpl\Test\ListTest\item.html" />
     <Content Include="Content\tpl\Test\ListTest\main.html" />
     <Content Include="Content\tpl\Test\ResultTest\main.html" />
@@ -298,6 +311,9 @@
     <Content Include="Scripts\app\Test\FullTest\FullTest.collection.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.backup.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.view.js" />
+    <Content Include="Scripts\app\Test\ListTestDetail\ListTestDetail.collection.js" />
+    <Content Include="Scripts\app\Test\ListTestDetail\ListTestDetail.model.js" />
+    <Content Include="Scripts\app\Test\ListTestDetail\ListTestDetail.view.js" />
     <Content Include="Scripts\app\Test\ListTest\ListTest.collection.js" />
     <Content Include="Scripts\app\Test\ListTest\ListTest.model.js" />
     <Content Include="Scripts\app\Test\ListTest\ListTest.view.js" />
@@ -411,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504142045159_add_history2.resx">
       <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504301834276_add_test_subject.resx">
+      <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

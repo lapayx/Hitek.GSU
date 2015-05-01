@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Hitek.GSU.Logic.Database
 {
-    public class Test
+    public class TestSubject
     {
         [Key] 
         public long Id { get; set; }
@@ -15,13 +15,9 @@ namespace Hitek.GSU.Logic.Database
         [Required] 
         public string Name { get; set; }
 
-        public long? TestSubjectId { get; set; }
+        public long? ParentId { get; set; }
 
-
-        public virtual TestSubject TestSubject { get; set; } 
-        public virtual ICollection<TestQuestion> TestQuestions { get; set; }
-        public virtual ICollection<TestHistory> TestHistories { get; set; }
-
+        public virtual ICollection<Test> Tests { get; set; }
     }
 
    

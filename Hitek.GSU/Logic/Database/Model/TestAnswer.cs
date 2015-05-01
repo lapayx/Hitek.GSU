@@ -20,7 +20,7 @@ namespace Hitek.GSU.Logic.Database
         public long TestQuestionId { get; set; }
 
 
-        public TestQuestion TestQuestion { get; set; } 
+        public virtual TestQuestion TestQuestion { get; set; } 
 
     }
 

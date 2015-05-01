@@ -16,7 +16,7 @@ namespace Hitek.GSU.Logic.Database
         
         [Required]
         public long TestId { get; set; }
-        public Test Test { get; set; }
+        public virtual Test Test { get; set; }
         
     }
 

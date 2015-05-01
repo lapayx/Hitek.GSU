@@ -4,12 +4,21 @@
     ListTest.treeView = Backbone.Marionette.CompositeView.extend({
         template: "Test/ListTest/item",
         childViewContainer: "ul",
+        events: {
+            "click":"click"
+        },
         initialize: function () {
             if(this.model.children)
                 this.collection = this.model.children;
 
         },
-        
+        click: function () {
+            if (!this.model.get("isParent")) {
+                GSU.trigger("Test:showListDetail", this.model.id);
+
+            }
+
+        }
     });
 
 
@@ -22,9 +31,8 @@
             "sync": "onSyncModel"
         },
         initialize: function (paramId) {
-            this.collection = new ListTest.TreeCollection([{ name: 2, childrens: [{ name: 6 }, { Name: 65 }] }, { name: 23 }], { parse: true });
-
-           // this.collection.fetch();
+            this.collection = new ListTest.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
+           this.collection.fetch();
 
         },
         onSyncModel: function () {

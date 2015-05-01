@@ -8,6 +8,7 @@
             
             "Test/Result/:id": "showResult",
             "Test/Result": "showResultAll",
+            "Test/ListDetail/:id": "showListDetail",
             "Test/List": "showList",
             "Test/:id": "show",
         }
@@ -33,10 +34,15 @@
             var view = new Test.ListTest.view({ id: id });
             GSU.mainRegion.show(view);
 
+        },
+        showListDetail: function (id) {
+            var view = new Test.ListTestDetail.view({ id: id });
+            GSU.mainRegion.show(view);
+
         }
     };
 
-    GSU.on("Test:show", function (id) {
+    GSU.on("Test:showTest", function (id) {
         GSU.navigate("Test/"+id);
         API.show(id);
     });
@@ -49,6 +55,10 @@
         API.showResultAll();
     });
 
+    GSU.on("Test:showListDetail", function (id) {
+        GSU.navigate("Test/ListDetail/"+id);
+        API.showListDetail(id);
+    });
 
 
     GSU.addInitializer(function () {

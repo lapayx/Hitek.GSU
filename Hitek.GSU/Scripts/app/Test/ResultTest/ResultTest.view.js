@@ -8,8 +8,8 @@
             "sync": "onSyncModel"
         },
         initialize: function (paramId) {
-            this.model = new ResultTest.ResultModel();
-            this.model.fetch({ data: { id: paramId.id } });
+            this.model = new ResultTest.ResultModel({ id: paramId.id });
+            this.model.fetch();
 
         },
         onSyncModel: function () {

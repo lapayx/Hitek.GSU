@@ -5,7 +5,7 @@
 
     ListTest.TreeCollection = Backbone.Collection.extend({
         model: ListTest.TreeModel,
-        //url: "api/TestHistory/"
+        url: "api/TestSubject/"
      });
   
 });

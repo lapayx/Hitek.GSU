@@ -31,5 +31,11 @@ namespace Hitek.GSU.Tests
         {
             get { throw new NotImplementedException(); }
         }
+
+
+        public IDbSet<Logic.Database.TestSubject> TestSubject
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }
