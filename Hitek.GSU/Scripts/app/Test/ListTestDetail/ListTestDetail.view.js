@@ -25,6 +25,7 @@
             "sync": "onSyncModel"
         },
         initialize: function (paramId) {
+            GSU.loadMask.show();
             this.model = new ListTestDetail.SubjectInfoModel({ id: paramId.id });
             this.model.fetch();
             this.collection = new ListTestDetail.DetailCollection();
@@ -34,6 +35,7 @@
 
         },
         onSyncModel: function () {
+            GSU.loadMask.hide();
             if (this.model.id && this.model.id>0) {
                 this.render();
             }

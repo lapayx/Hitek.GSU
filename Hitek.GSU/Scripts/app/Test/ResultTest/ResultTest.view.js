@@ -8,11 +8,13 @@
             "sync": "onSyncModel"
         },
         initialize: function (paramId) {
+            GSU.loadMask.show();
             this.model = new ResultTest.ResultModel({ id: paramId.id });
             this.model.fetch();
 
         },
         onSyncModel: function () {
+            GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id")>0) {
                 this.render();
             }

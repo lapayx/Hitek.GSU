@@ -111,11 +111,13 @@
             'test:complite': "onComliteTest"
         },
         initialize: function (paramId) {
+            GSU.loadMask.show();
             this.model = new FullTest.TestModel({ id: paramId.id });
             this.model.fetch();
         },
 
         onSyncModel: function () {
+            GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
                 this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));

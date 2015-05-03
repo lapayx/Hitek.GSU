@@ -28,9 +28,34 @@
                     <!-- <li>@Html.ActionLink("Home", "Index", "Home")</li>
                      <li>@Html.ActionLink("About", "About", "Home")</li>
                      <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
+                    <li class="dropdown">
+                        <a id="admin-controller" class="dropdown-toggle" aria-expanded="true" role="button" aria-haspopup="true" data-toggle="dropdown" href="#">
+                            Для преподавателей
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="admin-controller" role="menu">
+                            <li role="presentation">
+                                <a href="#Admin/TestSubject" tabindex="-1" role="menuitem">Action</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="https://twitter.com/fat" tabindex="-1" role="menuitem">Another action</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="https://twitter.com/fat" tabindex="-1" role="menuitem">Something else here</a>
+                            </li>
+                            <li class="divider" role="presentation"></li>
+                            <li role="presentation">
+                                <a href="https://twitter.com/fat" tabindex="-1" role="menuitem">Separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="container body-content" id="loading">
+        <img src="~/Content/image/loading.gif" />
     </div>
     <div class="container body-content" id="main-region">
         @RenderBody()

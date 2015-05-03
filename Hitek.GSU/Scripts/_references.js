@@ -56,3 +56,7 @@
 /// <reference path="app/test/listtestdetail/listtestdetail.collection.js" />
 /// <reference path="app/test/listtestdetail/listtestdetail.view.js" />
 /// <reference path="app/test/listtestdetail/listtestdetail.model.js" />
+/// <reference path="app/admin/testsubject/testsubject.route.js" />
+/// <reference path="app/admin/testsubject/list/listtest.model.js" />
+/// <reference path="app/admin/testsubject/list/listtest.collection.js" />
+/// <reference path="app/admin/testsubject/list/listtest.view.js" />

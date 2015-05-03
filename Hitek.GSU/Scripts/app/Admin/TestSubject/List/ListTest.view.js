@@ -1,11 +1,11 @@
-﻿GSU.module("Test.ListTest", function (ListTest, GSU, Backbone, Marionette, $, _) {
+﻿GSU.module("Admin.TestSubject.List", function (List, GSU, Backbone, Marionette, $, _) {
 
 
-    ListTest.treeView = Backbone.Marionette.CompositeView.extend({
-        template: "Test/ListTest/item",
+    List.treeView = Backbone.Marionette.CompositeView.extend({
+        template: "Admin/TestSubject/List/item",
         childViewContainer: "ul",
         events: {
-            "click":"click"
+            "click span":"click"
         },
         initialize: function () {
             if(this.model.children)
@@ -23,10 +23,10 @@
 
 
 
-    ListTest.view = Backbone.Marionette.CompositeView.extend({
-        template: "Test/ListTest/main",
+    List.view = Backbone.Marionette.CompositeView.extend({
+        template: "Admin/TestSubject/List/main",
         childViewContainer: ".tree ul",
-        childView: ListTest.treeView,
+        childView: List.treeView,
         modelEvents: {
             "sync": "onSyncModel"
         },
@@ -35,7 +35,7 @@
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            this.collection = new ListTest.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
+            this.collection = new List.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
             this.collection.fetch();
 
         },

@@ -20,18 +20,26 @@
         modelEvents: {
             "sync": "onSyncModel"
         },
+        collectionEvents:{
+            "sync":"onSyncCollection"
+        },
         initialize: function (paramId) {
+            GSU.loadMask.show();
             this.collection = new ResultTestAll.ResultCollection();
             this.collection.fetch();
 
         },
         onSyncModel: function () {
+            GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id")>0) {
                 this.render();
             }
             else {
                 GSU.trigger("Error:404");
             }
+        },
+        onSyncCollection: function(){
+            GSU.loadMask.hide();
         }
 
     });

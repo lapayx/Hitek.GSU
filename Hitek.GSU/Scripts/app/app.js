@@ -20,6 +20,19 @@ GSU.closeModal = function () {
     GSU.modal.reset()
 };
 
+GSU.loadMask = {
+    _selector : "#loading",
+    show: function () {
+     //   debugger;
+        console.log(this._selector);
+        $(this._selector).show();
+
+    },
+    hide: function () {
+        $(this._selector).hide();
+    }
+
+}
 GSU.on("modalWindow:close", function (param) {
     GSU.closeModal();
 });
