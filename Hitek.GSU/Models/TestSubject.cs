@@ -7,8 +7,8 @@ namespace Hitek.GSU.Models
 {
     public class TestSubject:Entity
     {
-        public ICollection<TestSubject> Childrens { get; set;}
-
+        //public ICollection<TestSubject> Childrens { get; set;}
+        public long? ParentId { get; set; }
         public int CountTest { get; set; }
     }
 }

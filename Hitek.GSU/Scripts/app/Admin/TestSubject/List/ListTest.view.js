@@ -5,7 +5,9 @@
         template: "Admin/TestSubject/List/item",
         childViewContainer: "ul",
         events: {
-            "click span":"click"
+            "click span": "click",
+            "click .delete-model": "oClicknDeleteModel",
+            "click .edit-model": "onClickEditModel"
         },
         initialize: function () {
             if(this.model.children)
@@ -17,6 +19,17 @@
                 GSU.trigger("Test:showListDetail", this.model.id);
 
             }
+
+        },
+        oClicknDeleteModel: function () {
+            console.log("delete");
+            var ans = confirm("Удалить тему " + this.model.get("name") + "?");
+            if (ans) {
+                this.model.destroy({})
+            }
+        },
+        onClickEditModel: function () {
+            GSU.trigger("Admin:TestSubject:edit", this.model.id);
 
         }
     });
@@ -35,6 +48,7 @@
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
+            
             this.collection = new List.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
             this.collection.fetch();
 
@@ -48,10 +62,26 @@
             }
         },
         onSyncCollection: function () {
+            _.each(this.collection, function (c, num, collection) {
+                var m = collection.at(num);
+                if (m.get("parentId") > 0) {
+                    var t = this.collection.get(m.get("parentId"));
+                    if (t) {
+                        t.setChildren(m.clone());
+                    }
+                }
+            },this);
+
+            _.each(this.collection, function (c, num, collection) {
+                var m = collection.at(num);
+                if (m.get("parentId") > 0) {
+                    this.collection.remove(m,{silent : true})
+                }
+            }, this);
+
+            this.render();
             GSU.loadMask.hide();
         }
-
-
     });
     
 

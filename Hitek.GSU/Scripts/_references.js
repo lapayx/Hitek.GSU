@@ -60,3 +60,5 @@
 /// <reference path="app/admin/testsubject/list/listtest.model.js" />
 /// <reference path="app/admin/testsubject/list/listtest.collection.js" />
 /// <reference path="app/admin/testsubject/list/listtest.view.js" />
+/// <reference path="app/admin/testsubject/edit/edit.model.js" />
+/// <reference path="app/admin/testsubject/edit/edit.view.js" />

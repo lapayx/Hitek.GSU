@@ -20,11 +20,12 @@
 			GSU.mainRegion.show(view);
 
 		},
-		/*showResultAll: function () {
-			var view = new TestSubject.ResultTestAll.view({ id: 0 });
+		editSunbject: function (id) {
+			var view = new TestSubject.Edit.view({ id: id });
 			GSU.mainRegion.show(view);
 
 		},
+        /*
 		showResult: function (id) {
 			var view = new TestSubject.ResultTest.view({ id: id });
 			GSU.mainRegion.show(view);
@@ -41,12 +42,12 @@
 
 		}*/
 	};
-	/*
-	GSU.on("Test:showTest", function (id) {
-		GSU.navigate("Test/" + id);
-		API.show(id);
+	
+	GSU.on("Admin:TestSubject:edit", function (id) {
+	    GSU.navigate("Admin/TestSubject/"+id);
+	    API.editSunbject(id);
 	});
-	GSU.on("Test:showResult", function (id) {
+	/*GSU.on("Test:showResult", function (id) {
 		GSU.navigate("Test/Result/" + id);
 		API.showResult(id);
 	});

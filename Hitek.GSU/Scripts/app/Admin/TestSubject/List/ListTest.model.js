@@ -13,17 +13,14 @@
         defaults: {
             isParent: false,
             name: "Заголовок",
-            result: 0
+            result: 0,
+            parentId: 0
             
              
         },
-        parse: function (raw) {
-            console.log(raw.childrens);
-            this.children.reset(raw.childrens, { parse: true });
-            if (this.children.length > 0) {
-                raw.isParent = true;
-            }
-           return raw;
+        setChildren: function (child) {
+            this.children.add(child);
+            this.set("isParent", true);
         }
        
     });

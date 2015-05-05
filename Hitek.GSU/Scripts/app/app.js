@@ -23,8 +23,6 @@ GSU.closeModal = function () {
 GSU.loadMask = {
     _selector : "#loading",
     show: function () {
-     //   debugger;
-        console.log(this._selector);
         $(this._selector).show();
 
     },

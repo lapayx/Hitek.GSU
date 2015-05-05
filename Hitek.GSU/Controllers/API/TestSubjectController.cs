@@ -51,6 +51,8 @@ namespace Hitek.GSU.Controllers.API
         // DELETE: api/TestSubject/5
         public void Delete(int id)
         {
+            this.subjectService.DeleteTestSubjectById(id);
+
         }
     }
 }

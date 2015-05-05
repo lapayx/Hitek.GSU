@@ -15,5 +15,7 @@ namespace Hitek.GSU.Logic.Interfaces
 
         ICollection<TestInfo> GetListTestBySubjectId(long id);
 
+        bool DeleteTestSubjectById(long id);
+
     }
 }

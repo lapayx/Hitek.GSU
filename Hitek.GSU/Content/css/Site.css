@@ -42,6 +42,8 @@ min-height:300px;
 #loading img {
    position:absolute;
    top:45%;
+   left:50%;
+   margin-left:-75px;
 
 }
 

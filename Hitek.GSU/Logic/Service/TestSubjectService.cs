@@ -25,7 +25,7 @@ namespace Hitek.GSU.Logic.Service
         public ICollection<TestSubject> GetAllTestSubjects()
         {
 
-            var allSubject = this.testRepository.TestSubject.ToList();
+            /*var allSubject = this.testRepository.TestSubject.ToList();
             IList<TestSubject> res = new List<TestSubject>();
             var t = allSubject.Where(x => x.ParentId == null).ToList();
             foreach(var s in t){
@@ -33,11 +33,19 @@ namespace Hitek.GSU.Logic.Service
                 {
                     Id = s.Id,
                     Name = s.Name,
-                    Childrens = getChildrenSubject(allSubject, s.Id)
+                    //Childrens = getChildrenSubject(allSubject, s.Id)
+                    ParentId = s.ParentId
                 });
             
             }
-            return res;
+            return res;*/
+            return this.testRepository.TestSubject.Select(x => new TestSubject()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    ParentId = x.ParentId
+                }
+            ).ToList();
         }
 
         public ICollection<TestInfo> GetListTestBySubjectId(long id)
@@ -51,7 +59,16 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
+        public bool DeleteTestSubjectById(long id)
+        {
+            Hitek.GSU.Logic.Database.TestSubject t = new Hitek.GSU.Logic.Database.TestSubject(){Id= id};
 
+            testRepository.TestSubject.Attach(t);
+            testRepository.TestSubject.Remove(t);
+            testRepository.SaveChanges();
+            return true;
+            
+        }
 
         private IList<TestSubject> getChildrenSubject(List<Hitek.GSU.Logic.Database.TestSubject> src, long parentId) { 
             
@@ -63,7 +80,7 @@ namespace Hitek.GSU.Logic.Service
                 {
                     Id = s.Id,
                     Name = s.Name,
-                    Childrens = getChildrenSubject(src,s.Id)
+                    //Childrens = getChildrenSubject(src,s.Id)
                 });
                 
             }
@@ -74,6 +91,9 @@ namespace Hitek.GSU.Logic.Service
         
         }
 
-        
+
+
+
+      
     }
 }
