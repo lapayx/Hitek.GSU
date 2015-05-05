@@ -10,6 +10,17 @@
         }
     });
 
+    Edit.TreeModel = Backbone.Model.extend({
+        urlRoot: "api/TestSubject/",
+        defaults: {
+            isParent: false,
+            name: "Заголовок",
+            result: 0,
+            parentId: 0
+        }
+
+    });
+
  
    
 

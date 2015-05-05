@@ -266,6 +266,7 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\image\loading.gif" />
     <Content Include="Content\image\loading_circle.gif" />
+    <Content Include="Content\tpl\Admin\TestSubject\Edit\select.html" />
     <Content Include="Content\tpl\Admin\TestSubject\Edit\main.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\item.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\main.html" />
@@ -297,6 +298,7 @@
     <Content Include="Content\css\bootstrap.css.map" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.model.js" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.view.js" />
+    <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.collection.js" />
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.collection.js" />
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.model.js" />
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.view.js" />
