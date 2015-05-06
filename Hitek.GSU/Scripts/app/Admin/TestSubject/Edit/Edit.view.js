@@ -58,7 +58,8 @@
             this.model.set("parentId", parseInt(event.target.value));
 
         },
-        onSubmit: function () {
+        onSubmit: function (event) {
+            event.preventDefault()
             this.model.save();
 
         }

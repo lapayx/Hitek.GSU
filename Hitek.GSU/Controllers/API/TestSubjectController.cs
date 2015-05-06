@@ -44,8 +44,9 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // PUT: api/TestSubject/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(long id, TestSubject value)
         {
+            var t = value;
         }
 
         // DELETE: api/TestSubject/5
