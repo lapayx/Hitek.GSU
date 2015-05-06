@@ -14,7 +14,7 @@
         urlRoot: "api/TestSubject/",
         defaults: {
             isParent: false,
-            name: "Заголовок",
+            name: "Новая тема",
             result: 0,
             parentId: 0
         }

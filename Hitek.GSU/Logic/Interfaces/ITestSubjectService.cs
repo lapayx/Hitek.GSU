@@ -13,6 +13,10 @@ namespace Hitek.GSU.Logic.Interfaces
 
         ICollection<TestSubject> GetAllTestSubjects();
 
+        bool AddTestSubject(TestSubject newItem);
+
+        bool EditTestSubject(long id, TestSubject editSubject);
+
         ICollection<TestInfo> GetListTestBySubjectId(long id);
 
         bool DeleteTestSubjectById(long id);

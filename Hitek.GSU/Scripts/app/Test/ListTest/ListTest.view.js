@@ -50,7 +50,7 @@
         onSyncCollection: function () {
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m.get("parentId") > 0) {
+                if (m && m.get("parentId") > 0) {
                     var t = this.collection.get(m.get("parentId"));
                     if (t) {
                         t.setChildren(m.clone());
@@ -60,7 +60,7 @@
 
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m.get("parentId") > 0) {
+                if (m && m.get("parentId") > 0) {
                     this.collection.remove(m, { silent: true })
                 }
             }, this);

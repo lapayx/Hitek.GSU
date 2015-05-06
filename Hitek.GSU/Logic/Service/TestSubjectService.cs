@@ -91,9 +91,26 @@ namespace Hitek.GSU.Logic.Service
         
         }
 
+        public bool EditTestSubject(long id, TestSubject editSubject)
+        {
+            var temp = testRepository.TestSubject.Find(id);
+            temp.Name = editSubject.Name;
+            temp.ParentId = editSubject.ParentId;
+            testRepository.SaveChanges();
+            return true;
+        }
+        public bool AddTestSubject(TestSubject editSubject)
+        {
+            var temp = new Database.TestSubject()
+            {
+                Name = editSubject.Name,
+                ParentId = editSubject.ParentId
+                
+            };
 
-
-
-      
+            testRepository.TestSubject.Add(temp);
+            testRepository.SaveChanges();
+            return true;
+        }
     }
 }

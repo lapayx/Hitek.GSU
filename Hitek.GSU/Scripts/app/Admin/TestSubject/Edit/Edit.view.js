@@ -28,9 +28,13 @@
 
         initialize: function (paramId) {
             GSU.loadMask.show();
+            if (paramId.id > 0) {
+                this.model = new Edit.Subject({ id: paramId.id });
+                this.model.fetch();
+            }
+            else
+                this.model = new Edit.Subject();
             
-            this.model = new Edit.Subject({ id: paramId.id });
-            this.model.fetch();
             this.collection = new Edit.TreeCollection();
             this.collection.fetch();
            
@@ -46,6 +50,7 @@
             }
         },
         onSyncCollection: function () {
+            GSU.loadMask.hide();
             this.render();
            
         },

@@ -39,14 +39,16 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // POST: api/TestSubject
-        public void Post([FromBody]string value)
+        public void Post(TestSubject value)
         {
+            this.subjectService.AddTestSubject(value);
         }
 
         // PUT: api/TestSubject/5
         public void Put(long id, TestSubject value)
         {
-            var t = value;
+            this.subjectService.EditTestSubject(id, value);
+            
         }
 
         // DELETE: api/TestSubject/5

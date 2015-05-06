@@ -40,6 +40,10 @@
         template: "Admin/TestSubject/List/main",
         childViewContainer: ".tree ul",
         childView: List.treeView,
+        events: {
+            "click .new-subject":"newSubject"
+
+        },
         modelEvents: {
             "sync": "onSyncModel"
         },
@@ -64,7 +68,7 @@
         onSyncCollection: function () {
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m.get("parentId") > 0) {
+                if (m && m.get("parentId") > 0) {
                     var t = this.collection.get(m.get("parentId"));
                     if (t) {
                         t.setChildren(m.clone());
@@ -74,13 +78,18 @@
 
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m.get("parentId") > 0) {
+                if (m && m.get("parentId") > 0) {
                     this.collection.remove(m,{silent : true})
                 }
             }, this);
 
             this.render();
             GSU.loadMask.hide();
+        },
+
+        newSubject: function () {
+            GSU.trigger("Admin:TestSubject:edit", 0);
+
         }
     });
     
