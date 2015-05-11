@@ -69,19 +69,20 @@
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
                 if (m && m.get("parentId") > 0) {
-                    var t = this.collection.get(m.get("parentId"));
+                    var t = collection.get(m.get("parentId"));
                     if (t) {
                         t.setChildren(m.clone());
                     }
                 }
-            },this);
-
+            });
+            var forRemove = []
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m && m.get("parentId") > 0) {
-                    this.collection.remove(m,{silent : true})
+                if (m && m.get("parentId")>0) {
+                    forRemove.push(m)
                 }
-            }, this);
+            });
+            this.collection.remove(forRemove, { silent: true });
 
             this.render();
             GSU.loadMask.hide();
