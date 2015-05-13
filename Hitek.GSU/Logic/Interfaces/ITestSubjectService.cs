@@ -17,7 +17,6 @@ namespace Hitek.GSU.Logic.Interfaces
 
         bool EditTestSubject(long id, TestSubject editSubject);
 
-        ICollection<TestInfo> GetListTestBySubjectId(long id);
 
         bool DeleteTestSubjectById(long id);
 

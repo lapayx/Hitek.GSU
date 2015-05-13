@@ -5,7 +5,7 @@
 
     ListTestDetail.DetailCollection = Backbone.Collection.extend({
         model: ListTestDetail.DetailModel,
-        url: function () { return "api/TestSubject/" + this.id + "/Test"; }
+        url: function () { return "api/Test/Subject/" + this.id; }
      });
   
 });

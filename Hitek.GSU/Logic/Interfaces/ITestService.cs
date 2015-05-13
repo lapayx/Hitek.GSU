@@ -10,7 +10,10 @@ namespace Hitek.GSU.Logic.Interfaces
     public interface ITestService
     {
 
-        
+        ICollection<TestInfo> GetAllTest();
+
+        ICollection<TestInfo> GetTestBySubjectId(long subjectId);
+
         /// <summary>
         /// Получение теста его вопросов и ответов по ID
         /// </summary>

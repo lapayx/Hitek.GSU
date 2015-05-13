@@ -302,6 +302,10 @@
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.collection.js" />
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.model.js" />
     <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.view.js" />
+    <Content Include="Scripts\app\Admin\Test\List\List.collection.js" />
+    <Content Include="Scripts\app\Admin\Test\List\List.model.js" />
+    <Content Include="Scripts\app\Admin\Test\List\List.view.js" />
+    <Content Include="Scripts\app\Admin\Test\Test.route.js" />
     <Content Include="Scripts\app\Error\Error.route.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.model.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.collection.js" />

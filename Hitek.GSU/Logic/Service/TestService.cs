@@ -84,5 +84,21 @@ namespace Hitek.GSU.Logic.Service
             ICollection<HistoryResult> res= testRepository.TestHistory.Select(x => new HistoryResult() { Id= x.Id, Name = x.Test.Name, Result = x.Result }).ToList();
             return res;
         }
+
+        public ICollection<TestInfo> GetAllTest()
+        {
+            return testRepository.Test.Select(x => new TestInfo() { Id = x.Id, Name = x.Name}).ToList();
+        }
+
+        public ICollection<TestInfo> GetTestBySubjectId(long subjectId)
+        {
+            IList<TestInfo> res = testRepository.Test.Where(x => x.TestSubjectId ==subjectId).Select(x => new TestInfo()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }
+            ).OrderBy(x => x.Name).ToList();
+            return res;
+        }
     }
 }

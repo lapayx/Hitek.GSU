@@ -22,9 +22,16 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // GET: api/Test
-        public IEnumerable<TestFull> Get()
+        public IEnumerable<TestInfo> Get()
         {
-            return new List<TestFull>();
+            return testservice.GetAllTest();
+        }
+
+        // GET: api/Test/Subject/{id}
+        [Route("Subject/{subjectId}")]
+        public IEnumerable<TestInfo> GetByTestSubject(long subjectId)
+        {
+            return testservice.GetTestBySubjectId(subjectId);
         }
 
         // GET: api/Test/5

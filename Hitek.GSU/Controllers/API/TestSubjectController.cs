@@ -31,13 +31,7 @@ namespace Hitek.GSU.Controllers.API
             return subjectService.GetTestSubjectById(id);
         }
 
-        [Route("{id}/Test")]
-        // GET: api/TestSubject/5/Test
-        public IEnumerable<TestInfo> GetTestForTestSubject(long id)
-        {
-            return subjectService.GetListTestBySubjectId(id);
-        }
-
+      
         // POST: api/TestSubject
         public void Post(TestSubject value)
         {

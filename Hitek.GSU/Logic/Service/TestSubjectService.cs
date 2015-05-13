@@ -48,17 +48,6 @@ namespace Hitek.GSU.Logic.Service
             ).ToList();
         }
 
-        public ICollection<TestInfo> GetListTestBySubjectId(long id)
-        {
-            IList<TestInfo> res = testRepository.Test.Where(x => x.TestSubjectId == id).Select(x => new TestInfo()
-                {
-                    Id = x.Id,
-                    Name = x.Name
-                }
-            ).OrderBy( x=> x.Name).ToList();
-            return res;
-        }
-
         public bool DeleteTestSubjectById(long id)
         {
             Hitek.GSU.Logic.Database.TestSubject t = new Hitek.GSU.Logic.Database.TestSubject(){Id= id};
