@@ -1,97 +1,49 @@
 ﻿GSU.module("Admin.Test.List", function (List, GSU, Backbone, Marionette, $, _) {
 
 
-    List.treeView = Backbone.Marionette.CompositeView.extend({
-        template: "Admin/TestSubject/List/item",
-        childViewContainer: "ul",
-        events: {
-            "click span": "click",
-            "click .delete-model": "oClicknDeleteModel",
-            "click .edit-model": "onClickEditModel"
+    List.item = Backbone.Marionette.ItemView.extend({
+        template: "Admin/Test/List/item",
+        events:{
+            "click":"goToTest"
         },
-        initialize: function () {
-            if(this.model.children)
-                this.collection = this.model.children;
-
-        },
-        click: function () {
-            if (!this.model.get("isParent")) {
-                GSU.trigger("Test:showListDetail", this.model.id);
-
-            }
-
-        },
-        oClicknDeleteModel: function () {
-            console.log("delete");
-            var ans = confirm("Удалить тему " + this.model.get("name") + "?");
-            if (ans) {
-                this.model.destroy({})
-            }
-        },
-        onClickEditModel: function () {
-            GSU.trigger("Admin:TestSubject:edit", this.model.id);
+        goToTest: function () {
+            GSU.trigger("Test:showTest", this.model.id);
 
         }
     });
-
+    List.noItem = Backbone.Marionette.ItemView.extend({
+        template: "Admin/Test/List/noItem"
+    });
 
 
     List.view = Backbone.Marionette.CompositeView.extend({
-        template: "Admin/TestSubject/List/main",
-        childViewContainer: ".tree ul",
-        childView: List.treeView,
-        events: {
-            "click .new-subject":"newSubject"
-
-        },
+        template: "Admin/Test/List/main",
+        childViewContainer: ".test-lists",
+        childView: List.item,
+        emptyView:List.noItem,
         modelEvents: {
             "sync": "onSyncModel"
         },
-        collectionEvents: {
-            "sync": "onSyncCollection"
-        },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            
-            this.collection = new List.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
+            this.model = new List.SubjectInfoModel({ id: paramId.id });
+            this.model.fetch();
+            this.collection = new List.DetailCollection();
+            this.collection.id = paramId.id;
+            //this.colectgion.url = "api/subject/"+paramId.id +"/Test";
             this.collection.fetch();
 
         },
         onSyncModel: function () {
-            if (this.model.get("id") && this.model.get("id")>0) {
+            GSU.loadMask.hide();
+            if (this.model.id && this.model.id>0) {
                 this.render();
             }
             else {
                 GSU.trigger("Error:404");
             }
-        },
-        onSyncCollection: function () {
-            _.each(this.collection, function (c, num, collection) {
-                var m = collection.at(num);
-                if (m && m.get("parentId") > 0) {
-                    var t = collection.get(m.get("parentId"));
-                    if (t) {
-                        t.setChildren(m.clone());
-                    }
-                }
-            });
-            var forRemove = []
-            _.each(this.collection, function (c, num, collection) {
-                var m = collection.at(num);
-                if (m && m.get("parentId")>0) {
-                    forRemove.push(m)
-                }
-            });
-            this.collection.remove(forRemove, { silent: true });
-
-            this.render();
-            GSU.loadMask.hide();
-        },
-
-        newSubject: function () {
-            GSU.trigger("Admin:TestSubject:edit", 0);
-
         }
+
     });
     
 

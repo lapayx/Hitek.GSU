@@ -270,6 +270,9 @@
     <Content Include="Content\tpl\Admin\TestSubject\Edit\main.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\item.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\main.html" />
+    <Content Include="Content\tpl\Admin\Test\List\item.html" />
+    <Content Include="Content\tpl\Admin\Test\List\main.html" />
+    <Content Include="Content\tpl\Admin\Test\List\NoItem.html" />
     <Content Include="Content\tpl\Error\404.html" />
     <Content Include="Content\tpl\main.html" />
     <Content Include="Content\tpl\none.html" />
@@ -299,12 +302,12 @@
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.model.js" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.view.js" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.collection.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.collection.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.model.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\ListTest.view.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.collection.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.model.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.view.js" />
+    <Content Include="Scripts\app\Admin\TestSubject\List\List.collection.js" />
+    <Content Include="Scripts\app\Admin\TestSubject\List\List.model.js" />
+    <Content Include="Scripts\app\Admin\TestSubject\List\List.view.js" />
     <Content Include="Scripts\app\Admin\Test\Test.route.js" />
     <Content Include="Scripts\app\Error\Error.route.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.model.js" />

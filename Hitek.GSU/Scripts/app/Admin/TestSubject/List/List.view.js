@@ -5,7 +5,7 @@
         template: "Admin/TestSubject/List/item",
         childViewContainer: "ul",
         events: {
-            "click span": "click",
+            "click .show-test": "click",
             "click .delete-model": "oClicknDeleteModel",
             "click .edit-model": "onClickEditModel"
         },
@@ -15,10 +15,9 @@
 
         },
         click: function () {
-            if (!this.model.get("isParent")) {
-                GSU.trigger("Test:showListDetail", this.model.id);
+                GSU.trigger("Admin:Test", this.model.id);
 
-            }
+            
 
         },
         oClicknDeleteModel: function () {

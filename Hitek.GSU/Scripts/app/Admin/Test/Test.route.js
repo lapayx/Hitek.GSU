@@ -6,7 +6,7 @@
 			// "info": "showInfo",
 
 
-			"Admin/Test": "show",
+			"Admin/Test/:id": "show",
 			/*"Test/Result": "showResultAll",
 			"Test/ListDetail/:id": "showListDetail",
 			"Test/List": "showList",
@@ -16,7 +16,7 @@
 
 	var API = {
 		show: function (id) {
-		    var view = new Test.List.view();
+		    var view = new Test.List.view({ id: id });
 			GSU.mainRegion.show(view);
 
 		},
@@ -44,8 +44,8 @@
 	};
 	
 	GSU.on("Admin:Test", function (id) {
-	    GSU.navigate("Admin/Test");
-	    API.show();
+	    GSU.navigate("Admin/Test/"+id);
+	    API.show(id);
 	});
 	/*GSU.on("Test:showResult", function (id) {
 		GSU.navigate("Test/Result/" + id);

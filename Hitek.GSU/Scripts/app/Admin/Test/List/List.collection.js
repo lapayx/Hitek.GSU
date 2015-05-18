@@ -3,9 +3,9 @@
 
     /* -------------------------- COLLECTION --------------------*/
 
-    List.TreeCollection = Backbone.Collection.extend({
-        model: List.TreeModel,
-        url: "api/TestSubject/"
+    List.DetailCollection = Backbone.Collection.extend({
+        model: List.DetailModel,
+        url: function () { return "api/Test/Subject/" + this.id; }
      });
   
 });
