@@ -6,7 +6,7 @@
 			// "info": "showInfo",
 
 
-			"Admin/Test/:id": "show",
+			"Admin/Test/Subject/:id": "show",
 			/*"Test/Result": "showResultAll",
 			"Test/ListDetail/:id": "showListDetail",
 			"Test/List": "showList",
@@ -43,8 +43,8 @@
 		}*/
 	};
 	
-	GSU.on("Admin:Test", function (id) {
-	    GSU.navigate("Admin/Test/"+id);
+	GSU.on("Admin:TestBySubject", function (id) {
+	    GSU.navigate("Admin/Test/Subject/" + id);
 	    API.show(id);
 	});
 	/*GSU.on("Test:showResult", function (id) {

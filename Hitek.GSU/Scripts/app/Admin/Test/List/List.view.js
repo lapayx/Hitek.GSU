@@ -4,7 +4,7 @@
     List.item = Backbone.Marionette.ItemView.extend({
         template: "Admin/Test/List/item",
         events:{
-            "click":"goToTest"
+            "click .js-button-show": "goToTest"
         },
         goToTest: function () {
             GSU.trigger("Test:showTest", this.model.id);

@@ -15,7 +15,7 @@
 
         },
         click: function () {
-                GSU.trigger("Admin:Test", this.model.id);
+            GSU.trigger("Admin:TestBySubject", this.model.id);
 
             
 

@@ -408,6 +408,7 @@
     <Content Include="Scripts\vendor\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\tpl\Admin\Test\Edit\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
