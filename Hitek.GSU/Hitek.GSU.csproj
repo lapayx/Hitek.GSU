@@ -270,6 +270,7 @@
     <Content Include="Content\tpl\Admin\TestSubject\Edit\main.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\item.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\main.html" />
+    <Content Include="Content\tpl\Admin\Test\Edit\main.html" />
     <Content Include="Content\tpl\Admin\Test\List\item.html" />
     <Content Include="Content\tpl\Admin\Test\List\main.html" />
     <Content Include="Content\tpl\Admin\Test\List\NoItem.html" />
@@ -302,6 +303,9 @@
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.model.js" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.view.js" />
     <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.collection.js" />
+    <Content Include="Scripts\app\Admin\Test\Edit\Edit.collection.js" />
+    <Content Include="Scripts\app\Admin\Test\Edit\Edit.model.js" />
+    <Content Include="Scripts\app\Admin\Test\Edit\Edit.view.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.collection.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.model.js" />
     <Content Include="Scripts\app\Admin\Test\List\List.view.js" />
@@ -408,7 +412,6 @@
     <Content Include="Scripts\vendor\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\tpl\Admin\Test\Edit\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

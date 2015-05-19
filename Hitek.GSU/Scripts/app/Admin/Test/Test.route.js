@@ -7,8 +7,8 @@
 
 
 			"Admin/Test/Subject/:id": "show",
-			/*"Test/Result": "showResultAll",
-			"Test/ListDetail/:id": "showListDetail",
+			"Admin/Test/Edit/:id": "editTest",
+			/*"Test/ListDetail/:id": "showListDetail",
 			"Test/List": "showList",
 			"Test/:id": "show",*/
 		}
@@ -20,13 +20,13 @@
 			GSU.mainRegion.show(view);
 
 		},
-		/*editSunbject: function (id) {
+		editTest: function (id) {
 		    var view = new Test.Edit.view({ id: id });
 			GSU.mainRegion.show(view);
 
 		},
         
-		showResult: function (id) {
+		/*showResult: function (id) {
 			var view = new TestSubject.ResultTest.view({ id: id });
 			GSU.mainRegion.show(view);
 
@@ -47,11 +47,11 @@
 	    GSU.navigate("Admin/Test/Subject/" + id);
 	    API.show(id);
 	});
-	/*GSU.on("Test:showResult", function (id) {
-		GSU.navigate("Test/Result/" + id);
-		API.showResult(id);
+	GSU.on("Admin:Test:edit", function (id) {
+	    GSU.navigate("Admin/Test/Edit/" + id);
+		API.editTest(id);
 	});
-	GSU.on("Test:showResultAll", function () {
+	/*GSU.on("Test:showResultAll", function () {
 		GSU.navigate("Test/Result");
 		API.showResultAll();
 	});
