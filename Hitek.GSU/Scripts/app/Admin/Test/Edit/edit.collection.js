@@ -3,9 +3,13 @@
 
     /* -------------------------- COLLECTION --------------------*/
 
-    /*Edit.TreeCollection = Backbone.Collection.extend({
-        model: Edit.TreeModel,
-        url: "api/TestSubject/"
+    Edit.AnswerCollection = Backbone.Collection.extend({
+        model: Edit.AnswerModel,
+        //url: "api/TestSubject/"
      });
-  */
+
+    Edit.QuestionCollection = Backbone.Collection.extend({
+        model: Edit.QuestionModel,
+        //url: "api/TestSubject/"
+     })
 });

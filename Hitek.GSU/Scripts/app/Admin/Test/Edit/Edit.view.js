@@ -1,7 +1,51 @@
 ﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
 
-    Edit.Option = Backbone.Marionette.ItemView.extend({
-        template: "Admin/TestSubject/Edit/select",
+
+
+    Edit.AnswerView = Backbone.Marionette.ItemView.extend({
+        template: "Admin/Test/Edit/answer",
+        
+        events: {
+            "change #editTest-NameTest": "changeName",
+            "change #editTest-SubjectId": "changeParent",
+
+        },
+        modelEvents: {
+            "sync": "onSyncModel"
+        },
+
+
+    });
+
+    Edit.QuestionView = Backbone.Marionette.CompositeView.extend({
+        template: "Admin/Test/Edit/question",
+        childViewContainer: ".js-test-answer-section",
+        childView: Edit.AnswerView,
+        events: {
+            "change #editTest-NameTest": "changeName",
+            "change #editTest-SubjectId": "changeParent",
+            "click .js-test-add-answer": "addAnswer"
+
+        },
+        modelEvents: {
+          //  "sync": "onSyncModel"
+        },
+
+        collectionEvents: {
+            "sync": "onSyncCollection"
+        },
+
+        initialize: function () {
+            this.collection = this.model.answerns;
+        },
+
+        addAnswer: function (event) {
+            console.log(this.model);
+            this.model.answers.add({});
+            event.preventDefault();
+
+        }
+
     });
 
 
@@ -10,12 +54,13 @@
 
         template: "Admin/Test/Edit/main",
 
-       // childViewContainer: "select",
-        childView: Edit.Option,
+        childViewContainer: ".js-test-question-section",
+        childView: Edit.QuestionView,
         events: {
             "submit": "onSubmit",
-            "change #InputName": "changeName",
-            "change #parentSubject": "changeParent"
+            "change #editTest-NameTest": "changeName",
+            "change #editTest-SubjectId": "changeParent",
+            "click .js-test-add-question": "addQuestion"
 
         },
         modelEvents: {
@@ -38,6 +83,17 @@
             this.collection = new Edit.TreeCollection();
             this.collection.fetch();
            */
+            paramId.id = 0;
+            if (paramId.id > 0) {
+                this.model = new Edit.TestModel({ id: paramId.id });
+                this.model.fetch();
+            }
+            else
+                this.model = new Edit.TestModel();
+            this.model.questions.add([{},{},{}]);
+            this.collection = this.model.questions;
+
+            //this.render();
 
         },
         onSyncModel: function () {
@@ -67,6 +123,9 @@
             event.preventDefault()
             this.model.save();
 
+        },
+        addQuestion: function () {
+            this.model.questions.add({});
         }
 
     });

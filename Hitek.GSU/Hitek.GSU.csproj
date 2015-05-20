@@ -270,7 +270,9 @@
     <Content Include="Content\tpl\Admin\TestSubject\Edit\main.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\item.html" />
     <Content Include="Content\tpl\Admin\TestSubject\List\main.html" />
+    <Content Include="Content\tpl\Admin\Test\Edit\answer.html" />
     <Content Include="Content\tpl\Admin\Test\Edit\main.html" />
+    <Content Include="Content\tpl\Admin\Test\Edit\question.html" />
     <Content Include="Content\tpl\Admin\Test\List\item.html" />
     <Content Include="Content\tpl\Admin\Test\List\main.html" />
     <Content Include="Content\tpl\Admin\Test\List\NoItem.html" />
