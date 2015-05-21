@@ -17,6 +17,8 @@ namespace Hitek.GSU.Logic.Database
 
         public long? ParentId { get; set; }
 
+        public bool IsHide { get; set; }
+
         public virtual ICollection<Test> Tests { get; set; }
     }
 

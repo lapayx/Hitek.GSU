@@ -1,25 +1,25 @@
 ﻿<!-- блок одного вопроса-->
-<div class="panel panel-default">
+<div class="panel panel-default" <% if( isRemoved){ print("style='display:none;'"); } %> >
     <div class="panel-body">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="editTest-NameTest">
                     Название Вопроса
                 </label>
-                <input type="text" class="form-control" id="editTest-NameTest" placeholder="Название Теста" />
+                <input type="text" class="form-control js-test-edit-question-title" value="<%- title %>" placeholder="Название Теста" />
             </div>
             <div class="form-group">
                 <label for="editTest-NameTest">
                     Содержимое вопроса
                 </label>
-                <textarea class="form-control" id="editTest-NameTest" rows="3" placeholder="Название Теста"></textarea>
+                <textarea class="form-control js-test-edit-question-content" rows="3" placeholder="Название Теста"><%- content %></textarea>
             </div>
             <div class="form-group ">
                 <label for="editTest-NameTest">
                     Удалить вопрос
                 </label>
                 <div class="clearfix"></div>
-                <button class="btn btn-default btn-danger">Удалить</button>
+                <button tpe="button" class="btn btn-default btn-danger js-test-edit-question-delete">Удалить</button>
             </div>
         </div>
 

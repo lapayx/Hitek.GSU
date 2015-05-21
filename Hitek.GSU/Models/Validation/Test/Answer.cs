@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Hitek.GSU.Models.Validation.Test
 {
     public class Answer
     {
-        public long questionId { get; set; }
-        public long answerId { get; set; }
+        public long QuestionId { get; set; }
+        public long AnswerId { get; set; }
     }
 }

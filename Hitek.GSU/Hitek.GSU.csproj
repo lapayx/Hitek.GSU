@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201504301834276_add_test_subject.Designer.cs">
       <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505211211325_add-hide.cs" />
+    <Compile Include="Migrations\201505211211325_add-hide.Designer.cs">
+      <DependentUpon>201505211211325_add-hide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
@@ -250,6 +254,9 @@
     <Compile Include="Models\TestInfo.cs" />
     <Compile Include="Models\TestQuestion.cs" />
     <Compile Include="Models\TestSubject.cs" />
+    <Compile Include="Models\Validation\Admin\Test\CreatingTest.cs" />
+    <Compile Include="Models\Validation\Admin\Test\CreatingTestAnswer.cs" />
+    <Compile Include="Models\Validation\Admin\Test\CreatingTestQuestion.cs" />
     <Compile Include="Models\Validation\Test\Answer.cs" />
     <Compile Include="Models\Validation\Test\TestForCheack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -439,6 +446,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504301834276_add_test_subject.resx">
       <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505211211325_add-hide.resx">
+      <DependentUpon>201505211211325_add-hide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

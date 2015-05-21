@@ -5,7 +5,8 @@
         template: "Admin/Test/List/item",
         events:{
             "click .js-button-show": "goToTest",
-            "click .js-button-edit": "editTest"
+            "click .js-button-edit": "editTest",
+            "click .js-button-remove": "deleteTest"
         },
         goToTest: function () {
             GSU.trigger("Test:showTest", this.model.id);
@@ -13,6 +14,13 @@
         },
         editTest: function () {
             GSU.trigger("Admin:Test:edit", this.model.id);
+
+        },
+        deleteTest: function () {
+            var ans = confirm("Удалить тест " + this.model.get("name") + "?");
+            if (ans) {
+                this.model.destroy({});
+            }
 
         }
     });
@@ -26,6 +34,10 @@
         childViewContainer: ".test-lists",
         childView: List.item,
         emptyView:List.noItem,
+
+        events: {
+            "click .js-test-list-addTest": "addNewTest"
+        },
         modelEvents: {
             "sync": "onSyncModel"
         },
@@ -47,6 +59,9 @@
             else {
                 GSU.trigger("Error:404");
             }
+        },
+        addNewTest: function () {
+            GSU.trigger("Admin:Test:add");
         }
 
     });

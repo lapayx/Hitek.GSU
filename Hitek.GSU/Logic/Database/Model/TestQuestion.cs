@@ -21,6 +21,7 @@ namespace Hitek.GSU.Logic.Database
         [Required]
         public long TestId { get; set; }
 
+        public bool IsHide { get; set; }
 
         public Test Test { get; set; } 
         public virtual ICollection<TestAnswer> TestAnswers { get; set; }

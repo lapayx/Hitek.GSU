@@ -6,13 +6,47 @@
         template: "Admin/Test/Edit/answer",
         
         events: {
-            "change #editTest-NameTest": "changeName",
-            "change #editTest-SubjectId": "changeParent",
+            "keyup .js-test-edit-answer-content": "changeContent",
+            "click .js-test-edit-answer-isRight": "toggleIsRight",
+            "click .js-test-edit-answer-delete": "deleteAnswer",
 
         },
         modelEvents: {
-            "sync": "onSyncModel"
+            //     "sync": "onSyncModel"
         },
+        initialize: function () {
+            console.log(this.model.toJSON());
+        },
+
+
+        changeContent: function (e) {
+            this.model.set("content", event.target.value);
+        },
+
+        toggleIsRight: function (e) {
+            e.preventDefault();
+            var oldState = this.model.get("isRight");
+            this.model.set("isRight", !oldState);
+            var btn = $(e.target);
+            btn.toggleClass("btn-success");
+            btn.toggleClass("btn-danger");
+            if (!oldState) {
+                btn.text("Верный");
+            } else {
+                btn.text("Неверный");
+            }
+        },
+
+        deleteAnswer: function () {
+            if (!this.model.id) {
+                this.model.destroy();
+            } else {
+                this.model.set("isRemoved", true);
+                this.render();
+            }
+
+        }
+
 
 
     });
@@ -22,9 +56,11 @@
         childViewContainer: ".js-test-answer-section",
         childView: Edit.AnswerView,
         events: {
-            "change #editTest-NameTest": "changeName",
-            "change #editTest-SubjectId": "changeParent",
-            "click .js-test-add-answer": "addAnswer"
+            "click .js-test-add-answer": "addAnswer",
+            "keyup .js-test-edit-question-title": "changeTitle",
+            "keyup .js-test-edit-question-content": "changeContent",
+            "click .js-test-edit-question-delete": "deleteQuestion"
+            
 
         },
         modelEvents: {
@@ -32,17 +68,33 @@
         },
 
         collectionEvents: {
-            "sync": "onSyncCollection"
+           // "sync": "onSyncCollection"
         },
 
         initialize: function () {
-            this.collection = this.model.answerns;
+            this.collection = this.model.answers;
         },
 
         addAnswer: function (event) {
-            console.log(this.model);
-            this.model.answers.add({});
             event.preventDefault();
+            this.collection.add({});
+        },
+        changeTitle: function (e) {
+            this.model.set("title", event.target.value);
+        },
+
+        changeContent: function (e) {
+            this.model.set("content", event.target.value);
+        },
+
+        deleteQuestion: function () {
+
+            if (!this.model.id) {
+                this.model.destroy();
+            } else {
+                this.model.set("isRemoved", true);
+                this.render();
+            }
 
         }
 
@@ -58,8 +110,8 @@
         childView: Edit.QuestionView,
         events: {
             "submit": "onSubmit",
-            "change #editTest-NameTest": "changeName",
-            "change #editTest-SubjectId": "changeParent",
+            "keyup #test-edit-title": "changeTitle",
+            "change #test-edit-subjectId": "changeSubjectId",
             "click .js-test-add-question": "addQuestion"
 
         },
@@ -72,27 +124,23 @@
         },
 
         initialize: function (paramId) {
-            /*GSU.loadMask.show();
+            GSU.loadMask.show();
             if (paramId.id > 0) {
-                this.model = new Edit.Subject({ id: paramId.id });
-                this.model.fetch();
-            }
-            else
-                this.model = new Edit.Subject();
-            
-            this.collection = new Edit.TreeCollection();
-            this.collection.fetch();
-           */
-            paramId.id = 0;
-            if (paramId.id > 0) {
+
                 this.model = new Edit.TestModel({ id: paramId.id });
                 this.model.fetch();
             }
-            else
+            else {
                 this.model = new Edit.TestModel();
-            this.model.questions.add([{},{},{}]);
+                GSU.loadMask.hide();
+            }
+
             this.collection = this.model.questions;
 
+            this.SubjectTest = new Backbone.Collection();
+            this.SubjectTest.url = "api/TestSubject/";
+            this.SubjectTest.on("sync", this.renderTestSubjectSelect,this);
+            this.SubjectTest.fetch();
             //this.render();
 
         },
@@ -111,21 +159,46 @@
            
         },
 
-        changeName: function (event) {
-            this.model.set("name", event.target.value);
+        changeTitle: function (event) {
+            this.model.set("title", event.target.value);
 
         },
-        changeParent: function (event) {
-            this.model.set("parentId", parseInt(event.target.value));
+        changeSubjectId: function (event) {
+            this.model.set("subjectId", parseInt(event.target.value));
 
         },
         onSubmit: function (event) {
             event.preventDefault()
-            this.model.save();
+            //console.log(this.model.getDataForJSON().toJSON());
+            var c = this.model.getDataForJSON();
+            c.url = "api/Test/Edit";
+            //c.set("idTest", this.model.get("id"));
+            //c.set("answers", this.model.answers.toJSON());
+            c.on("sync", function (r, mod, xht) {
+               
+                    GSU.trigger("Admin:TestSubject:show");
+
+                
+            });
+            debugger;
+            c.save();
+
 
         },
         addQuestion: function () {
             this.model.questions.add({});
+        },
+        renderTestSubjectSelect: function () {
+            console.log(this);
+            var tesSubjectId = this.model.get("subjectId");
+            var inputSelect = this.$el.find("#test-edit-subjectId");
+            _.each(this.SubjectTest, function (c, num, collection) {
+                var model = collection.at(num);
+                var s = 
+                inputSelect.append($("<option value='" + model.id + "' " + ((tesSubjectId == model.id)?"selected":"") + " >" + model.get("name") + "</option>"))
+
+            })
+
         }
 
     });

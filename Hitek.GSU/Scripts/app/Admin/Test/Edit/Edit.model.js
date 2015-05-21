@@ -9,10 +9,11 @@
 
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "api/TestSubject/",
+        urlRoot: "api/Test/Edit/",
         defaults: {
          //   isParent: false,
-            name: "Заголовок"             
+            title: "Новый тест",
+            subjectId: 0
         },
         parse: function (raw) {
             // raw.name = raw.Name;
@@ -22,6 +23,15 @@
             }
             return raw;
         },
+        getDataForJSON: function () {
+            var res = new Backbone.Model();
+            res.set("id", this.get("id"));
+            res.set("title", this.get("title"));
+            res.set("subjectId", this.get("subjectId"));
+            res.set("questions", this.questions.getDataForJSON());
+
+            return res;
+        }
 
     });
 
@@ -33,10 +43,10 @@
         },
        //urlRoot: "api/TestSubject/",
         defaults: {
-            isParent: false,
-            name: "Новая тема",
-            result: 0,
-            parentId: 0
+            isRemoved: false,
+            title: "",
+            content: ""
+
         },
         parse: function (raw) {
             // raw.name = raw.Name;
@@ -45,6 +55,15 @@
 
             return raw;
         },
+        getDataForJSON: function () {
+            var res = new Backbone.Model();
+            res.set("id", this.get("id"));
+            res.set("title", this.get("title"));
+            res.set("content", this.get("content"));
+            res.set("answers", this.answers.getDataForJSON());
+
+            return res;
+        }
 
     });
 

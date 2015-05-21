@@ -43,6 +43,10 @@
 		}*/
 	};
 	
+	GSU.on("Admin:TestSubject:show", function (id) {
+	    GSU.navigate("Admin/TestSubject");
+	    API.show();
+	});
 	GSU.on("Admin:TestSubject:edit", function (id) {
 	    GSU.navigate("Admin/TestSubject/"+id);
 	    API.editSunbject(id);

@@ -51,6 +51,10 @@
 	    GSU.navigate("Admin/Test/Edit/" + id);
 		API.editTest(id);
 	});
+	GSU.on("Admin:Test:add", function (id) {
+	    GSU.navigate("Admin/Test/Edit/" + 0);
+		API.editTest(id);
+	});
 	/*GSU.on("Test:showResultAll", function () {
 		GSU.navigate("Test/Result");
 		API.showResultAll();

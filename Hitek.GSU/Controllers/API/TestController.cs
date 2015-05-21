@@ -1,5 +1,6 @@
 ﻿using Hitek.GSU.Logic.Interfaces;
 using Hitek.GSU.Models;
+using Hitek.GSU.Models.Validation.Admin.Test;
 using Hitek.GSU.Models.Validation.Test;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,13 @@ namespace Hitek.GSU.Controllers.API
             return testservice.GetTestById(id);
         }
 
+        [Route("Edit/{id}")]
+        // GET: api/Test/5
+        public CreatingTest GetForEdit(long id)
+        {
+            return testservice.GetTestForEditById(id);
+        }
+
 
         // POST: api/Test
         public void Post([FromBody]string value)
@@ -52,14 +60,26 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // DELETE: api/Test/5
-        public void Delete(int id)
+        public void Delete(long id)
         {
+            this.testservice.DeleteTestById(id);
         }
 
         [Route("Check")]
         public object PostCheck(TestForCheack mod)
         {
             return testservice.CheckTest(mod);
+        }
+
+        [Route("Edit")]
+        public object PostCreateTest(CreatingTest mod)
+        {
+            return testservice.CreateOrEditTest(mod);
+        }
+        [Route("Edit")]
+        public object PutChangeTest(CreatingTest mod)
+        {
+            return testservice.CreateOrEditTest(mod);
         }
     }
 }

@@ -23,6 +23,8 @@ namespace Hitek.GSU.Logic.Interfaces
 
         object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
 
+        object CreateOrEditTest(Hitek.GSU.Models.Validation.Admin.Test.CreatingTest raw);
+
         /// <summary>
         /// Получение подробностей о прохождении по ID.
         /// </summary>
@@ -36,5 +38,9 @@ namespace Hitek.GSU.Logic.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         ICollection<HistoryResult> GetAllHistoryTestByUserId(long id);
+
+        void DeleteTestById(long id);
+        Hitek.GSU.Models.Validation.Admin.Test.CreatingTest GetTestForEditById( long id);
+    
     }
 }
