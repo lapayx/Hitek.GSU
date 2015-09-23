@@ -198,6 +198,7 @@
     <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,35 +219,16 @@
     <Compile Include="Logic\Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Logic\Service\TestSubjectService.cs" />
-    <Compile Include="Migrations\201504042130294_Create.cs" />
-    <Compile Include="Migrations\201504042130294_Create.Designer.cs">
-      <DependentUpon>201504042130294_Create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504131132038_1d.cs" />
-    <Compile Include="Migrations\201504131132038_1d.Designer.cs">
-      <DependentUpon>201504131132038_1d.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504142037347_add_history.cs" />
-    <Compile Include="Migrations\201504142037347_add_history.Designer.cs">
-      <DependentUpon>201504142037347_add_history.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504142045159_add_history2.cs" />
-    <Compile Include="Migrations\201504142045159_add_history2.Designer.cs">
-      <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504301834276_add_test_subject.cs" />
-    <Compile Include="Migrations\201504301834276_add_test_subject.Designer.cs">
-      <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505211211325_add-hide.cs" />
-    <Compile Include="Migrations\201505211211325_add-hide.Designer.cs">
-      <DependentUpon>201505211211325_add-hide.cs</DependentUpon>
+    <Compile Include="Migrations\201509221426113_first.cs" />
+    <Compile Include="Migrations\201509221426113_first.Designer.cs">
+      <DependentUpon>201509221426113_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
+    <Compile Include="Models\Identity\Class1.cs" />
     <Compile Include="Models\some to remove\AccountViewModels.cs" />
     <Compile Include="Models\Entity.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\some to remove\ManageViewModels.cs" />
     <Compile Include="Models\some to remove\MyAccount.cs" />
     <Compile Include="Models\TestAnswer.cs" />
@@ -389,7 +371,9 @@
     <Content Include="Scripts\vendor\underscore.js" />
     <Content Include="Scripts\vendor\underscore.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -421,6 +405,7 @@
     <Content Include="Scripts\vendor\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
@@ -430,25 +415,11 @@
     <Content Include="Views\Home\Temp.cshtml" />
     <Content Include="Scripts\override\Backbone.sync.js" />
     <Content Include="Scripts\app\Admin\TestSubject\TestSubject.route.js" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504042130294_Create.resx">
-      <DependentUpon>201504042130294_Create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504131132038_1d.resx">
-      <DependentUpon>201504131132038_1d.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504142037347_add_history.resx">
-      <DependentUpon>201504142037347_add_history.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504142045159_add_history2.resx">
-      <DependentUpon>201504142045159_add_history2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504301834276_add_test_subject.resx">
-      <DependentUpon>201504301834276_add_test_subject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505211211325_add-hide.resx">
-      <DependentUpon>201505211211325_add-hide.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509221426113_first.resx">
+      <DependentUpon>201509221426113_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace Hitek.GSU.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class add_test_subject : IMigrationMetadata
+    public sealed partial class first : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(add_test_subject));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(first));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504301834276_add_test_subject"; }
+            get { return "201509221426113_first"; }
         }
         
         string IMigrationMetadata.Source

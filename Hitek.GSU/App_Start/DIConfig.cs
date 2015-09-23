@@ -44,6 +44,7 @@ namespace Hitek.GSU
 
         internal static void RegisterRepositores(IServiceContainer container)
         {
+            container.Register<Entities>(new PerScopeLifetime());
             container.Register<Repository>(new PerScopeLifetime());
 
               container.Register<ITestRepository, Repository>();
@@ -57,7 +58,8 @@ namespace Hitek.GSU
         internal static void RegisterProviders(IServiceContainer container)
         {
        //     container.Register<IUserStore<MyAccount,long>, MyUserStore>(); 
-            container.Register<ApplicationDbContext>();
+
+            container.Register<ApplicationDbContext, Entities>();
             container.Register<IUserStore<ApplicationUser, long>, UserStoreIntPk>();
             container.Register<AppSignInManager>();
             container.Register<AppUserManager>();

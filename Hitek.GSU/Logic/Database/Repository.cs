@@ -13,7 +13,10 @@ namespace Hitek.GSU.Logic.Database
             this.entity = new Entities();
         
         }
-
+        public Repository(Entities entity) {
+            this.entity = entity;
+        
+        }
 
         public int SaveChanges()
         {

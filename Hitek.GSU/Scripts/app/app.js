@@ -52,12 +52,28 @@ GSU.message = function(msg, type){
 GSU.cache = {};
 
 GSU.on("start", function (options) {
+
+    if (!sessionStorage.getItem("token")) {
+        document.location = "/Home/Login";
+    } else {
+        GSU.token = sessionStorage.getItem("token");
+    }
+
+
+
+
+
     if (Backbone.history) {
         Backbone.history.start();
     }
     if (this.getCurrentRoute() === "") {
         GSU.trigger("Main:show");
     }
+
+  
+
+
+
 });
 
 GSU.addInitializer(function (options) {

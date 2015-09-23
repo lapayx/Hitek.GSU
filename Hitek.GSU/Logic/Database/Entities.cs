@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hitek.GSU.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,10 +7,10 @@ using System.Web;
 
 namespace Hitek.GSU.Logic.Database
 {
-    public partial class Entities : DbContext
+    public partial class Entities : ApplicationDbContext
     {
         public Entities()
-            : base("name=EntityContext")
+            : base("EntityContext")
         {
         }
 
@@ -25,6 +26,15 @@ namespace Hitek.GSU.Logic.Database
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            /*
+            modelBuilder.HasDefaultSchema("public");
+            modelBuilder.Configurations.Add(new ApplicationUserMap());
+            modelBuilder.Configurations.Add(new UserRoleIntPkMap());
+            modelBuilder.Configurations.Add(new UserLoginIntPkMap());
+            modelBuilder.Configurations.Add(new UserClaimIntPkMap());
+            modelBuilder.Configurations.Add(new RoleIntPkMap());*/
+
         }
     }
 }
