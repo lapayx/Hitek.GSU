@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Account2Controller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
@@ -405,6 +406,7 @@
     <Content Include="Scripts\vendor\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Account2\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
@@ -416,6 +418,8 @@
     <Content Include="Scripts\override\Backbone.sync.js" />
     <Content Include="Scripts\app\Admin\TestSubject\TestSubject.route.js" />
     <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Properties\PublishProfiles\inFile.pubxml" />
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509221426113_first.resx">

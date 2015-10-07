@@ -8,6 +8,7 @@ namespace Hitek.GSU.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -22,6 +23,12 @@ namespace Hitek.GSU.Controllers
 
             return View();
         }
+        public ActionResult Register()
+        {
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

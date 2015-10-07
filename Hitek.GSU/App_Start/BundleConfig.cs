@@ -26,12 +26,12 @@ namespace Hitek.GSU
                         .IncludeDirectory("~/Scripts/plugin/", "*.js", true)
                     );
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/bootstrap-theme.css",
                       "~/Content/css/site.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/app")
+            bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/app/app.js")
 
 
@@ -49,7 +49,11 @@ namespace Hitek.GSU
                 );
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = false;
+            #if DEBUG
+                        BundleTable.EnableOptimizations = false;
+            #else 
+                        BundleTable.EnableOptimizations = true;
+            #endif
         }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 using Hitek.GSU.Models;
 using Microsoft.Owin.Security.DataProtection;
 using System.Web.Security;
+using System.Web.Configuration;
 
 namespace Hitek.GSU
 {
@@ -140,8 +141,9 @@ namespace Hitek.GSU
 
         public override async Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
         {
-            if (Membership.Provider.ValidateUser(userName, password))
+            if (false &&   Membership.Provider.ValidateUser(userName, password))
             {
+
                 var user = UserManager.FindByName(userName);
                 if (user == null)
                 {
@@ -151,7 +153,7 @@ namespace Hitek.GSU
                 await base.SignInAsync(user, isPersistent, shouldLockout);
                 return SignInStatus.Success;
             }
-
+            
             return await base.PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
             //return SignInStatus.Failure;
         }
