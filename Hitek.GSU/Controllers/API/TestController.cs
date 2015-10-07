@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace Hitek.GSU.Controllers.API
 {
     [RoutePrefix("api/Test")]
-    [Authorize]
+    //[Authorize]
     public class TestController : ApiController
     {
 

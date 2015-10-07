@@ -16,12 +16,17 @@ GSU.navigate = function (route, options) {
 GSU.getCurrentRoute = function () {
     return Backbone.history.fragment
 };
+
 GSU.closeModal = function () {
     GSU.modal.reset()
 };
 
 GSU.loadMask = {
-    _selector : "#loading",
+
+
+
+
+    _selector: "#loading",
     show: function () {
         $(this._selector).show();
 
@@ -45,20 +50,20 @@ GSU.addInitializer(function () {
 });
 */
 GSU.token = "azaza";
-GSU.message = function(msg, type){
+GSU.message = function (msg, type) {
     alert(msg);
 };
 
 GSU.cache = {};
 
 GSU.on("start", function (options) {
-
+    /*
     if (!sessionStorage.getItem("token")) {
         document.location = "/Home/Login";
     } else {
         GSU.token = sessionStorage.getItem("token");
     }
-
+    */
 
 
 
@@ -70,7 +75,7 @@ GSU.on("start", function (options) {
         GSU.trigger("Main:show");
     }
 
-  
+
 
 
 
@@ -88,6 +93,4 @@ GSU.addInitializer(function (options) {
 
 $(function () {
     GSU.start();
-
-
 })

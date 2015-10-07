@@ -10,7 +10,7 @@ namespace Hitek.GSU.Logic.Database
     public partial class Entities : ApplicationDbContext
     {
         public Entities()
-            : base("Model1")
+            : base("EntityContext")
         {
         }
 
