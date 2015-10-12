@@ -7,6 +7,7 @@
             "click": "goToTest"
         },
         goToTest: function () {
+            debugger
             GSU.trigger("Test:showTest", this.model.id);
 
         }

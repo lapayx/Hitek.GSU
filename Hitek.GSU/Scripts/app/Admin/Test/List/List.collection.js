@@ -6,7 +6,7 @@
     List.DetailCollection = Backbone.Collection.extend({
         model: List.DetailModel,
         url: function () {
-            return "api/Test/Subject/" + this.id;
+            return "Test/Subject/" + this.id;
         }
     });
 

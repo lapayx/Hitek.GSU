@@ -16,6 +16,7 @@
 
     var API = {
         show: function (id) {
+            debugger;
             var view = new Test.FullTest.view({id: id});
             GSU.mainRegion.show(view);
 

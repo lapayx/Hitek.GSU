@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace Hitek.GSU.Controllers
 {
+
     [RoutePrefix("Test")]
     [Authorize]
     public class TestController : Controller
     {
-
         readonly ITestService testservice;
 
         public TestController(ITestService testservice)
@@ -22,60 +22,63 @@ namespace Hitek.GSU.Controllers
             this.testservice = testservice;
         }
 
-        // GET: api/Test
-        public IEnumerable<TestInfo> Get()
+
+        [HttpGet]
+        [Route]
+        public ActionResult Index1()
         {
-            return testservice.GetAllTest();
+            return Json(testservice.GetAllTest(), JsonRequestBehavior.AllowGet);
         }
 
-        // GET: api/Test/Subject/{id}
+        [HttpGet]
+        [Route("{id}")]
+        public JsonResult Index2(long id)
+        {
+            TestFull res = testservice.GetTestById(id);
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         [Route("Subject/{subjectId}")]
-        public IEnumerable<TestInfo> GetByTestSubject(long subjectId)
+        public ActionResult GetByTestSubject(long subjectId)
         {
-            return testservice.GetTestBySubjectId(subjectId);
+            IEnumerable<TestInfo> res = testservice.GetTestBySubjectId(subjectId);
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: api/Test/5
-        public TestFull Get(long id)
-        {
-            return testservice.GetTestById(id);
-        }
 
+        [HttpGet]
         [Route("Edit/{id}")]
-        // GET: api/Test/5
-        public CreatingTest GetForEdit(long id)
+        public ActionResult GetForEdit(long id)
         {
-            return testservice.GetTestForEditById(id);
+            CreatingTest res = testservice.GetTestForEditById(id);
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
 
-        // POST: api/Test
-        public void Post(string value)
-        {
-        }
 
-        // PUT: api/Test/5
-        public void Put(int id, string value)
-        {
-        }
-
-        // DELETE: api/Test/5
+        [HttpDelete]
+        [Route("{id}")]
         public void Delete(long id)
         {
             this.testservice.DeleteTestById(id);
         }
 
+        [HttpPost]
         [Route("Check")]
         public object PostCheck(TestForCheack mod)
         {
             return testservice.CheckTest(mod);
         }
 
+        [HttpPost]
         [Route("Edit")]
         public object PostCreateTest(CreatingTest mod)
         {
             return testservice.CreateOrEditTest(mod);
         }
+
+        [HttpPut]
         [Route("Edit")]
         public object PutChangeTest(CreatingTest mod)
         {

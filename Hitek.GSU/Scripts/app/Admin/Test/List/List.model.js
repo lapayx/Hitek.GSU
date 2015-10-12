@@ -3,7 +3,7 @@
 
     List.DetailModel = Backbone.Model.extend({
 
-        urlRoot: "api/Test/",
+        urlRoot: "Test/",
         defaults: {
             id: 0,
             name: "Заголовок"
