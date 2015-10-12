@@ -4,7 +4,7 @@
     ResultTestAll.ItemView = Backbone.Marionette.ItemView.extend({
         template: "Test/ResultTestAll/item",
         events: {
-            "click button":"showDeteil"
+            "click button": "showDeteil"
 
         },
         showDeteil: function () {
@@ -20,8 +20,8 @@
         modelEvents: {
             "sync": "onSyncModel"
         },
-        collectionEvents:{
-            "sync":"onSyncCollection"
+        collectionEvents: {
+            "sync": "onSyncCollection"
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
@@ -31,19 +31,18 @@
         },
         onSyncModel: function () {
             GSU.loadMask.hide();
-            if (this.model.get("id") && this.model.get("id")>0) {
+            if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
             }
             else {
                 GSU.trigger("Error:404");
             }
         },
-        onSyncCollection: function(){
+        onSyncCollection: function () {
             GSU.loadMask.hide();
         }
 
     });
-    
 
 
 });

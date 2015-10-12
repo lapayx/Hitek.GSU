@@ -21,7 +21,7 @@
         modelEvents: {
             "sync": "onSyncModel"
         },
-        
+
         collectionEvents: {
             "sync": "onSyncCollection"
         },
@@ -29,15 +29,15 @@
         initialize: function (paramId) {
             GSU.loadMask.show();
             if (paramId.id > 0) {
-                this.model = new Edit.Subject({ id: paramId.id });
+                this.model = new Edit.Subject({id: paramId.id});
                 this.model.fetch();
             }
             else
                 this.model = new Edit.Subject();
-            
+
             this.collection = new Edit.TreeCollection();
             this.collection.fetch();
-           
+
 
         },
         onSyncModel: function () {
@@ -52,7 +52,7 @@
         onSyncCollection: function () {
             GSU.loadMask.hide();
             this.render();
-           
+
         },
 
         changeName: function (event) {
@@ -70,7 +70,6 @@
         }
 
     });
-    
 
 
 });

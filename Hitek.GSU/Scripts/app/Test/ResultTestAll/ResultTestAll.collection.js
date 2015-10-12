@@ -6,6 +6,6 @@
     ResultTestAll.ResultCollection = Backbone.Collection.extend({
         model: ResultTestAll.ResultModel,
         url: "api/TestHistory/"
-     });
-  
+    });
+
 });

@@ -1,7 +1,6 @@
 ﻿GSU.module("Test.FullTest", function (FullTest, GSU, Backbone, Marionette, $, _) {
 
 
-
     FullTest.TestModel = Backbone.Model.extend({
         constructor: function () {
             this.questions = new FullTest.QuestionCollection();
@@ -13,19 +12,18 @@
             id: null,
             name: "Заголовок",
             currentQuestionId: 0
-            
-             
+
+
         },
-          
+
         parse: function (raw) {
-           // raw.name = raw.Name;
-           // raw.id = raw.Id;
-            this.questions.reset(raw.questions, { parse: true });
+            // raw.name = raw.Name;
+            // raw.id = raw.Id;
+            this.questions.reset(raw.questions, {parse: true});
             this.addNavigationQuestion();
             var cq = 1
-            for(var i = 1; i <= this.questions.length; i++)
-            {
-                var q = this.questions.at(i-1);
+            for (var i = 1; i <= this.questions.length; i++) {
+                var q = this.questions.at(i - 1);
                 this.answers.add(
                     {
                         id: q.get("id"),
@@ -49,7 +47,7 @@
                 prev = c;
             }
         }
-       
+
     });
 
     FullTest.QuestionModel = Backbone.Model.extend({
@@ -58,19 +56,19 @@
             Backbone.Model.apply(this, arguments);
         },
         defaults: {
-            id:null,
+            id: null,
             name: "",
             text: "",
             isSingleAnswer: true,
             tempAnswer: null,
             nextQuestion: null,
-            previosQuestion:null
+            previosQuestion: null
         },
         parse: function (raw) {
-            this.answers.reset(raw.answers, {parse:true});
+            this.answers.reset(raw.answers, {parse: true});
             //raw.name = raw.Name;
-           // raw.id = raw.Id;
-           // raw.text = raw.Text;
+            // raw.id = raw.Id;
+            // raw.text = raw.Text;
             return raw;
         }
     });
@@ -79,11 +77,11 @@
             name: "",
             text: "",
             id: null,
-            isChecked:false
+            isChecked: false
         },
         parse: function (raw) {
-           // raw.name = raw.Name;
-           // raw.text = raw.Text;
+            // raw.name = raw.Name;
+            // raw.text = raw.Text;
             //raw.id = raw.Id;
             return raw;
         }
@@ -105,7 +103,6 @@
             isCurrent: false
         }
     });
-   
 
 
 });

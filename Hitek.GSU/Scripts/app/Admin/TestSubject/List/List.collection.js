@@ -6,6 +6,6 @@
     List.TreeCollection = Backbone.Collection.extend({
         model: List.TreeModel,
         url: "api/TestSubject/"
-     });
-  
+    });
+
 });

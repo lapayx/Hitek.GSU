@@ -3,8 +3,8 @@
 
     ListTestDetail.item = Backbone.Marionette.ItemView.extend({
         template: "Test/ListTestDetail/item",
-        events:{
-            "click":"goToTest"
+        events: {
+            "click": "goToTest"
         },
         goToTest: function () {
             GSU.trigger("Test:showTest", this.model.id);
@@ -20,13 +20,13 @@
         template: "Test/ListTestDetail/main",
         childViewContainer: ".test-lists",
         childView: ListTestDetail.item,
-        emptyView:ListTestDetail.noItem,
+        emptyView: ListTestDetail.noItem,
         modelEvents: {
             "sync": "onSyncModel"
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            this.model = new ListTestDetail.SubjectInfoModel({ id: paramId.id });
+            this.model = new ListTestDetail.SubjectInfoModel({id: paramId.id});
             this.model.fetch();
             this.collection = new ListTestDetail.DetailCollection();
             this.collection.id = paramId.id;
@@ -36,7 +36,7 @@
         },
         onSyncModel: function () {
             GSU.loadMask.hide();
-            if (this.model.id && this.model.id>0) {
+            if (this.model.id && this.model.id > 0) {
                 this.render();
             }
             else {
@@ -45,7 +45,6 @@
         }
 
     });
-    
 
 
 });

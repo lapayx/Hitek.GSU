@@ -1,23 +1,28 @@
 ﻿<div <% if( isRemoved){ print("style='display:none;'"); } %> >
 
-    <div class="form-group col-xs-6">
-        <label for="editTest-NameTest">
-            Вариант ответа
-        </label>
-        <input type="text" class="form-control js-test-edit-answer-content" value="<%- content %>" placeholder="Содерджание " />
-    </div>
-    <div class="form-group col-xs-3">
-        <label for="editTest-NameTest">
-            Правильный
-        </label>
-        <div class="clearfix"></div>
-        <button class="btn btn-default <% if(isRight) { print('btn-success');} else { print('btn-danger');} %> js-test-edit-answer-isRight"><% if(isRight) { print('Верный');} else { print(' Неверный');} %></button>
-    </div>
-    <div class="form-group col-xs-3">
-        <label for="editTest-NameTest">
-            Удалить
-        </label>
-        <div class="clearfix"></div>
-        <button class="btn btn-default btn-danger js-test-edit-answer-delete">Удалить</button>
-    </div>
+<div class="form-group col-xs-6">
+    <label for="editTest-NameTest">
+        Вариант ответа
+    </label>
+    <input type="text" class="form-control js-test-edit-answer-content" value="<%- content %>"
+           placeholder="Содерджание "/>
+</div>
+<div class="form-group col-xs-3">
+    <label for="editTest-NameTest">
+        Правильный
+    </label>
+
+    <div class="clearfix"></div>
+    <button class="btn btn-default <% if(isRight) { print('btn-success');} else { print('btn-danger');} %> js-test-edit-answer-isRight">
+        <% if(isRight) { print('Верный');} else { print(' Неверный');} %>
+    </button>
+</div>
+<div class="form-group col-xs-3">
+    <label for="editTest-NameTest">
+        Удалить
+    </label>
+
+    <div class="clearfix"></div>
+    <button class="btn btn-default btn-danger js-test-edit-answer-delete">Удалить</button>
+</div>
 </div>

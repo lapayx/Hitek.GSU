@@ -13,7 +13,7 @@
             })
             return res;
         }
-     });
+    });
 
     Edit.QuestionCollection = Backbone.Collection.extend({
         model: Edit.QuestionModel,
@@ -26,5 +26,5 @@
             })
             return res;
         }
-     })
+    })
 });

@@ -2,19 +2,19 @@
 
 
     /* -------------------------- COLLECTION --------------------*/
-   
-     FullTest.AnswerCollection = Backbone.Collection.extend({
-         model: FullTest.AnswerModel
-     });
-     FullTest.QuestionCollection = Backbone.Collection.extend({
-         model: FullTest.QuestionModel
-     });
 
-     FullTest.AnswerForViewCollection = Backbone.Collection.extend({
-         model: FullTest.AnswerForViewModel
-     });
-     FullTest.AnswerForSyncCollection = Backbone.Collection.extend({
-         model: FullTest.AnswerForSyncModel
-     });
-  
+    FullTest.AnswerCollection = Backbone.Collection.extend({
+        model: FullTest.AnswerModel
+    });
+    FullTest.QuestionCollection = Backbone.Collection.extend({
+        model: FullTest.QuestionModel
+    });
+
+    FullTest.AnswerForViewCollection = Backbone.Collection.extend({
+        model: FullTest.AnswerForViewModel
+    });
+    FullTest.AnswerForSyncCollection = Backbone.Collection.extend({
+        model: FullTest.AnswerForSyncModel
+    });
+
 });

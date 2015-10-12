@@ -10,14 +10,13 @@
             "click .edit-model": "onClickEditModel"
         },
         initialize: function () {
-            if(this.model.children)
+            if (this.model.children)
                 this.collection = this.model.children;
 
         },
         click: function () {
             GSU.trigger("Admin:TestBySubject", this.model.id);
 
-            
 
         },
         oClicknDeleteModel: function () {
@@ -34,13 +33,12 @@
     });
 
 
-
     List.view = Backbone.Marionette.CompositeView.extend({
         template: "Admin/TestSubject/List/main",
         childViewContainer: ".tree ul",
         childView: List.treeView,
         events: {
-            "click .new-subject":"newSubject"
+            "click .new-subject": "newSubject"
 
         },
         modelEvents: {
@@ -51,13 +49,13 @@
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            
+
             this.collection = new List.TreeCollection();//[{ id:1,name: 2, childrens: [{ id:3,name: 6 }, { Name: 65,id:9 }] }, { name: 23,id:56 }], { parse: true });
             this.collection.fetch();
 
         },
         onSyncModel: function () {
-            if (this.model.get("id") && this.model.get("id")>0) {
+            if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
             }
             else {
@@ -77,11 +75,11 @@
             var forRemove = []
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m && m.get("parentId")>0) {
+                if (m && m.get("parentId") > 0) {
                     forRemove.push(m)
                 }
             });
-            this.collection.remove(forRemove, { silent: true });
+            this.collection.remove(forRemove, {silent: true});
 
             this.render();
             GSU.loadMask.hide();
@@ -92,7 +90,6 @@
 
         }
     });
-    
 
 
 });

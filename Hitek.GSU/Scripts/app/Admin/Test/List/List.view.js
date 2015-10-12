@@ -3,7 +3,7 @@
 
     List.item = Backbone.Marionette.ItemView.extend({
         template: "Admin/Test/List/item",
-        events:{
+        events: {
             "click .js-button-show": "goToTest",
             "click .js-button-edit": "editTest",
             "click .js-button-remove": "deleteTest"
@@ -33,7 +33,7 @@
         template: "Admin/Test/List/main",
         childViewContainer: ".test-lists",
         childView: List.item,
-        emptyView:List.noItem,
+        emptyView: List.noItem,
 
         events: {
             "click .js-test-list-addTest": "addNewTest"
@@ -43,7 +43,7 @@
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            this.model = new List.SubjectInfoModel({ id: paramId.id });
+            this.model = new List.SubjectInfoModel({id: paramId.id});
             this.model.fetch();
             this.collection = new List.DetailCollection();
             this.collection.id = paramId.id;
@@ -53,7 +53,7 @@
         },
         onSyncModel: function () {
             GSU.loadMask.hide();
-            if (this.model.id && this.model.id>0) {
+            if (this.model.id && this.model.id > 0) {
                 this.render();
             }
             else {
@@ -65,7 +65,6 @@
         }
 
     });
-    
 
 
 });

@@ -1,7 +1,6 @@
 ﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
 
 
-
     Edit.TestModel = Backbone.Model.extend({
 
         constructor: function () {
@@ -11,7 +10,7 @@
         },
         urlRoot: "api/Test/Edit/",
         defaults: {
-         //   isParent: false,
+            //   isParent: false,
             title: "Новый тест",
             subjectId: 0
         },
@@ -19,7 +18,7 @@
             // raw.name = raw.Name;
             // raw.id = raw.Id;
             if (raw && raw.questions) {
-                this.questions.reset(raw.questions, { parse: true });
+                this.questions.reset(raw.questions, {parse: true});
             }
             return raw;
         },
@@ -41,7 +40,7 @@
 
             Backbone.Model.apply(this, arguments);
         },
-       //urlRoot: "api/TestSubject/",
+        //urlRoot: "api/TestSubject/",
         defaults: {
             isRemoved: false,
             title: "",
@@ -51,7 +50,7 @@
         parse: function (raw) {
             // raw.name = raw.Name;
             // raw.id = raw.Id;
-            this.answers.reset(raw.answers, { parse: true });
+            this.answers.reset(raw.answers, {parse: true});
 
             return raw;
         },
@@ -68,8 +67,8 @@
     });
 
     Edit.AnswerModel = Backbone.Model.extend({
-        
-       // urlRoot: "api/TestSubject/",
+
+        // urlRoot: "api/TestSubject/",
         defaults: {
             isRight: false,
             content: "",
@@ -77,10 +76,6 @@
         }
 
     })
-
-    
- 
-   
 
 
 });

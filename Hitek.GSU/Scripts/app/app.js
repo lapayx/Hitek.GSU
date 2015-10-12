@@ -24,8 +24,6 @@ GSU.closeModal = function () {
 GSU.loadMask = {
 
 
-
-
     _selector: "#loading",
     show: function () {
         $(this._selector).show();
@@ -40,15 +38,15 @@ GSU.on("modalWindow:close", function (param) {
     GSU.closeModal();
 });
 /*
-GSU.addInitializer(function () {
-   // console.log("Запуск инициализации");
+ GSU.addInitializer(function () {
+ // console.log("Запуск инициализации");
 
-        if (this.getCurrentRoute() === "") {
-            GSU.trigger("about:show");
-        }
-    
-});
-*/
+ if (this.getCurrentRoute() === "") {
+ GSU.trigger("about:show");
+ }
+
+ });
+ */
 GSU.token = "azaza";
 GSU.message = function (msg, type) {
     alert(msg);
@@ -58,14 +56,12 @@ GSU.cache = {};
 
 GSU.on("start", function (options) {
     /*
-    if (!sessionStorage.getItem("token")) {
-        document.location = "/Home/Login";
-    } else {
-        GSU.token = sessionStorage.getItem("token");
-    }
-    */
-
-
+     if (!sessionStorage.getItem("token")) {
+     document.location = "/Home/Login";
+     } else {
+     GSU.token = sessionStorage.getItem("token");
+     }
+     */
 
 
     if (Backbone.history) {
@@ -74,9 +70,6 @@ GSU.on("start", function (options) {
     if (this.getCurrentRoute() === "") {
         GSU.trigger("Main:show");
     }
-
-
-
 
 
 });

@@ -1,14 +1,13 @@
 ﻿GSU.module("Test.ListTest", function (ListTest, GSU, Backbone, Marionette, $, _) {
 
 
-
     ListTest.TreeModel = Backbone.Model.extend({
 
         constructor: function () {
             this.children = new ListTest.TreeCollection();
             Backbone.Model.apply(this, arguments);
         },
-       // urlRoot: "api/TestSubject/",
+        // urlRoot: "api/TestSubject/",
         defaults: {
             isParent: false,
             name: "Заголовок",
@@ -23,9 +22,6 @@
         }
 
     });
-
- 
-   
 
 
 });

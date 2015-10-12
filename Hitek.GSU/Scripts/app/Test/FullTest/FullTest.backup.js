@@ -10,21 +10,16 @@
 
     var API = {
         show: function (id) {
-            var view = new FullTest.view({ id: id });
+            var view = new FullTest.view({id: id});
             GSU.mainRegion.show(view);
 
         }
     };
 
     GSU.on("Test:show", function (id) {
-        GSU.navigate("Test/"+id);
+        GSU.navigate("Test/" + id);
         API.show(id);
     });
-
-
-
-
-
 
 
     /* -------------------------- MODEL --------------------*/
@@ -38,16 +33,16 @@
         defaults: {
             id: 0,
             name: "Заголовок",
-             
+
         },
-          
+
         parse: function (raw) {
             raw.name = raw.Name;
             raw.id = raw.Id;
-            this.questions.reset(raw.Questions, {parse:true});
+            this.questions.reset(raw.Questions, {parse: true});
             return raw;
-        } 
-       
+        }
+
     });
 
     FullTest.QuestionModel = Backbone.Model.extend({
@@ -56,12 +51,12 @@
             Backbone.Model.apply(this, arguments);
         },
         defaults: {
-            id:0,
+            id: 0,
             name: "",
-            text:""
+            text: ""
         },
         parse: function (raw) {
-            this.answers.reset(raw.Answers, {parse:true});
+            this.answers.reset(raw.Answers, {parse: true});
             raw.name = raw.Name;
             raw.id = raw.Id;
             raw.text = raw.Text;
@@ -90,13 +85,13 @@
         }
     });
     /* -------------------------- COLLECTION --------------------*/
-   
-     FullTest.AnswerCollection = Backbone.Collection.extend({
-         model: FullTest.AnswerModel
-     });
-     FullTest.QuestionCollection = Backbone.Collection.extend({
-         model: FullTest.QuestionModel
-     });
+
+    FullTest.AnswerCollection = Backbone.Collection.extend({
+        model: FullTest.AnswerModel
+    });
+    FullTest.QuestionCollection = Backbone.Collection.extend({
+        model: FullTest.QuestionModel
+    });
 
     /* -------------------------- VIEW --------------------*/
     FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
@@ -113,29 +108,26 @@
             console.log(this.model);
             this.collection = this.model.answers;
         }
-        
-      });
 
-
+    });
 
 
     FullTest.view = Backbone.Marionette.LayoutView.extend({
         template: "test/fullTestTemplate",
         "regions": {
-          //  menu: "#menu",
+            //  menu: "#menu",
             "content": ".test-сontent"
         },
         initialize: function (paramId) {
             this.model = new FullTest.TestModel();
             this.model.on("change", this.render);
-            this.model.fetch({ data: { id: paramId.id } });
-           
-            
-           
+            this.model.fetch({data: {id: paramId.id}});
+
+
         },
         onRender: function () {
             if (this.model.get("Questions")) {
-                var v = new FullTest.QuestionView({ model: this.model.questions.at(0) })
+                var v = new FullTest.QuestionView({model: this.model.questions.at(0)})
                 this.content.show(v);
             }
 
@@ -143,16 +135,11 @@
     });
 
 
-
-
-
-
     GSU.addInitializer(function () {
         new FullTest.Router({
             controller: API
         });
     });
-
 
 
 });

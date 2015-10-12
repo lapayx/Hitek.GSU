@@ -1,10 +1,9 @@
 ﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
 
 
-
     Edit.AnswerView = Backbone.Marionette.ItemView.extend({
         template: "Admin/Test/Edit/answer",
-        
+
         events: {
             "keyup .js-test-edit-answer-content": "changeContent",
             "click .js-test-edit-answer-isRight": "toggleIsRight",
@@ -48,7 +47,6 @@
         }
 
 
-
     });
 
     Edit.QuestionView = Backbone.Marionette.CompositeView.extend({
@@ -60,15 +58,15 @@
             "keyup .js-test-edit-question-title": "changeTitle",
             "keyup .js-test-edit-question-content": "changeContent",
             "click .js-test-edit-question-delete": "deleteQuestion"
-            
+
 
         },
         modelEvents: {
-          //  "sync": "onSyncModel"
+            //  "sync": "onSyncModel"
         },
 
         collectionEvents: {
-           // "sync": "onSyncCollection"
+            // "sync": "onSyncCollection"
         },
 
         initialize: function () {
@@ -118,7 +116,7 @@
         modelEvents: {
             "sync": "onSyncModel"
         },
-        
+
         collectionEvents: {
             "sync": "onSyncCollection"
         },
@@ -127,7 +125,7 @@
             GSU.loadMask.show();
             if (paramId.id > 0) {
 
-                this.model = new Edit.TestModel({ id: paramId.id });
+                this.model = new Edit.TestModel({id: paramId.id});
                 this.model.fetch();
             }
             else {
@@ -139,7 +137,7 @@
 
             this.SubjectTest = new Backbone.Collection();
             this.SubjectTest.url = "api/TestSubject/";
-            this.SubjectTest.on("sync", this.renderTestSubjectSelect,this);
+            this.SubjectTest.on("sync", this.renderTestSubjectSelect, this);
             this.SubjectTest.fetch();
             //this.render();
 
@@ -156,7 +154,7 @@
         onSyncCollection: function () {
             GSU.loadMask.hide();
             this.render();
-           
+
         },
 
         changeTitle: function (event) {
@@ -175,10 +173,10 @@
             //c.set("idTest", this.model.get("id"));
             //c.set("answers", this.model.answers.toJSON());
             c.on("sync", function (r, mod, xht) {
-               
-                    GSU.trigger("Admin:TestSubject:show");
 
-                
+                GSU.trigger("Admin:TestSubject:show");
+
+
             });
             debugger;
             c.save();
@@ -194,15 +192,14 @@
             var inputSelect = this.$el.find("#test-edit-subjectId");
             _.each(this.SubjectTest, function (c, num, collection) {
                 var model = collection.at(num);
-                var s = 
-                inputSelect.append($("<option value='" + model.id + "' " + ((tesSubjectId == model.id)?"selected":"") + " >" + model.get("name") + "</option>"))
+                var s =
+                    inputSelect.append($("<option value='" + model.id + "' " + ((tesSubjectId == model.id) ? "selected" : "") + " >" + model.get("name") + "</option>"))
 
             })
 
         }
 
     });
-    
 
 
 });

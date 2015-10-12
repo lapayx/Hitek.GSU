@@ -16,13 +16,9 @@
     };
 
     GSU.on("Error:404", function () {
-   
+
         API.error404();
     });
-
-
-
-
 
 
 });

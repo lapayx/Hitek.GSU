@@ -5,10 +5,10 @@
         template: "Test/ListTest/item",
         childViewContainer: "ul",
         events: {
-            "click":"click"
+            "click": "click"
         },
         initialize: function () {
-            if(this.model.children)
+            if (this.model.children)
                 this.collection = this.model.children;
 
         },
@@ -20,7 +20,6 @@
 
         }
     });
-
 
 
     ListTest.view = Backbone.Marionette.CompositeView.extend({
@@ -40,7 +39,7 @@
 
         },
         onSyncModel: function () {
-            if (this.model.get("id") && this.model.get("id")>0) {
+            if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
             }
             else {
@@ -60,11 +59,11 @@
             var forRemove = []
             _.each(this.collection, function (c, num, collection) {
                 var m = collection.at(num);
-                if (m && m.get("parentId")>0) {
+                if (m && m.get("parentId") > 0) {
                     forRemove.push(m)
                 }
             });
-            this.collection.remove(forRemove, { silent: true });
+            this.collection.remove(forRemove, {silent: true});
 
             this.render();
             GSU.loadMask.hide();
@@ -72,7 +71,6 @@
 
 
     });
-    
 
 
 });
