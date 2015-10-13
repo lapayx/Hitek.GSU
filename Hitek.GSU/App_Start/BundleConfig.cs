@@ -30,6 +30,8 @@ namespace Hitek.GSU
                       "~/Content/css/bootstrap.css",
                       "~/Content/css/bootstrap-theme.css",
                       "~/Content/css/site.css"));
+            bundles.Add(new StyleBundle("~/bundles/registration-login-css").Include(
+                      "~/Content/css/registration-login.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/app/app.js")

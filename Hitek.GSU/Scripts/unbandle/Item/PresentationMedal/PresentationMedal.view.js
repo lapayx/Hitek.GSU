@@ -47,7 +47,6 @@
         childViewContainer: ".items",
         modelEvents: {
             "change:success": function (model) {
-                debugger;
                 if (model.get("success") == true) {
                     GSU.message("Медаль вручена");
                     GSU.trigger("ReceivedMedal:refresh");

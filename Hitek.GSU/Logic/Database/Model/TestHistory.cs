@@ -16,6 +16,10 @@ namespace Hitek.GSU.Logic.Database
         
         [Required]
         public long TestId { get; set; }
+
+        [Required]
+        public long AccountId { get; set; }
+
         public virtual Test Test { get; set; }
         
     }

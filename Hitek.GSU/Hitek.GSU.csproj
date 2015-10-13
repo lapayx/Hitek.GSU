@@ -213,16 +213,22 @@
     <Compile Include="Logic\Database\Model\Test.cs" />
     <Compile Include="Logic\Database\Repository+Test.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
+    <Compile Include="Logic\Interfaces\IAccountService.cs" />
     <Compile Include="Logic\Interfaces\ITestService.cs" />
     <Compile Include="Logic\Interfaces\ITestSubjectService.cs" />
     <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
     <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
     <Compile Include="Logic\Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Logic\Service\AccountService.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Logic\Service\TestSubjectService.cs" />
     <Compile Include="Migrations\201509221426113_first.cs" />
     <Compile Include="Migrations\201509221426113_first.Designer.cs">
       <DependentUpon>201509221426113_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510131100310_add-filds.cs" />
+    <Compile Include="Migrations\201510131100310_add-filds.Designer.cs">
+      <DependentUpon>201510131100310_add-filds.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
@@ -254,6 +260,12 @@
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\registration-login.css">
+      <DependentUpon>registration-login.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\registration-login.min.css">
+      <DependentUpon>registration-login.css</DependentUpon>
+    </Content>
     <Content Include="Content\image\loading.gif" />
     <Content Include="Content\image\loading_circle.gif" />
     <Content Include="Content\tpl\Admin\TestSubject\Edit\select.html" />
@@ -412,6 +424,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Content\css\registration-login.scss" />
+    <Content Include="Content\css\registration-login.css.map">
+      <DependentUpon>registration-login.css</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\vendor\jquery-1.11.2.min.map" />
     <Content Include="Views\Home\Temp.cshtml" />
@@ -424,6 +440,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509221426113_first.resx">
       <DependentUpon>201509221426113_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510131100310_add-filds.resx">
+      <DependentUpon>201510131100310_add-filds.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

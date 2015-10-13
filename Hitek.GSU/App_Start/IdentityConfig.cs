@@ -141,13 +141,19 @@ namespace Hitek.GSU
 
         public override async Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
         {
-            if (false &&   Membership.Provider.ValidateUser(userName, password))
+            if (false &&  Membership.Provider.ValidateUser(userName, password))
             {
 
                 var user = UserManager.FindByName(userName);
                 if (user == null)
                 {
-                    return SignInStatus.Failure;
+                   // return SignInStatus.Failure;
+                    ApplicationUser newAccount = new ApplicationUser(){
+                        UserName = userName
+                        
+                    };
+                    await UserManager.CreateAsync(newAccount);
+                    user = UserManager.FindByName(userName);
                 }
 
                 await base.SignInAsync(user, isPersistent, shouldLockout);

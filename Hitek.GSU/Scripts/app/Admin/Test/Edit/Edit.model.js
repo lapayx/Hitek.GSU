@@ -8,7 +8,7 @@
 
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "api/Test/Edit/",
+        urlRoot: "Test/Edit/",
         defaults: {
             //   isParent: false,
             title: "Новый тест",

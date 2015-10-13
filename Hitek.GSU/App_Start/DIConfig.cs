@@ -75,6 +75,7 @@ namespace Hitek.GSU
         {
             container.Register<ITestService, TestService>();
             container.Register<ITestSubjectService, TestSubjectService>();
+            container.Register<IAccountService, AccountService>();
             /*
             container.Register<IImportService, ImportService>();
             container.Register<ISearchService, SearchSevice>();

@@ -43,7 +43,7 @@ namespace Hitek.GSU.Tests.Service
 
 
 
-            testService = new TestService(context);
+            //testService = new TestService(context);
             
         }
         [TestMethod]

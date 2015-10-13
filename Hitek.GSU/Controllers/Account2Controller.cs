@@ -85,7 +85,11 @@ namespace Hitek.GSU.Controllers
             return Json(new { success = false});
         }
 
-        //
-        // GET: /Account/ConfirmEmail
+        [HttpGet]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

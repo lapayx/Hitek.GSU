@@ -169,7 +169,7 @@
             event.preventDefault()
             //console.log(this.model.getDataForJSON().toJSON());
             var c = this.model.getDataForJSON();
-            c.url = "api/Test/Edit";
+            c.url = "Test/Edit";
             //c.set("idTest", this.model.get("id"));
             //c.set("answers", this.model.answers.toJSON());
             c.on("sync", function (r, mod, xht) {
@@ -178,7 +178,6 @@
 
 
             });
-            debugger;
             c.save();
 
 

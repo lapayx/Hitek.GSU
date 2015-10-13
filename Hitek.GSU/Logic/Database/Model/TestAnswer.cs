@@ -21,6 +21,9 @@ namespace Hitek.GSU.Logic.Database
 
         public bool IsHide { get; set;}
 
+        [Required] 
+        public long AccountId { get; set; }
+
         public virtual TestQuestion TestQuestion { get; set; } 
 
     }

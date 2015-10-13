@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Hitek.GSU.Controllers.API
 {
@@ -13,16 +14,19 @@ namespace Hitek.GSU.Controllers.API
     {
 
         readonly ITestService testservice;
+        IAccountService accountService;
 
-        public TestHistoryController(ITestService testservice)
+        public TestHistoryController(ITestService testservice,IAccountService accountService)
         {
             this.testservice = testservice;
+            this.accountService = accountService;
         }
 
         // GET: api/TestHistory
         public IEnumerable<HistoryResult> Get()
         {
-            return this.testservice.GetAllHistoryTestByUserId(0);
+            User.Identity.GetUserId();
+            return this.testservice.GetAllHistoryTestByUserId(accountService.GetCurrentUserId());
         }
 
         // GET: api/TestHistory/5
