@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
 
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,25 +22,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#Test/List">Все темы</a></li>
-                    <li><a href="#Test/1">Test #1</a></li>
-                    <li><a href="#Test/Result">Результаты</a></li>
-                    <!-- <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>-->
-                    <li>@Html.ActionLink("Для преподавателей", "Index", "Admin")</li>
-
-                    <!--<li class="dropdown">
-                        <a id="admin-controller" class="dropdown-toggle" aria-expanded="true" role="button" aria-haspopup="true" data-toggle="dropdown" href="#">
-                            Для преподавателей
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="admin-controller" role="menu">
-                            <li role="presentation">
-                                <a href="#Admin/TestSubject" tabindex="-1" role="menuitem">Редактирование тем</a>
-                            </li>
-                        </ul>
-                    </li>-->
+                    <li><a href="#Admin/TestSubject">Редактирование тем</a></li>                    
                     <li>@Html.ActionLink("Выход", "LogOff", "Account2")</li>
                 </ul>
             </div>
@@ -61,6 +44,6 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/adminApp")
 </body>
 </html>

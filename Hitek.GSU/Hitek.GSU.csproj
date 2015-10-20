@@ -196,11 +196,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Account2Controller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\TestHistoryController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\TestHistoryController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -304,19 +305,19 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
-    <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.model.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.view.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\Edit\Edit.collection.js" />
-    <Content Include="Scripts\app\Admin\Test\Edit\Edit.collection.js" />
-    <Content Include="Scripts\app\Admin\Test\Edit\Edit.model.js" />
-    <Content Include="Scripts\app\Admin\Test\Edit\Edit.view.js" />
-    <Content Include="Scripts\app\Admin\Test\List\List.collection.js" />
-    <Content Include="Scripts\app\Admin\Test\List\List.model.js" />
-    <Content Include="Scripts\app\Admin\Test\List\List.view.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\List.collection.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\List.model.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\List\List.view.js" />
-    <Content Include="Scripts\app\Admin\Test\Test.route.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\Edit\Edit.model.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\Edit\Edit.view.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\Edit\Edit.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\Edit\Edit.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\Edit\Edit.model.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\Edit\Edit.view.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\List\List.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\List\List.model.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\List\List.view.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\List\List.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\List\List.model.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\List\List.view.js" />
+    <Content Include="Scripts\adminApp\Admin\Test\Test.route.js" />
     <Content Include="Scripts\app\Error\Error.route.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.model.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.collection.js" />
@@ -339,7 +340,7 @@
     <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
     <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />
     <Content Include="Scripts\unbandle\Action\Page\UserInfo.js" />
-    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\unbandle\Item\InfoOnMainPage\InfoOnMainPage.view.js" />
     <Content Include="Scripts\unbandle\Item\LastAction\LastAction.collection.collection.js" />
     <Content Include="Scripts\unbandle\Item\LastAction\LastAction.collection.model.js" />
@@ -420,6 +421,7 @@
   <ItemGroup>
     <Folder Include="Views\Account2\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\TestHistory\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
@@ -432,10 +434,12 @@
     <Content Include="Scripts\vendor\jquery-1.11.2.min.map" />
     <Content Include="Views\Home\Temp.cshtml" />
     <Content Include="Scripts\override\Backbone.sync.js" />
-    <Content Include="Scripts\app\Admin\TestSubject\TestSubject.route.js" />
+    <Content Include="Scripts\adminApp\Admin\TestSubject\TestSubject.route.js" />
     <Content Include="Views\Home\Login.cshtml" />
     <None Include="Properties\PublishProfiles\inFile.pubxml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201509221426113_first.resx">

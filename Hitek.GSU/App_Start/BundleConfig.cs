@@ -34,7 +34,7 @@ namespace Hitek.GSU
                       "~/Content/css/registration-login.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app")
-                .Include("~/Scripts/app/app.js")
+                .Include("~/Scripts/app.js")
 
 
               //  .IncludeDirectory("~/Scripts/app/", "*.js", true)
@@ -44,18 +44,27 @@ namespace Hitek.GSU
                 .IncludeDirectory("~/Scripts/app/", "*.route.js", true)
                 /*
                 .IncludeDirectory("~/Scripts/app/Action/", "*.js", true)*/
-                        //.IncludeDirectory("~/Scripts/app/modul/", "*.js", true)
-                        // .IncludeDirectory("~/Scripts/app/model/", "*.js", true)
-                        //  .IncludeDirectory("~/Scripts/app/collection/", "*.js", true)
-                        // .IncludeDirectory("~/Scripts/app/view/", "*.js", true)
+                //.IncludeDirectory("~/Scripts/app/modul/", "*.js", true)
+                // .IncludeDirectory("~/Scripts/app/model/", "*.js", true)
+                //  .IncludeDirectory("~/Scripts/app/collection/", "*.js", true)
+                // .IncludeDirectory("~/Scripts/app/view/", "*.js", true)
                 );
+            bundles.Add(new ScriptBundle("~/bundles/adminApp")
+                .Include("~/Scripts/app.js")
+                .IncludeDirectory("~/Scripts/adminApp/", "*.model.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.collection.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.view.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.route.js", true)
+                );
+
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            #if DEBUG
-                        BundleTable.EnableOptimizations = false;
-            #else 
+#if DEBUG
+            BundleTable.EnableOptimizations = false;
+#else 
                         BundleTable.EnableOptimizations = true;
-            #endif
+#endif
         }
     }
 }

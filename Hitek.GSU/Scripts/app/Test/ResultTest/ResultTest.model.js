@@ -2,7 +2,7 @@
 
 
     ResultTest.ResultModel = Backbone.Model.extend({
-        urlRoot: "api/TestHistory/",
+        urlRoot: "TestHistory/",
         defaults: {
             id: 0,
             name: "Заголовок",

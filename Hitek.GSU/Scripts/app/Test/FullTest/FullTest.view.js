@@ -135,10 +135,11 @@
         },
         onComliteTest: function () {
             var c = new Backbone.Model();
-            c.url = "api/Test/Check";
+            c.url = "Test/Check";
             c.set("idTest", this.model.get("id"));
             c.set("answers", this.model.answers.toJSON());
             c.on("sync", function (r, mod, xht) {
+                debugger;
                 if (mod.id) {
                     GSU.trigger("Test:showResult", mod.id);
 

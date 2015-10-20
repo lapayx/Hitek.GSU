@@ -66,23 +66,23 @@ namespace Hitek.GSU.Controllers
 
         [HttpPost]
         [Route("Check")]
-        public object PostCheck(TestForCheack mod)
+        public ActionResult PostCheck(TestForCheack mod)
         {
-            return testservice.CheckTest(mod);
+            return Json(testservice.CheckTest(mod));
         }
 
         [HttpPost]
         [Route("Edit")]
-        public object PostCreateTest(CreatingTest mod)
+        public ActionResult PostCreateTest(CreatingTest mod)
         {
-            return testservice.CreateOrEditTest(mod);
+            return Json(testservice.CreateOrEditTest(mod));
         }
 
         [HttpPut]
         [Route("Edit")]
-        public object PutChangeTest(CreatingTest mod)
+        public ActionResult PutChangeTest(CreatingTest mod)
         {
-            return testservice.CreateOrEditTest(mod);
+            return Json(testservice.CreateOrEditTest(mod));
         }
     }
 }
