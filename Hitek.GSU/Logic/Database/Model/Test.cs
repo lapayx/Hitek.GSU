@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hitek.GSU.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,12 +17,14 @@ namespace Hitek.GSU.Logic.Database
         public string Name { get; set; }
 
         public long? TestSubjectId { get; set; }
-        
 
+        [Required] 
+        public long AutorId { get; set; }
 
         public bool IsHide { get; set; }
 
-        public virtual TestSubject TestSubject { get; set; } 
+        public virtual TestSubject TestSubject { get; set; }
+
         public virtual ICollection<TestQuestion> TestQuestions { get; set; }
         public virtual ICollection<TestHistory> TestHistories { get; set; }
 

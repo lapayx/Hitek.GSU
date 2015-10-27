@@ -1,5 +1,6 @@
 namespace Hitek.GSU.Migrations
 {
+    using Hitek.GSU.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +27,11 @@ namespace Hitek.GSU.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Roles.AddOrUpdate(
+                  p => p.Name,
+                  new RoleLongPk { Name = "Admin" },
+                  new RoleLongPk { Name  = "Teacher" }
+                );
         }
     }
 }

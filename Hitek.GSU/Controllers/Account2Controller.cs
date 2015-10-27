@@ -12,20 +12,20 @@ namespace Hitek.GSU.Controllers
 {
     public class Account2Controller : Controller
     {
-        private AppUserManager _userManager;
+        AppUserManager userManager;
+        IAuthenticationManager authenticationManager;
+        AppSignInManager signInManager;
 
         public Account2Controller(AppUserManager userManager, AppSignInManager signInManager, IAuthenticationManager authenticationManager)
         {
-            this.UserManager = userManager;
-            this.SignInManager = signInManager;
-            this.AuthenticationManager = authenticationManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
+            this.authenticationManager = authenticationManager;
         }
 
-        public AppUserManager UserManager;
-        IAuthenticationManager AuthenticationManager;
+        
 
-
-        public AppSignInManager SignInManager;
+        
 
         //
         // POST: /Account/Login
@@ -40,7 +40,7 @@ namespace Hitek.GSU.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -65,10 +65,10 @@ namespace Hitek.GSU.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -88,8 +88,21 @@ namespace Hitek.GSU.Controllers
         [HttpGet]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut();
+            authenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public async  Task<ActionResult> AddMeAdmin()
+        {
+            var us = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+            var t = await this.userManager.AddToRoleAsync(us.Id, "Admin");
+            if (t.Succeeded)
+            {
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

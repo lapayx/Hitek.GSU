@@ -13,7 +13,7 @@ namespace Hitek.GSU.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201509221426113_first"; }
+            get { return "201510271104101_first"; }
         }
         
         string IMigrationMetadata.Source

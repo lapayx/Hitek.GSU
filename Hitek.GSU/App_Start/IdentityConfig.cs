@@ -126,6 +126,7 @@ namespace Hitek.GSU
        }
     }
 
+
     // Configure the application sign-in manager which is used in this application.
     public class AppSignInManager : SignInManager<ApplicationUser, long>
     {

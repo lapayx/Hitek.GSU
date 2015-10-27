@@ -10,8 +10,8 @@ namespace Hitek.GSU.Models
 
 
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleIntPk, long,
-        UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleLongPk, long,
+        UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
         public ApplicationDbContext()
             : base("EntityContext")

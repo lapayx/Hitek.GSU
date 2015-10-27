@@ -10,44 +10,45 @@ using System.Web;
 namespace Hitek.GSU.Models
 {
 
-    public class UserRoleIntPk : IdentityUserRole<long>
+    public class UserRoleLongPk : IdentityUserRole<long>
     {
     }
 
-    public class UserClaimIntPk : IdentityUserClaim<long>
+    public class UserClaimLongPk : IdentityUserClaim<long>
     {
     }
 
-    public class UserLoginIntPk : IdentityUserLogin<long>
+    public class UserLoginLongPk : IdentityUserLogin<long>
     {
     }
 
-    public class RoleIntPk : IdentityRole<long, UserRoleIntPk>
+    public class RoleLongPk : IdentityRole<long, UserRoleLongPk>
     {
-        public RoleIntPk() { }
-        public RoleIntPk(string name) { Name = name; }
+        public RoleLongPk() { }
+        public RoleLongPk(string name) { Name = name; }
     }
 
-    public class UserStoreIntPk : UserStore<ApplicationUser, RoleIntPk, long,
-        UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class UserStoreLongPk : UserStore<ApplicationUser, RoleLongPk, long,
+        UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
-        public UserStoreIntPk(ApplicationDbContext context)
+        public UserStoreLongPk(ApplicationDbContext context)
             : base(context)
         {
         }
     }
 
-    public class RoleStoreIntPk : RoleStore<RoleIntPk, long, UserRoleIntPk>
+    public class RoleStoreLongPk : RoleStore<RoleLongPk, long, UserRoleLongPk>
     {
-        public RoleStoreIntPk(ApplicationDbContext context)
+        public RoleStoreLongPk(ApplicationDbContext context)
             : base(context)
         {
         }
     }
+
 
 
     //change bellow classes
-    public class ApplicationUser : IdentityUser<long, UserLoginIntPk, UserRoleIntPk, UserClaimIntPk>
+    public class ApplicationUser : IdentityUser<long, UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(AppUserManager manager)

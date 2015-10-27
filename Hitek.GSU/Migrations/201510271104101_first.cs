@@ -37,6 +37,7 @@ namespace Hitek.GSU.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 200),
                         TestSubjectId = c.Long(),
+                        AutorId = c.Long(nullable: false),
                         IsHide = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -50,6 +51,7 @@ namespace Hitek.GSU.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         Result = c.Single(nullable: false),
                         TestId = c.Long(nullable: false),
+                        AccountId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Tests", t => t.TestId, cascadeDelete: true)
@@ -78,6 +80,7 @@ namespace Hitek.GSU.Migrations
                         IsRight = c.Boolean(nullable: false),
                         TestQuestionId = c.Long(nullable: false),
                         IsHide = c.Boolean(nullable: false),
+                        AccountId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.TestQuestions", t => t.TestQuestionId, cascadeDelete: true)

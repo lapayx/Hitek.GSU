@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Hitek.GSU.Controllers
 {
+    [Authorize(Roles="Admin, Teacher")]
     public class AdminController : Controller
     {
         // GET: Admin

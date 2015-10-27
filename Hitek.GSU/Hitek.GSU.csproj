@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Account2Controller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -223,13 +224,9 @@
     <Compile Include="Logic\Service\AccountService.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Logic\Service\TestSubjectService.cs" />
-    <Compile Include="Migrations\201509221426113_first.cs" />
-    <Compile Include="Migrations\201509221426113_first.Designer.cs">
-      <DependentUpon>201509221426113_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201510131100310_add-filds.cs" />
-    <Compile Include="Migrations\201510131100310_add-filds.Designer.cs">
-      <DependentUpon>201510131100310_add-filds.cs</DependentUpon>
+    <Compile Include="Migrations\201510271104101_first.cs" />
+    <Compile Include="Migrations\201510271104101_first.Designer.cs">
+      <DependentUpon>201510271104101_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
@@ -257,6 +254,7 @@
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\SqlForDelete.sql" />
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
@@ -279,6 +277,9 @@
     <Content Include="Content\tpl\Admin\Test\List\item.html" />
     <Content Include="Content\tpl\Admin\Test\List\main.html" />
     <Content Include="Content\tpl\Admin\Test\List\NoItem.html" />
+    <Content Include="Content\tpl\Admin\User\List\item.html" />
+    <Content Include="Content\tpl\Admin\User\List\main.html" />
+    <Content Include="Content\tpl\Admin\User\List\NoItem.html" />
     <Content Include="Content\tpl\Error\404.html" />
     <Content Include="Content\tpl\main.html" />
     <Content Include="Content\tpl\none.html" />
@@ -318,6 +319,13 @@
     <Content Include="Scripts\adminApp\Admin\TestSubject\List\List.model.js" />
     <Content Include="Scripts\adminApp\Admin\TestSubject\List\List.view.js" />
     <Content Include="Scripts\adminApp\Admin\Test\Test.route.js" />
+    <Content Include="Scripts\adminApp\Admin\User\Edit\edit.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\User\Edit\Edit.model.js" />
+    <Content Include="Scripts\adminApp\Admin\User\Edit\Edit.view.js" />
+    <Content Include="Scripts\adminApp\Admin\User\List\List.collection.js" />
+    <Content Include="Scripts\adminApp\Admin\User\List\List.model.js" />
+    <Content Include="Scripts\adminApp\Admin\User\List\List.view.js" />
+    <Content Include="Scripts\adminApp\Admin\User\User.route.js" />
     <Content Include="Scripts\app\Error\Error.route.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.model.js" />
     <Content Include="Scripts\app\Test\FullTest\FullTest.collection.js" />
@@ -423,6 +431,7 @@
     <Folder Include="Views\Default\" />
     <Folder Include="Views\TestHistory\" />
     <Folder Include="Views\Test\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -442,11 +451,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509221426113_first.resx">
-      <DependentUpon>201509221426113_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510131100310_add-filds.resx">
-      <DependentUpon>201510131100310_add-filds.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510271104101_first.resx">
+      <DependentUpon>201510271104101_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

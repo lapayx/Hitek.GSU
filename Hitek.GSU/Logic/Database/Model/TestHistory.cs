@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hitek.GSU.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace Hitek.GSU.Logic.Database
         public long AccountId { get; set; }
 
         public virtual Test Test { get; set; }
+
+
         
     }
 

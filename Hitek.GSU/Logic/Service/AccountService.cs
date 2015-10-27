@@ -37,5 +37,33 @@ namespace Hitek.GSU.Logic.Service
         {
             return this.signInManager.UserManager.FindByIdAsync(currentId).Result;
         }
+
+
+        public IList<ApplicationUser> GetAllUsers()
+        {
+            return this.signInManager.UserManager.Users.ToList();
+        }
+
+
+        public ApplicationUser GetUserById(long id)
+        {
+            return this.signInManager.UserManager.FindByIdAsync(id).Result;
+        }
+
+
+        public bool AddRole(long userId, string role)
+        {
+            var res = this.signInManager.UserManager.AddToRole(userId, role);
+            return res.Succeeded;
+        }
+
+
+        public bool RemoveRole(long userId, params string[] role)
+        {
+            var res = this.signInManager.UserManager.RemoveFromRoles(userId,role);
+            return res.Succeeded;
+        }
+
+
     }
 }

@@ -12,5 +12,13 @@ namespace Hitek.GSU.Logic.Interfaces
         long GetCurrentUserId();
         ApplicationUser GetCurrentUser();
 
+        IList<ApplicationUser> GetAllUsers();
+        ApplicationUser GetUserById(long id);
+
+        bool AddRole(long userId, string role);
+        bool RemoveRole(long userId, params string[] role);
+
+
+
     }
 }

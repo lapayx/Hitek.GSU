@@ -60,7 +60,7 @@ namespace Hitek.GSU
        //     container.Register<IUserStore<MyAccount,long>, MyUserStore>(); 
 
             container.Register<ApplicationDbContext, Entities>();
-            container.Register<IUserStore<ApplicationUser, long>, UserStoreIntPk>();
+            container.Register<IUserStore<ApplicationUser, long>, UserStoreLongPk>();
             container.Register<AppSignInManager>();
             container.Register<AppUserManager>();
             container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
