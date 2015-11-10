@@ -4,7 +4,9 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Редактирование Темы для тестов <%- name %></h3>
+                
+                <h3 class="panel-title"><% if( isNew) { print("Создание"); } else { print("Редактирование");} %> темы для тестов <%- name %></h3>
+                
             </div>
             <div class="panel-body ">
                 <form>
@@ -19,7 +21,7 @@
                             <option value="0">Нету</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Сохранить</button>
                 </form>
             </div>
         </div>

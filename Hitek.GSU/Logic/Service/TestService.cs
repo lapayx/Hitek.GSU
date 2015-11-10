@@ -12,10 +12,12 @@ namespace Hitek.GSU.Logic.Service
     {
         readonly ITestRepository testRepository;
         IAccountService accountService;
+        Random random;
         public TestService(ITestRepository testRepositpry, IAccountService accountService)
         {
             this.testRepository = testRepositpry;
             this.accountService = accountService;
+            this.random = new Random(DateTime.Now.Millisecond);
         }
 
         public TestFull GetTestById(long id)
@@ -31,7 +33,7 @@ namespace Hitek.GSU.Logic.Service
                     Name = t.Name,
                     Questions = new List<TestQuestion>()
                 };
-                foreach (var q in t.TestQuestions)
+                foreach (var q in t.TestQuestions.OrderBy(x => random.Next()).Take(10))
                 {
                     if (q.IsHide)
                         continue;
@@ -43,7 +45,7 @@ namespace Hitek.GSU.Logic.Service
                         Answers = new List<TestAnswer>()
                     };
 
-                    foreach (var a in q.TestAnswers)
+                    foreach (var a in q.TestAnswers.OrderBy(x => random.Next()))
                     {
                         if (a.IsHide)
                             continue;

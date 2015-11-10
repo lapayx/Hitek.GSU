@@ -20,7 +20,15 @@ namespace Hitek.GSU.Logic.Database
 
         public int SaveChanges()
         {
-            return entity.SaveChanges();
+            try
+            {
+                return entity.SaveChanges();
+            }
+            catch (Exception e) { 
+                
+            
+            }
+            return 0;
         }
     }
 }

@@ -29,11 +29,13 @@
         initialize: function (paramId) {
             GSU.loadMask.show();
             if (paramId.id > 0) {
-                this.model = new Edit.Subject({id: paramId.id});
+                this.model = new Edit.Subject({ id: paramId.id });
                 this.model.fetch();
             }
-            else
+            else {
                 this.model = new Edit.Subject();
+                this.model.set("isNew", true);
+            }
 
             this.collection = new Edit.TreeCollection();
             this.collection.fetch();
@@ -42,7 +44,11 @@
         },
         onSyncModel: function () {
             GSU.loadMask.hide();
-            if (this.model.get("id") && this.model.get("id") > 0) {
+            if (this.model.get("id") || this.model.get("isNew")) {
+                if (this.model.get("isLocked")) {
+                    GSU.trigger("Admin:TestSubject:show");
+                    return;
+                }
                 this.render();
             }
             else {
@@ -65,7 +71,10 @@
         },
         onSubmit: function (event) {
             event.preventDefault()
-            this.model.save();
+            if (!this.model.get('isLocked')) {
+                this.model.set('isLocked',true)
+                this.model.save();
+            }
 
         }
 

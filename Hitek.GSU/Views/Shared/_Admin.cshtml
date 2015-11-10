@@ -24,7 +24,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#Admin/TestSubject">Редактирование тем</a></li>
                     <li><a href="#Admin/User">Редактирование Пользователи</a></li>
+                    <li>@Html.ActionLink("Импорт тестов", "Index", "Default")</li>
                     <li>@Html.ActionLink("Выход", "LogOff", "Account2")</li>
+                    <li><a href="javascript:void(0);">@User.Identity.Name</a></li>
                 </ul>
             </div>
         </div>

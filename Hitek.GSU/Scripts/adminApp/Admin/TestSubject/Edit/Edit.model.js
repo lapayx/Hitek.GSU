@@ -2,15 +2,18 @@
 
 
     Edit.Subject = Backbone.Model.extend({
-        urlRoot: "api/TestSubject/",
+        urlRoot: "TestSubject/",
         defaults: {
+            isLocked: false,
             isParent: false,
-            name: "Заголовок"
+            name: "",
+            parentId: 0,
+            isNew: false
         }
     });
 
     Edit.TreeModel = Backbone.Model.extend({
-        urlRoot: "api/TestSubject/",
+        urlRoot: "TestSubject/",
         defaults: {
             isParent: false,
             name: "Новая тема",

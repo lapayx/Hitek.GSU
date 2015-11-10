@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TestHistoryController.cs" />
+    <Compile Include="Controllers\TestSubjectController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -240,7 +241,8 @@
     <Compile Include="Models\TestFull.cs" />
     <Compile Include="Models\TestInfo.cs" />
     <Compile Include="Models\TestQuestion.cs" />
-    <Compile Include="Models\TestSubject.cs" />
+    <Compile Include="Models\TestSubject\TestSubjectForAdd.cs" />
+    <Compile Include="Models\TestSubject\TestSubject.cs" />
     <Compile Include="Models\Validation\Admin\Test\CreatingTest.cs" />
     <Compile Include="Models\Validation\Admin\Test\CreatingTestAnswer.cs" />
     <Compile Include="Models\Validation\Admin\Test\CreatingTestQuestion.cs" />
@@ -428,8 +430,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account2\" />
-    <Folder Include="Views\Default\" />
     <Folder Include="Views\TestHistory\" />
+    <Folder Include="Views\TestSubject\" />
     <Folder Include="Views\Test\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
@@ -449,6 +451,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510271104101_first.resx">

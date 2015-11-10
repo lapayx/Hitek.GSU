@@ -86,7 +86,7 @@
         },
 
         newSubject: function () {
-            GSU.trigger("Admin:TestSubject:edit", 0);
+            GSU.trigger("Admin:TestSubject:add");
 
         }
     });
