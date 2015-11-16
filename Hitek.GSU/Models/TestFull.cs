@@ -7,6 +7,7 @@ namespace Hitek.GSU.Models
 {
     public class TestFull: Entity
     {
+        public int CountQuestion { get; set; }
         public IList<TestQuestion> Questions { get; set; }
     }
 }

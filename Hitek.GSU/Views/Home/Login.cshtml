@@ -9,6 +9,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <!--[if lte IE 8]
+            <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <![endif]-->
+
     <title>@ViewBag.Title</title>
     @Styles.Render("~/bundles/css")
     @Styles.Render("~/bundles/registration-login-css")
@@ -28,10 +32,15 @@
                     <img src="~/Content/image/loading_circle.gif" width="20" /> Выполняется вход
                 </div>
             </div>
-            <label for="inputLogin" class="sr-only">Логин входа </label>
-            <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus>
-            <label for="inputPassword" class="sr-only">Пароль</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+            <div class="form-group">
+                <label for="inputLogin">Логин входа </label>
+                <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" >Пароль</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
+            </div>
+           
             <!--<div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Remember me
@@ -86,8 +95,8 @@
 
                 var loginData = {
                     grant_type: 'password',
-                    Email: $("#inputLogin").val().trim(),
-                    Password: $("#inputPassword").val().trim()
+                    Email: $("#inputLogin").val(),
+                    Password: $("#inputPassword").val()
                 };
 
                 $.ajax({

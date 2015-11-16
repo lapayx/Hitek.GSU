@@ -13,7 +13,7 @@
         parse: function (raw) {
             // raw.name = raw.Name;
             // raw.id = raw.Id;
-            raw.result = raw.result * 100;
+            raw.result = Math.round(raw.result * 1000) / 10
 
             return raw;
         }

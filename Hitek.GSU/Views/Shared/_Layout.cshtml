@@ -3,11 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <!--[if lte IE 8]
+            <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <![endif]-->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
 </head>
 <body>
+    <style>
+        @@font-face {
+              font-family: 'Glyphicons Halflings';
+
+              src: url("Content/fonts/glyphicons-halflings-regular.eot");
+              src:url("Content/fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),
+                  
+                  url("Content/fonts/glyphicons-halflings-regular.woff") format('woff'),
+                  url("Content/fonts/glyphicons-halflings-regular.ttf") format('truetype'),
+                  url("Content/fonts/glyphicons-halflings-regular.woff2") format('woff2'),
+                  url("Content/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format('svg')}
+            }
+
+    </style>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">

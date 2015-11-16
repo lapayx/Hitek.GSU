@@ -19,7 +19,10 @@ namespace Hitek.GSU.Logic.Database
         public long? TestSubjectId { get; set; }
 
         [Required] 
-        public long AutorId { get; set; }
+        public long? AutorId { get; set; }
+
+
+        public int CountQuestionForShow { get; set; }
 
         public bool IsHide { get; set; }
 

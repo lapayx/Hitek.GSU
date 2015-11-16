@@ -11,6 +11,8 @@
     margin-bottom: 10px; }
   .form-signin .checkbox {
     font-weight: normal; }
+  .form-signin .form-group {
+    margin-bottom: 5px; }
   .form-signin .form-control {
     position: relative;
     height: auto;
@@ -25,7 +27,8 @@
     margin-bottom: 5px;
     margin-top: 5px;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0; }
+    border-bottom-left-radius: 0;
+    border-color: #8A6D3B; }
   .form-signin .form-alert {
     margin-bottom: 5px; }
   .form-signin .submit-button {

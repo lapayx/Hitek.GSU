@@ -1,5 +1,5 @@
 ﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
-
+"use strict";
 
     Edit.AnswerView = Backbone.Marionette.ItemView.extend({
         template: "Admin/Test/Edit/answer",
@@ -14,7 +14,6 @@
             //     "sync": "onSyncModel"
         },
         initialize: function () {
-            console.log(this.model.toJSON());
         },
 
 
@@ -110,6 +109,7 @@
             "submit": "onSubmit",
             "keyup #test-edit-title": "changeTitle",
             "change #test-edit-subjectId": "changeSubjectId",
+            "keyup #СountQuestion": "changeСountQuestion",
             "click .js-test-add-question": "addQuestion"
 
         },
@@ -140,8 +140,8 @@
             this.SubjectTest.on("sync", this.renderTestSubjectSelect, this);
             this.SubjectTest.fetch();
             //this.render();
-
         },
+
         onSyncModel: function () {
             GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id") > 0) {
@@ -163,6 +163,10 @@
         },
         changeSubjectId: function (event) {
             this.model.set("subjectId", parseInt(event.target.value));
+
+        },
+        changeСountQuestion: function (event) {
+            this.model.set("countQuestion", event.target.value);
 
         },
         onSubmit: function (event) {

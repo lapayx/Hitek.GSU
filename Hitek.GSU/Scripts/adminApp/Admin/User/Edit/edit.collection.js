@@ -1,4 +1,4 @@
-﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
+﻿GSU.module("Admin.User.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
 
 
     /* -------------------------- COLLECTION --------------------*/

@@ -119,7 +119,9 @@
             GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
-                this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
+                if (this.model.questions && this.model.questions.length > 0) {
+                    this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
+                }
             }
             else {
                 GSU.trigger("Error:404");

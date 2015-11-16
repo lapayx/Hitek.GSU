@@ -17,6 +17,9 @@
     & .checkbox {
         font-weight: normal;
     }
+    & .form-group{
+        margin-bottom:5px;
+    }
 
     & .form-control {
         position: relative;
@@ -37,6 +40,7 @@
         margin-top: 5px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
+        border-color:#8A6D3B;
     }
 
     & .form-alert {

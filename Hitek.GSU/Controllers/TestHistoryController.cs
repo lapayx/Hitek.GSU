@@ -24,7 +24,7 @@ namespace Hitek.GSU.Controllers
         public JsonResult Get()
         {
             var userId = accountService.GetCurrentUserId();
-            return Json(this.testservice.GetAllHistoryTestByUserId(userId), JsonRequestBehavior.AllowGet);
+            return Json(this.testservice.GetAllHistoryTestByUserId(userId).OrderByDescending(x => x.Id), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

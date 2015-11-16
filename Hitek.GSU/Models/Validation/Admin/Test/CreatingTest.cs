@@ -11,6 +11,8 @@ namespace Hitek.GSU.Models.Validation.Admin.Test
 
         public string Title { get; set; }
 
+        public int CountQuestion { get; set; }
+
         public ICollection<CreatingTestQuestion> Questions { get; set; }
     }
 }

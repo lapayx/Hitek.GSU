@@ -37,7 +37,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ICollection<HistoryResult> GetAllHistoryTestByUserId(long id);
+        IList<HistoryResult> GetAllHistoryTestByUserId(long id);
 
         void DeleteTestById(long id);
         Hitek.GSU.Models.Validation.Admin.Test.CreatingTest GetTestForEditById( long id);

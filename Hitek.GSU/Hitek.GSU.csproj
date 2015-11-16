@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201510271104101_first.Designer.cs">
       <DependentUpon>201510271104101_first.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511160554468_add-count-question-show.cs" />
+    <Compile Include="Migrations\201511160554468_add-count-question-show.Designer.cs">
+      <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\Identity\Class1.cs" />
@@ -456,6 +460,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510271104101_first.resx">
       <DependentUpon>201510271104101_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511160554468_add-count-question-show.resx">
+      <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

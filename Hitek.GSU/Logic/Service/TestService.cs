@@ -31,9 +31,10 @@ namespace Hitek.GSU.Logic.Service
                 {
                     Id = t.Id,
                     Name = t.Name,
+                    CountQuestion = t.CountQuestionForShow,
                     Questions = new List<TestQuestion>()
                 };
-                foreach (var q in t.TestQuestions.OrderBy(x => random.Next()).Take(10))
+                foreach (var q in t.TestQuestions.OrderBy(x => random.Next()).Take(t.CountQuestionForShow))
                 {
                     if (q.IsHide)
                         continue;
@@ -97,9 +98,9 @@ namespace Hitek.GSU.Logic.Service
                 res = new HistoryResult();
             return res;
         }
-        public ICollection<HistoryResult> GetAllHistoryTestByUserId(long id)
+        public IList<HistoryResult> GetAllHistoryTestByUserId(long id)
         {
-            ICollection<HistoryResult> res = testRepository.TestHistory.Where(x => x.AccountId == id).Select(x => new HistoryResult() { Id = x.Id, Name = x.Test.Name, Result = x.Result }).ToList();
+            IList<HistoryResult> res = testRepository.TestHistory.Where(x => x.AccountId == id).Select(x => new HistoryResult() { Id = x.Id, Name = x.Test.Name, Result = x.Result }).ToList();
             return res;
         }
 
@@ -139,6 +140,8 @@ namespace Hitek.GSU.Logic.Service
             else
             {
                 workTest = new Database.Test();
+                workTest.AutorId = 0;
+                workTest.CountQuestionForShow = 10;
             }
 
             if (workTest == null)
@@ -146,6 +149,7 @@ namespace Hitek.GSU.Logic.Service
             else
             {
                 workTest.Name = raw.Title;
+                workTest.CountQuestionForShow = raw.CountQuestion;
                 workTest.TestSubjectId = raw.SubjectId;
                 if (raw.Id == null)
                     this.testRepository.Test.Add(workTest);
@@ -214,7 +218,7 @@ namespace Hitek.GSU.Logic.Service
             Models.Validation.Admin.Test.CreatingTest res;
             res = this.testRepository.Test
                     .Where(x => x.Id == id)
-                    .Select(x => new Models.Validation.Admin.Test.CreatingTest { Id = x.Id, Title = x.Name, SubjectId = (long)x.TestSubjectId })
+                    .Select(x => new Models.Validation.Admin.Test.CreatingTest { Id = x.Id, Title = x.Name, SubjectId = (long)x.TestSubjectId,CountQuestion= x.CountQuestionForShow })
                     .FirstOrDefault();
             if (res != null)
             {

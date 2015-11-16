@@ -9,10 +9,13 @@
             Backbone.Model.apply(this, arguments);
         },
         urlRoot: "Test/Edit/",
-        defaults: {
-            //   isParent: false,
-            title: "Новый тест",
-            subjectId: 0
+        defaults: function(){
+            return {
+                //   isParent: false,
+                title: "Новый тест",
+                subjectId: 0,
+                countQuestion: 10
+            }
         },
         parse: function (raw) {
             // raw.name = raw.Name;
