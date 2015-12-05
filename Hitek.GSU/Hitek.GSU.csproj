@@ -233,6 +233,14 @@
     <Compile Include="Migrations\201511160554468_add-count-question-show.Designer.cs">
       <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512051105352_add-Date-Result.cs" />
+    <Compile Include="Migrations\201512051105352_add-Date-Result.Designer.cs">
+      <DependentUpon>201512051105352_add-Date-Result.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512051112366_add-Date-Result2.cs" />
+    <Compile Include="Migrations\201512051112366_add-Date-Result2.Designer.cs">
+      <DependentUpon>201512051112366_add-Date-Result2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\Identity\Class1.cs" />
@@ -350,6 +358,7 @@
     <Content Include="Scripts\app\Test\ResultTest\ResultTest.model.js" />
     <Content Include="Scripts\app\Test\ResultTest\ResultTest.view.js" />
     <Content Include="Scripts\plugin\tree.js" />
+    <Content Include="Scripts\polyfill\Date.parse.js" />
     <Content Include="Scripts\unbandle\Action\ModalWindow\PresentationMedal.js" />
     <Content Include="Scripts\unbandle\Action\Page\LastAction.js" />
     <Content Include="Scripts\unbandle\Action\Page\Personnel.js" />
@@ -456,6 +465,7 @@
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Scripts\polyfill\String.prototype.trim.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201510271104101_first.resx">
@@ -463,6 +473,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511160554468_add-count-question-show.resx">
       <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512051105352_add-Date-Result.resx">
+      <DependentUpon>201512051105352_add-Date-Result.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512051112366_add-Date-Result2.resx">
+      <DependentUpon>201512051112366_add-Date-Result2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

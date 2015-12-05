@@ -10,7 +10,7 @@
             "Test/Result": "showResultAll",
             "Test/ListDetail/:id": "showListDetail",
             "Test/List": "showList",
-            "Test/:id": "show",
+            "Test/:id": "show"
         }
     });
 

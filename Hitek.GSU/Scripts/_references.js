@@ -77,3 +77,5 @@
 /// <reference path="adminapp/admin/user/list/list.model.js" />
 /// <reference path="adminapp/admin/user/list/list.view.js" />
 /// <reference path="adminapp/admin/user/user.route.js" />
+/// <reference path="polyfill/string.prototype.trim.js" />
+/// <reference path="polyfill/date.parse.js" />

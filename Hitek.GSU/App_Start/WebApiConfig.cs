@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Net.Http.Formatting;
+using Newtonsoft.Json.Converters;
 
 namespace Hitek.GSU
 {
@@ -26,10 +27,13 @@ namespace Hitek.GSU
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional } 
             );
-
+            /*
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            jsonFormatter.SerializerSettings.DateTimeZoneHandling = Newtonsoft.Json.DateTimeZoneHandling.Local;
 
+           */
+            //jsonFormatter.SerializerSettings.DateFormatString = "yyyy-MM-dd T HH:mm:ss";
         }
     }
 }

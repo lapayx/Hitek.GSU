@@ -29,6 +29,7 @@
             var res = new Backbone.Model();
             res.set("id", this.get("id"));
             res.set("title", this.get("title"));
+            res.set("countQuestion", this.get("countQuestion"));
             res.set("subjectId", this.get("subjectId"));
             res.set("questions", this.questions.getDataForJSON());
 

@@ -33,6 +33,11 @@ namespace Hitek.GSU
             bundles.Add(new StyleBundle("~/bundles/registration-login-css").Include(
                       "~/Content/css/registration-login.css"));
 
+            bundles.Add(new ScriptBundle("~/bundles/polyfill")
+               .IncludeDirectory("~/Scripts/polyfill/", "*.js", true)
+           );
+
+
             bundles.Add(new ScriptBundle("~/bundles/app")
                 .Include("~/Scripts/app.js")
 

@@ -24,6 +24,7 @@ namespace Hitek.GSU.Controllers
         [Route]
         public ActionResult Get()
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             return Json( subjectService.GetAllTestSubjects(),JsonRequestBehavior.AllowGet);
         }
 
@@ -31,6 +32,7 @@ namespace Hitek.GSU.Controllers
         [Route("{id}")]
         public ActionResult Get(long id)
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             return Json(subjectService.GetTestSubjectById(id),JsonRequestBehavior.AllowGet);
         }
 

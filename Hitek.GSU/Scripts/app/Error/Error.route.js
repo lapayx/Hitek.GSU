@@ -2,7 +2,7 @@
 
 
     Error.Error404View = Backbone.Marionette.ItemView.extend({
-        template: "Error/404",
+        template: "Error/404"
 
     });
 

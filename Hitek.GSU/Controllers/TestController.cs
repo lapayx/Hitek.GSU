@@ -27,6 +27,7 @@ namespace Hitek.GSU.Controllers
         [Route]
         public ActionResult Index1()
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             return Json(testService.GetAllTest(), JsonRequestBehavior.AllowGet);
         }
 
@@ -34,6 +35,7 @@ namespace Hitek.GSU.Controllers
         [Route("{id}")]
         public JsonResult Index2(long id)
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             TestFull res = testService.GetTestById(id);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
@@ -42,6 +44,7 @@ namespace Hitek.GSU.Controllers
         [Route("Subject/{subjectId}")]
         public ActionResult GetByTestSubject(long subjectId)
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             IEnumerable<TestInfo> res = testService.GetTestBySubjectId(subjectId);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
@@ -51,6 +54,7 @@ namespace Hitek.GSU.Controllers
         [Route("Edit/{id}")]
         public ActionResult GetForEdit(long id)
         {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
             CreatingTest res = testService.GetTestForEditById(id);
             return Json(res, JsonRequestBehavior.AllowGet);
         }

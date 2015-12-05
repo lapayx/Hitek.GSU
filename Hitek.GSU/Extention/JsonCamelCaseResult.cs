@@ -53,7 +53,9 @@ namespace Hitek.GSU
                         this.Data,
                         new JsonSerializerSettings
                         {
-                            ContractResolver = new CamelCasePropertyNamesContractResolver()
+                            ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                            DateFormatHandling = DateFormatHandling.IsoDateFormat,
+                            DateTimeZoneHandling = DateTimeZoneHandling.Local
                         });
 
                     response.Write(json);

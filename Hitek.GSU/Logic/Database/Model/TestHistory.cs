@@ -9,6 +9,9 @@ namespace Hitek.GSU.Logic.Database
 {
     public class TestHistory
     {
+        public TestHistory() {
+            this.Date = DateTime.Now;
+        }
         [Key] 
         public long Id { get; set; }
 
@@ -20,6 +23,8 @@ namespace Hitek.GSU.Logic.Database
 
         [Required]
         public long AccountId { get; set; }
+
+        public DateTime Date { get; set; }
 
         public virtual Test Test { get; set; }
 

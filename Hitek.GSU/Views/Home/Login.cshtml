@@ -9,9 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <!--[if lte IE 8]
-            <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
-    <![endif]-->
+
 
     <title>@ViewBag.Title</title>
     @Styles.Render("~/bundles/css")
@@ -56,6 +54,7 @@
     </div> <!-- /container -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/polyfill")
     <!--<script>
 
         $(function () {
@@ -95,8 +94,8 @@
 
                 var loginData = {
                     grant_type: 'password',
-                    Email: $("#inputLogin").val(),
-                    Password: $("#inputPassword").val()
+                    Email: $("#inputLogin").val().trim(),
+                    Password: $("#inputPassword").val().trim()
                 };
 
                 $.ajax({

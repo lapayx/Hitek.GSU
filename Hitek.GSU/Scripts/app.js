@@ -84,6 +84,6 @@ GSU.addInitializer(function (options) {
 });
 
 
-$(function () {
+$("document").ready(function () {
     GSU.start();
 })

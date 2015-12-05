@@ -8,10 +8,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <!--[if lte IE 8]
-            <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
-    <![endif]-->
-
 
     <title>@ViewBag.Title</title>
     @Styles.Render("~/bundles/css")
@@ -58,6 +54,7 @@
     </div> <!-- /container -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/polyfill")
     <script>
 
         $(function () {
@@ -66,9 +63,9 @@
                 $('.alert-danger').hide();
 
                 var loginData = {
-                    Email: $("#inputLogin").val(),
-                    Password: $("#inputPassword").val(),
-                    ConfirmPassword: $("#inputPasswordRepeat").val()
+                    Email: $("#inputLogin").val().trim(),
+                    Password: $("#inputPassword").val().trim(),
+                    ConfirmPassword: $("#inputPasswordRepeat").val().trim()
                 };
 
                 $.ajax({

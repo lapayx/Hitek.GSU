@@ -17,7 +17,7 @@
         },
 
 
-        changeContent: function (e) {
+        changeContent: function (event) {
             this.model.set("content", event.target.value);
         },
 
@@ -76,11 +76,11 @@
             event.preventDefault();
             this.collection.add({});
         },
-        changeTitle: function (e) {
+        changeTitle: function (event) {
             this.model.set("title", event.target.value);
         },
 
-        changeContent: function (e) {
+        changeContent: function (event) {
             this.model.set("content", event.target.value);
         },
 
