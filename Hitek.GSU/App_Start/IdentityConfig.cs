@@ -160,7 +160,14 @@ namespace Hitek.GSU
                 await base.SignInAsync(user, isPersistent, shouldLockout);
                 return SignInStatus.Success;
             }
-            
+#if DEBUG
+              var user1 = UserManager.FindByName(userName);
+            if (user1 != null)
+            {
+                await base.SignInAsync(user1, isPersistent, shouldLockout);
+                return SignInStatus.Success;
+            }
+#endif
             return await base.PasswordSignInAsync(userName, password, isPersistent, shouldLockout);
             //return SignInStatus.Failure;
         }

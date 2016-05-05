@@ -38,12 +38,6 @@ namespace Hitek.GSU.Tests.Service
             context.Test.Add(test1);
             context.TestQuestion.Add(question1);
             context.TestAnswer.Add(new DB.TestAnswer { Id = 1, TestQuestionId = 1 });
-
-
-
-
-
-            //testService = new TestService(context);
             
         }
         [TestMethod]
