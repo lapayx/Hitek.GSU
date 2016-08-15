@@ -10,7 +10,8 @@ namespace Hitek.GSU.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+            
         }
 
         protected override void Seed(Hitek.GSU.Logic.Database.Entities context)

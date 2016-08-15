@@ -207,11 +207,19 @@
     <Compile Include="Controllers\TestSubjectController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Map\ApplicationUserMap.cs" />
+    <Compile Include="Logic\Database\Map\RoleLongPkMap.cs" />
+    <Compile Include="Logic\Database\Map\UserClaimLongPkMap.cs" />
+    <Compile Include="Logic\Database\Map\UserLoginLongPkMap.cs" />
+    <Compile Include="Logic\Database\Map\UserRoleLongtPkMap.cs" />
     <Compile Include="Logic\Database\Model\TestSubject.cs" />
     <Compile Include="Logic\Database\Model\TestHistory.cs" />
     <Compile Include="Logic\Database\Model\TestAnswer.cs" />
     <Compile Include="Logic\Database\Model\TestQuestion.cs" />
     <Compile Include="Logic\Database\Model\Test.cs" />
+    <Compile Include="Logic\Database\Model\WorkTest.cs" />
+    <Compile Include="Logic\Database\Model\WorkTestAnswer.cs" />
+    <Compile Include="Logic\Database\Model\WorkTestQuestion.cs" />
     <Compile Include="Logic\Database\Repository+Test.cs" />
     <Compile Include="Logic\Database\Repository.cs" />
     <Compile Include="Logic\Interfaces\IAccountService.cs" />
@@ -223,22 +231,6 @@
     <Compile Include="Logic\Service\AccountService.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Logic\Service\TestSubjectService.cs" />
-    <Compile Include="Migrations\201510271104101_first.cs" />
-    <Compile Include="Migrations\201510271104101_first.Designer.cs">
-      <DependentUpon>201510271104101_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511160554468_add-count-question-show.cs" />
-    <Compile Include="Migrations\201511160554468_add-count-question-show.Designer.cs">
-      <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512051105352_add-Date-Result.cs" />
-    <Compile Include="Migrations\201512051105352_add-Date-Result.Designer.cs">
-      <DependentUpon>201512051105352_add-Date-Result.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512051112366_add-Date-Result2.cs" />
-    <Compile Include="Migrations\201512051112366_add-Date-Result2.Designer.cs">
-      <DependentUpon>201512051112366_add-Date-Result2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\HistoryResult.cs" />
     <Compile Include="Models\Identity\Class1.cs" />
@@ -263,6 +255,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SQL v.0.1.sql" />
     <Content Include="App_Data\SqlForDelete.sql" />
     <Content Include="App_Data\StudTest.mdf" />
     <Content Include="App_Data\StudTest_log.ldf">
@@ -465,20 +458,6 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Scripts\polyfill\String.prototype.trim.js" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510271104101_first.resx">
-      <DependentUpon>201510271104101_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511160554468_add-count-question-show.resx">
-      <DependentUpon>201511160554468_add-count-question-show.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512051105352_add-Date-Result.resx">
-      <DependentUpon>201512051105352_add-Date-Result.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512051112366_add-Date-Result2.resx">
-      <DependentUpon>201512051112366_add-Date-Result2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

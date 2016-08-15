@@ -6,29 +6,20 @@ using System.Web;
 
 namespace Hitek.GSU.Logic.Database.Model
 {
-    public class TestAnswer
+    public class WorkTestQuestion
     {
-        [Key] 
+        [Key]
         public long Id { get; set; }
 
-        [StringLength(200)]
-        [Required] 
-        public string Text { get; set; }
+        [Required]
+        public long WorkTestId { get; set; }
 
-        public bool IsRight { get; set; }
-
+        [Required]
         public long TestQuestionId { get; set; }
 
-        public bool IsHide { get; set;}
 
-        [Required] 
-        public long AccountId { get; set; }
-
-        public virtual TestQuestion TestQuestion { get; set; } 
-
+        public virtual WorkTest WorkTest { get; set; }
+        public virtual TestQuestion TestQuestion { get; set; }
         public virtual ICollection<WorkTestAnswer> WorkTestAnswers { get; set; }
-
     }
-
-   
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Hitek.GSU.Logic.Interfaces;
 using System.Data.Entity;
+using Hitek.GSU.Logic.Database.Model;
+
 namespace Hitek.GSU.Logic.Database
 {
     public partial class Repository: ITestRepository

@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Hitek.GSU.Logic.Database;
+using Hitek.GSU.Logic.Database.Model;
 
 namespace Hitek.GSU.Logic.Interfaces
 {

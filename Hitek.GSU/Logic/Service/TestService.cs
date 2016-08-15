@@ -78,7 +78,7 @@ namespace Hitek.GSU.Logic.Service
             }
             float r = (float)right / raw.answers.Count;
 
-            Hitek.GSU.Logic.Database.TestHistory tt = new Hitek.GSU.Logic.Database.TestHistory()
+            Hitek.GSU.Logic.Database.Model.TestHistory tt = new Hitek.GSU.Logic.Database.Model.TestHistory()
             {
                 Result = r,
                 TestId = raw.idTest,
@@ -141,14 +141,14 @@ namespace Hitek.GSU.Logic.Service
 
         public object CreateOrEditTest(Models.Validation.Admin.Test.CreatingTest raw)
         {
-            Database.Test workTest;
+            Database.Model.Test workTest;
             if (raw.Id != null)
             {
                 workTest = this.testRepository.Test.Where(x => x.Id == raw.Id).FirstOrDefault();
             }
             else
             {
-                workTest = new Database.Test();
+                workTest = new Database.Model.Test();
                 workTest.AutorId = 0;
                 workTest.CountQuestionForShow = 10;
             }
@@ -166,8 +166,8 @@ namespace Hitek.GSU.Logic.Service
                 this.testRepository.SaveChanges();
 
             }
-            Database.TestQuestion question;
-            Database.TestAnswer answer;
+            Database.Model.TestQuestion question;
+            Database.Model.TestAnswer answer;
             foreach (var q in raw.Questions)
             {
                 if (q.Id != null)
@@ -176,7 +176,7 @@ namespace Hitek.GSU.Logic.Service
                 }
                 else
                 {
-                    question = new Database.TestQuestion();
+                    question = new Database.Model.TestQuestion();
                     this.testRepository.TestQuestion.Add(question);
                 }
 
@@ -200,7 +200,7 @@ namespace Hitek.GSU.Logic.Service
                         }
                         else
                         {
-                            answer = new Database.TestAnswer();
+                            answer = new Database.Model.TestAnswer();
                             testRepository.TestAnswer.Add(answer);
                         }
                         if (answer != null)
