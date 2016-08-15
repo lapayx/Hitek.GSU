@@ -11,29 +11,29 @@ namespace Hitek.GSU.Tests
     public partial class TestContextq : ITestRepository
     {
 
-        public IDbSet<Logic.Database.Test> Test
+        public IDbSet<Logic.Database.Model.Test> Test
         {
             get { return this.Tests; }
         }
 
-        public IDbSet<Logic.Database.TestAnswer> TestAnswer
+        public IDbSet<Logic.Database.Model.TestAnswer> TestAnswer
         {
             get { return this.TestAnswers; }
         }
 
-        public IDbSet<Logic.Database.TestQuestion> TestQuestion
+        public IDbSet<Logic.Database.Model.TestQuestion> TestQuestion
         {
             get { return this.TestQuestions; }
         }
 
 
-        public IDbSet<Logic.Database.TestHistory> TestHistory
+        public IDbSet<Logic.Database.Model.TestHistory> TestHistory
         {
             get { throw new NotImplementedException(); }
         }
 
 
-        public IDbSet<Logic.Database.TestSubject> TestSubject
+        public IDbSet<Logic.Database.Model.TestSubject> TestSubject
         {
             get { throw new NotImplementedException(); }
         }

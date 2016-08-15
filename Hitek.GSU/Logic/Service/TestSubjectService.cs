@@ -50,7 +50,7 @@ namespace Hitek.GSU.Logic.Service
 
         public bool DeleteTestSubjectById(long id)
         {
-            Hitek.GSU.Logic.Database.TestSubject t = new Hitek.GSU.Logic.Database.TestSubject(){Id= id};
+            Hitek.GSU.Logic.Database.Model.TestSubject t = new Hitek.GSU.Logic.Database.Model.TestSubject(){Id= id};
 
             testRepository.TestSubject.Attach(t);
             testRepository.TestSubject.Remove(t);
@@ -59,7 +59,7 @@ namespace Hitek.GSU.Logic.Service
             
         }
 
-        private IList<TestSubject> getChildrenSubject(List<Hitek.GSU.Logic.Database.TestSubject> src, long parentId) { 
+        private IList<TestSubject> getChildrenSubject(List<Hitek.GSU.Logic.Database.Model.TestSubject> src, long parentId) { 
             
             IList<TestSubject> res = new List<TestSubject>();
 
@@ -90,7 +90,7 @@ namespace Hitek.GSU.Logic.Service
         }
         public bool AddTestSubject(TestSubject editSubject)
         {
-            var temp = new Database.TestSubject()
+            var temp = new Database.Model.TestSubject()
             {
                 Name = editSubject.Name,
                 ParentId = editSubject.ParentId

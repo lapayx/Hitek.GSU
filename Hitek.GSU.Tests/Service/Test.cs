@@ -6,7 +6,7 @@ using Hitek.GSU.Logic.Interfaces;
 using Moq;
 using System.Data.Entity;
 using System.Linq;
-using DB = Hitek.GSU.Logic.Database;
+using DB = Hitek.GSU.Logic.Database.Model;
 using M = Hitek.GSU.Models;
 
 namespace Hitek.GSU.Tests.Service

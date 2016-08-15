@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Hitek.GSU.Logic.Database
+namespace Hitek.GSU.Logic.Database.Model
 {
     public class TestAnswer
     {
@@ -25,6 +25,8 @@ namespace Hitek.GSU.Logic.Database
         public long AccountId { get; set; }
 
         public virtual TestQuestion TestQuestion { get; set; } 
+
+        public virtual ICollection<WorkTestAnswer> WorkTestAnswers { get; set; }
 
     }
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Hitek.GSU.Logic.Database
+namespace Hitek.GSU.Logic.Database.Model
 {
     public class TestSubject
     {
