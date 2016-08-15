@@ -30,7 +30,7 @@
 
         },
         onSyncModel: function () {
-            GSU.loadMask.hide();
+           // GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
             }

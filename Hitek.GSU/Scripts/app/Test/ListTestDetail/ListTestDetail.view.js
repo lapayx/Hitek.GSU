@@ -24,25 +24,36 @@
         modelEvents: {
             "sync": "onSyncModel"
         },
+        collectionEvents: {
+            "sync": "onSyncCollection"
+        },
         initialize: function (paramId) {
             GSU.loadMask.show();
             this.model = new ListTestDetail.SubjectInfoModel({id: paramId.id});
-            this.model.fetch();
+            
             this.collection = new ListTestDetail.DetailCollection();
             this.collection.id = paramId.id;
+            var self = this;
+            this.model.fetch();
             //this.colectgion.url = "api/subject/"+paramId.id +"/Test";
-            this.collection.fetch();
+            //this.collection.fetch();
 
         },
         onSyncModel: function () {
-            GSU.loadMask.hide();
             if (this.model.id && this.model.id > 0) {
-                this.render();
+                this.collection.fetch({ reset: true });
             }
             else {
                 GSU.trigger("Error:404");
             }
-        }
+        },
+
+        onSyncCollection: function () {
+            this.render();
+            GSU.loadMask.hide();
+        },
+
+        
 
     });
 
