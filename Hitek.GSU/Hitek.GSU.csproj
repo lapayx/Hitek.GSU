@@ -206,7 +206,10 @@
     <Compile Include="Controllers\TestHistoryController.cs" />
     <Compile Include="Controllers\TestSubjectController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
+    <Compile Include="Logic\AuthRepository.cs" />
     <Compile Include="Logic\Database\Entities.cs" />
+    <Compile Include="Logic\Database\Map\RefreshTokenMap.cs" />
+    <Compile Include="Logic\Database\Map\ClientMap.cs" />
     <Compile Include="Logic\Database\Map\ApplicationUserMap.cs" />
     <Compile Include="Logic\Database\Map\RoleLongPkMap.cs" />
     <Compile Include="Logic\Database\Map\UserClaimLongPkMap.cs" />
@@ -228,6 +231,7 @@
     <Compile Include="Logic\Interfaces\Repository\ITestRepository.cs" />
     <Compile Include="Logic\Interfaces\Repository\ISavingRepository.cs" />
     <Compile Include="Logic\Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Logic\Providers\SimpleRefreshTokenProvider.cs" />
     <Compile Include="Logic\Service\AccountService.cs" />
     <Compile Include="Logic\Service\TestService.cs" />
     <Compile Include="Logic\Service\TestSubjectService.cs" />
@@ -255,6 +259,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SQL v.0.2.sql" />
     <Content Include="App_Data\SQL v.0.1.sql" />
     <Content Include="App_Data\SqlForDelete.sql" />
     <Content Include="App_Data\StudTest.mdf" />

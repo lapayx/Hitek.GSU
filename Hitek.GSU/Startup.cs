@@ -12,17 +12,22 @@ namespace Hitek.GSU
     {
         public void Configuration(IAppBuilder app)
         {
-            DIConfig.Register();
+            HttpConfiguration config = new HttpConfiguration();
+            DIConfig.Register(config);
             ConfigureAuth(app);
             //HttpConfiguration config = new HttpConfiguration();
             // WebApiConfig.Register(config);
             //  app.UseWebApi(config);
 
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+           // GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            
+            WebApiConfig.Register(config);
+            app.UseWebApi(config);
         }
     }
 }
