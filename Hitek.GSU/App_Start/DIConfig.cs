@@ -25,9 +25,11 @@ namespace Hitek.GSU
         /// <summary>
         /// Регистрация зависимостей.
         /// </summary>
-        public static void Register()
+        /// 
+        public static IServiceContainer container;
+        public static void Register(HttpConfiguration config)
         {
-            IServiceContainer container = new ServiceContainer();
+            container = new ServiceContainer();
             container.RegisterControllers(Assembly.GetExecutingAssembly());
              container.RegisterApiControllers();        
     //registe other services
@@ -39,7 +41,7 @@ namespace Hitek.GSU
             DependencyResolver.SetResolver(new LightInjectMvcDependencyResolver(container));
             container.EnableMvc();
           //  container.EnablePerWebRequestScope();
-            container.EnableWebApi(GlobalConfiguration.Configuration); 
+            container.EnableWebApi(config); 
         }
 
         internal static void RegisterRepositores(IServiceContainer container)
@@ -64,7 +66,12 @@ namespace Hitek.GSU
             container.Register<AppSignInManager>();
             container.Register<AppUserManager>();
             container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
+            container.Register<Logic.AuthRepository>();
+            using (container.BeginScope())
+            {
 
+                container.Register<Logic.Providers.SimpleRefreshTokenProvider>();
+            }
             /*
             container.Register<MedalForHero.Logic.IMembershipProvider, MedalForHero.Logic.Providers.MembershipProvider>();
             container.Register<MedalForHero.Logic.IRoleProvider, MedalForHero.Logic.Providers.RoleProvider>();

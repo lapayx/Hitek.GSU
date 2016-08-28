@@ -16,8 +16,8 @@ namespace Hitek.GSU
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+           // config.SuppressDefaultHostAuthentication();
+         //   config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -27,6 +27,9 @@ namespace Hitek.GSU
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional } 
             );
+
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             /*
             var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
             jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

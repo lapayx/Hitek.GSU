@@ -59,7 +59,7 @@ CREATE TABLE [AspNetUserLogins] (
 
 GO
 
-CREATE TABLE [dbo].[TestSubjects] (
+CREATE TABLE [TestSubjects] (
     [Id]       BIGINT         IDENTITY (1, 1) NOT NULL,
     [Name]     NVARCHAR (200) NOT NULL,
     [ParentId] BIGINT         NULL,
@@ -83,7 +83,7 @@ CREATE TABLE [Tests] (
 
 GO
 
-CREATE TABLE [dbo].[TestQuestions] (
+CREATE TABLE [TestQuestions] (
     [Id]     BIGINT         IDENTITY (1, 1) NOT NULL,
     [Name]   NVARCHAR (200) NOT NULL,
     [Text]   NVARCHAR (MAX) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[TestQuestions] (
 
 GO
 
-CREATE TABLE [dbo].[TestAnswers] (
+CREATE TABLE [TestAnswers] (
     [Id]             BIGINT         IDENTITY (1, 1) NOT NULL,
     [Text]           NVARCHAR (200) NOT NULL,
     [IsRight]        BIT            NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[TestAnswers] (
 GO
 
 
-CREATE TABLE [dbo].[TestHistories] (
+CREATE TABLE [TestHistories] (
     [Id]        BIGINT   IDENTITY (1, 1) NOT NULL,
     [Result]    REAL     NOT NULL,
     [TestId]    BIGINT   NOT NULL,

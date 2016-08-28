@@ -12,6 +12,10 @@ namespace Hitek.GSU.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleLongPk, long,
         UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
+
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         public ApplicationDbContext()
             : base("EntityContext")
         {
