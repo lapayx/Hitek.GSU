@@ -74,22 +74,8 @@ namespace Hitek.GSU
             //    ClientSecret = ""
             //});
 
-            PublicClientId = "self";
-            OAuthOptions = new OAuthAuthorizationServerOptions
-            {
-                TokenEndpointPath = new PathString("/Token"),
-                //Provider = DependencyResolver.Current.GetService<ApplicationOAuthProvider>(),
-               // AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                //Provider = new SimpleAuthorizationServerProvider(),
-                Provider = DependencyResolver.Current.GetService<ApplicationOAuthProvider>(),
-                RefreshTokenProvider = DependencyResolver.Current.GetService<SimpleRefreshTokenProvider>(),
-                AllowInsecureHttp = true
-            };
-
-            // Enable the application to use bearer tokens to authenticate users
-            app.UseOAuthAuthorizationServer(OAuthOptions);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
+
+
 }

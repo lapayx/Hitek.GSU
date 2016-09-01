@@ -24,6 +24,13 @@ namespace Hitek.GSU.Logic.Providers
         public ApplicationOAuthProvider(AuthRepository _repoAuthRepository)
         {
             this._repoAuthRepository = _repoAuthRepository;
+            
+        }
+
+        public ApplicationOAuthProvider()
+        {
+            this._repoAuthRepository = new AuthRepository();
+
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
