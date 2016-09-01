@@ -43,6 +43,7 @@ namespace Hitek.GSU.Logic.Database
             modelBuilder.Configurations.Add(new UserClaimLongPkMap());
             modelBuilder.Configurations.Add(new ApplicationUserMap());
             modelBuilder.Configurations.Add(new UserRoleLongPkMap());
+           modelBuilder.Configurations.Add(new ClientMap());
 
             base.OnModelCreating(modelBuilder);
            

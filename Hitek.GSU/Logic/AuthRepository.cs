@@ -21,6 +21,19 @@ namespace Hitek.GSU.Logic
             _userManager = userManager;
         }
 
+        public AuthRepository()
+        {
+           
+                _ctx = DIConfig.container.GetInstance<Entities>();
+                _userManager = DIConfig.container.GetInstance<AppUserManager>();
+            
+        }
+
+        public AuthRepository(AppUserManager _userManager)
+        {
+            _ctx = new Entities();
+            this._userManager = _userManager;
+        }
         /*
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
@@ -42,7 +55,7 @@ namespace Hitek.GSU.Logic
         }
         public Client FindClient(string clientId)
         {
-            var client = _ctx.Clients.Find(clientId);
+            var client = _ctx.Client.Find(clientId);
 
             return client;
         }
@@ -92,6 +105,6 @@ namespace Hitek.GSU.Logic
         public List<RefreshToken> GetAllRefreshTokens()
         {
             return _ctx.RefreshTokens.ToList();
-        } 
+        }
     }
 }

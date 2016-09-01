@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using LightInject;
+using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -13,8 +14,9 @@ namespace Hitek.GSU
         public void Configuration(IAppBuilder app)
         {
             HttpConfiguration config = new HttpConfiguration();
-            DIConfig.Register(config);
+            DIConfig.Register(config,app,this);
             ConfigureAuth(app);
+            ConfigureAuthWebApi(app,null);
             //HttpConfiguration config = new HttpConfiguration();
             // WebApiConfig.Register(config);
             //  app.UseWebApi(config);
@@ -28,6 +30,8 @@ namespace Hitek.GSU
             
             WebApiConfig.Register(config);
             app.UseWebApi(config);
+
+            DIConfig.container.EnablePerWebRequestScope();
         }
     }
 }

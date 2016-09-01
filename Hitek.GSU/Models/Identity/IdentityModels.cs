@@ -13,7 +13,7 @@ namespace Hitek.GSU.Models
         UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<Client> Client { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public ApplicationDbContext()
