@@ -9,12 +9,14 @@ using System.Web;
 
 namespace Hitek.GSU.Logic
 {
-    public class AuthRepository
+    public class AuthRepository : IDisposable
     {
         private Entities _ctx;
 
+
         private AppUserManager _userManager;
 
+        bool disposableContext = false;
         public AuthRepository(Entities dbcontext, AppUserManager userManager)
         {
             _ctx = dbcontext;
@@ -23,16 +25,18 @@ namespace Hitek.GSU.Logic
 
         public AuthRepository()
         {
-           
-                _ctx = DIConfig.container.GetInstance<Entities>();
-                _userManager = DIConfig.container.GetInstance<AppUserManager>();
-            
+
+            _ctx = DIConfig.container.GetInstance<Entities>();
+            _userManager = DIConfig.container.GetInstance<AppUserManager>();
+
         }
 
         public AuthRepository(AppUserManager _userManager)
         {
             _ctx = new Entities();
             this._userManager = _userManager;
+
+            disposableContext = true;
         }
         /*
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
@@ -73,7 +77,7 @@ namespace Hitek.GSU.Logic
 
             _ctx.RefreshTokens.Add(token);
 
-            return await _ctx.SaveChangesAsync() > 0;
+            return _ctx.SaveChanges() > 0;
         }
 
         public async Task<bool> RemoveRefreshToken(string refreshTokenId)
@@ -105,6 +109,14 @@ namespace Hitek.GSU.Logic
         public List<RefreshToken> GetAllRefreshTokens()
         {
             return _ctx.RefreshTokens.ToList();
+        }
+
+        public void Dispose()
+        {
+            if (disposableContext)
+            {
+                ((IDisposable)_ctx).Dispose();
+            }
         }
     }
 }
