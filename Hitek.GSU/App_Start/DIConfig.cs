@@ -8,12 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Hitek.GSU.Models;
 using Hitek.GSU.Logic.Service;
+using System.Web;
 using System.Web.Http;
+using Owin;
+using Microsoft.Owin.Security.OAuth;
+using Hitek.GSU.Logic;
 
 namespace Hitek.GSU
 {
@@ -27,21 +30,28 @@ namespace Hitek.GSU
         /// </summary>
         /// 
         public static IServiceContainer container;
-        public static void Register(HttpConfiguration config)
+        public static void Register(HttpConfiguration config, Owin.IAppBuilder app, Startup app2)
         {
             container = new ServiceContainer();
             container.RegisterControllers(Assembly.GetExecutingAssembly());
-             container.RegisterApiControllers();        
-    //registe other services
-     
-            Register(container);
-            RegisterRepositores(container);
-            RegisterProviders(container);
+            container.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            
+            //registe other services
+
+            using (container.BeginScope())
+            {
+                Register(container);
+                RegisterRepositores(container);
+                RegisterProviders(container);
+                var applicationUserService = container.GetInstance<Logic.AuthRepository>();
+               // app2.ConfigureAuthWebApi(app,applicationUserService);
+            }
             //LightInjectHttpModule.SetServiceContainer(container);
-            DependencyResolver.SetResolver(new LightInjectMvcDependencyResolver(container));
+
             container.EnableMvc();
-          //  container.EnablePerWebRequestScope();
-            container.EnableWebApi(config); 
+           // container.EnablePerWebRequestScope();
+            container.EnableWebApi(config);
+            DependencyResolver.SetResolver(new LightInjectMvcDependencyResolver(container));
         }
 
         internal static void RegisterRepositores(IServiceContainer container)
@@ -49,29 +59,54 @@ namespace Hitek.GSU
             container.Register<Entities>(new PerScopeLifetime());
             container.Register<Repository>(new PerScopeLifetime());
 
-              container.Register<ITestRepository, Repository>();
-/*            container.Register<IAccountRepository, Entities>();
-            container.Register<IMedalRepository, Entities>();
-            container.Register<IVersionControlSystemRepository, Entities>();
-            container.Register<IImageRepository, Entities>();*/
+            container.Register<ITestRepository, Repository>();
+            /*            container.Register<IAccountRepository, Entities>();
+                        container.Register<IMedalRepository, Entities>();
+                        container.Register<IVersionControlSystemRepository, Entities>();
+                        container.Register<IImageRepository, Entities>();*/
         }
 
 
         internal static void RegisterProviders(IServiceContainer container)
         {
-       //     container.Register<IUserStore<MyAccount,long>, MyUserStore>(); 
+            //     container.Register<IUserStore<MyAccount,long>, MyUserStore>(); 
 
             container.Register<ApplicationDbContext, Entities>();
             container.Register<IUserStore<ApplicationUser, long>, UserStoreLongPk>();
             container.Register<AppSignInManager>();
             container.Register<AppUserManager>();
             container.Register<IAuthenticationManager>(c => HttpContext.Current.GetOwinContext().Authentication);
-            container.Register<Logic.AuthRepository>();
-            using (container.BeginScope())
-            {
+            //container.Register<AuthRepository>(new PerScopeLifetime());
+            // container.Register<Logic.Providers.ApplicationOAuthProvider>();
+            container.Register<Logic.Providers.SimpleRefreshTokenProvider>();
 
-                container.Register<Logic.Providers.SimpleRefreshTokenProvider>();
-            }
+
+            Func<IServiceFactory, IOAuthAuthorizationServerProvider> authProviderFactory =
+    sf =>
+    {
+        using (sf.BeginScope())
+        {
+            var dbContext = sf.GetInstance<Logic.AuthRepository>();
+
+            return new Logic.Providers.ApplicationOAuthProvider(dbContext);
+        }
+    };
+            container.Register<IOAuthAuthorizationServerProvider>(authProviderFactory, new PerRequestLifeTime());
+
+
+            Func<IServiceFactory, AuthRepository> autREpo =
+    sf =>
+    {
+        
+            var dbContext = sf.GetInstance<Entities>();
+            var userman = sf.GetInstance<AppUserManager>();
+
+            return new AuthRepository(dbContext,userman);
+       
+    };
+            container.Register<AuthRepository>(autREpo);
+
+
             /*
             container.Register<MedalForHero.Logic.IMembershipProvider, MedalForHero.Logic.Providers.MembershipProvider>();
             container.Register<MedalForHero.Logic.IRoleProvider, MedalForHero.Logic.Providers.RoleProvider>();
