@@ -29,7 +29,7 @@ namespace Hitek.GSU
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 //Provider = new SimpleAuthorizationServerProvider(),
                 Provider = new ApplicationOAuthProvider(new Logic.AuthRepository(tt)),
-               //RefreshTokenProvider = new SimpleRefreshTokenProvider(applicationOAuthProvider),
+               RefreshTokenProvider = new SimpleRefreshTokenProvider(new Logic.AuthRepository(tt)),
                 AllowInsecureHttp = true
             };
 
