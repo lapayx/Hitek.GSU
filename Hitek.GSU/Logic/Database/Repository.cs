@@ -10,7 +10,7 @@ namespace Hitek.GSU.Logic.Database
         readonly Entities entity;
 
         public Repository() {
-            this.entity = new Entities();
+        //    this.entity = new Entities();
         
         }
         public Repository(Entities entity) {

@@ -13,7 +13,7 @@ namespace Hitek.GSU.Logic.Database.Map
         {
             ToTable("Client");
             HasKey(t => t.Id);
-            Property(t => t.Id).IsRequired().HasColumnName("Id").HasColumnType("NVarCAHR");
+           /* Property(t => t.Id).IsRequired().HasColumnName("Id").HasColumnType("NVarCAHR");
             Property(t => t.Secret)
                 .IsRequired()
                 .HasColumnName("Secret")
@@ -31,7 +31,7 @@ namespace Hitek.GSU.Logic.Database.Map
                 .HasColumnName("AllowedOrigin")
                 .HasMaxLength(100)
                 .HasColumnType("NVARCHAR");
-           
+           */
         }
     }
 }
