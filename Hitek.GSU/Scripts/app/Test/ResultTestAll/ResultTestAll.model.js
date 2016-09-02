@@ -2,7 +2,7 @@
 
 
     ResultTestAll.ResultModel = Backbone.Model.extend({
-        url: "TestHistory/",
+        url: "api/TestHistory/",
         defaults: {
             id: 0,
             name: "Заголовок",

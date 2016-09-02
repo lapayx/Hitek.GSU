@@ -8,11 +8,12 @@ namespace Hitek.GSU.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             return View();
         }
+
         public ActionResult Temp()
         {
 

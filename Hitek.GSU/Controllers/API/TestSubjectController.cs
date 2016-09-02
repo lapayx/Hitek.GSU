@@ -10,6 +10,7 @@ using Hitek.GSU.Models;
 namespace Hitek.GSU.Controllers.API
 {
     [RoutePrefix("api/TestSubject")]
+    [Authorize]
     public class TestSubjectController : ApiController
     {
         readonly ITestSubjectService subjectService;

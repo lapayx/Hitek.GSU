@@ -55,13 +55,14 @@ GSU.message = function (msg, type) {
 GSU.cache = {};
 
 GSU.on("start", function (options) {
-    /*
+    
      if (!sessionStorage.getItem("token")) {
      document.location = "/Home/Login";
      } else {
-     GSU.token = sessionStorage.getItem("token");
+         var tObj = JSON.parse(sessionStorage.getItem("token"));
+         GSU.token = "Bearer " + tObj.access_token;
      }
-     */
+     
 
 
     if (Backbone.history) {

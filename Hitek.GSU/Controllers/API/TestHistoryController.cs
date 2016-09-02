@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Hitek.GSU.Controllers.API
 {
+    [Authorize]
     public class TestHistoryController : ApiController
     {
 

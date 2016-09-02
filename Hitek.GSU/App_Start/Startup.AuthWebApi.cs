@@ -10,6 +10,10 @@ using System.Web.Mvc;
 using Microsoft.Owin.Security.OAuth;
 using Hitek.GSU.Logic.Providers;
 using Hitek.GSU.Logic;
+using System.Configuration;
+using Microsoft.Owin.Security.DataHandler.Encoder;
+using Microsoft.Owin.Security.Jwt;
+using Microsoft.Owin.Security;
 
 namespace Hitek.GSU
 {
@@ -38,6 +42,28 @@ namespace Hitek.GSU
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthAuthorizationServer(OAuthOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+
+            ConfigureOAuthTokenConsumption(app);
+        }
+
+        private void ConfigureOAuthTokenConsumption(IAppBuilder app)
+        {
+
+            var issuer = "http://localhost:13340";
+            string audienceId = ConfigurationManager.AppSettings["as:AudienceId"];
+            byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["as:AudienceSecret"]);
+
+            // Api controllers with an [Authorize] attribute will be validated with JWT
+            app.UseJwtBearerAuthentication(
+                new JwtBearerAuthenticationOptions
+                {
+                    AuthenticationMode = AuthenticationMode.Active,
+                    AllowedAudiences = new[] { audienceId },
+                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
+                    {
+                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
+                    }
+                });
         }
     }
 
