@@ -97,6 +97,8 @@ namespace Hitek.GSU
                 this.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, long>(dataProtector);
             }
         }
+
+        //public override 
        /// <summary> 
        /// Use Custom approach to verify password 
        /// </summary> 

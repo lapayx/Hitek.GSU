@@ -53,7 +53,12 @@ namespace Hitek.GSU.Logic
         */
         public async Task<ApplicationUser> FindUser(string userName, string password)
         {
+#if DEBUG
+            ApplicationUser user = await _userManager.FindByNameAsync(userName);
+
+#else
             ApplicationUser user = await _userManager.FindAsync(userName, password);
+#endif
 
             return user;
         }

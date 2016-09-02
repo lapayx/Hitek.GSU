@@ -28,8 +28,7 @@ namespace Hitek.GSU.Logic.Database.Map
             Property(t => t.ExpiresUtc).IsRequired().HasColumnName("ExpiresUtc");//.HasColumnType("BIT");
             Property(t => t.ProtectedTicket)
                 .IsRequired()
-                .HasColumnName("ProtectedTicket")
-                .HasMaxLength(300);
+                .HasColumnName("ProtectedTicket");
             //.HasColumnType("NVARCHAR");
 
 
