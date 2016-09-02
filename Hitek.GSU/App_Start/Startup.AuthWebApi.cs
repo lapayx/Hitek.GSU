@@ -9,6 +9,7 @@ using Microsoft.Owin.Security.DataProtection;
 using System.Web.Mvc;
 using Microsoft.Owin.Security.OAuth;
 using Hitek.GSU.Logic.Providers;
+using Hitek.GSU.Logic;
 
 namespace Hitek.GSU
 {
@@ -28,9 +29,10 @@ namespace Hitek.GSU
                // AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 //Provider = new SimpleAuthorizationServerProvider(),
-                Provider = new ApplicationOAuthProvider(new Logic.AuthRepository(tt)),
+                Provider = new ApplicationOAuthProvider(new Logic.AuthRepository(tt),tt),
                RefreshTokenProvider = new SimpleRefreshTokenProvider(new Logic.AuthRepository(tt)),
-                AllowInsecureHttp = true
+                AllowInsecureHttp = true,
+                AccessTokenFormat = new CustomJwtFormat("http://localhost:13340")
             };
 
             // Enable the application to use bearer tokens to authenticate users

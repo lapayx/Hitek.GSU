@@ -43,7 +43,7 @@ namespace Hitek.GSU
                 Register(container);
                 RegisterRepositores(container);
                 RegisterProviders(container);
-                var applicationUserService = container.GetInstance<Logic.AuthRepository>();
+               // var applicationUserService = container.GetInstance<Logic.AuthRepository>();
                // app2.ConfigureAuthWebApi(app,applicationUserService);
             }
             //LightInjectHttpModule.SetServiceContainer(container);
@@ -80,7 +80,7 @@ namespace Hitek.GSU
             // container.Register<Logic.Providers.ApplicationOAuthProvider>();
             container.Register<Logic.Providers.SimpleRefreshTokenProvider>();
 
-
+/*
             Func<IServiceFactory, IOAuthAuthorizationServerProvider> authProviderFactory =
     sf =>
     {
@@ -106,7 +106,7 @@ namespace Hitek.GSU
     };
             container.Register<AuthRepository>(autREpo);
 
-
+*/
             /*
             container.Register<MedalForHero.Logic.IMembershipProvider, MedalForHero.Logic.Providers.MembershipProvider>();
             container.Register<MedalForHero.Logic.IRoleProvider, MedalForHero.Logic.Providers.RoleProvider>();
