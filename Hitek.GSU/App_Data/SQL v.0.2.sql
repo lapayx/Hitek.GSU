@@ -5,7 +5,7 @@
 	[AccountId]		BIGINT,
     [IssuedUtc]      DATETIME DEFAULT ('1900-01-01T00:00:00.000') NOT NULL,
 	[ExpiresUtc]      DATETIME DEFAULT ('1900-01-01T00:00:00.000') NOT NULL,
-	[ProtectedTicket]        NVARCHAR(300)    NOT NULL,
+	[ProtectedTicket]        NVARCHAR(MAX)    NOT NULL,
     CONSTRAINT [PK_dbo.RefreshToken] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
