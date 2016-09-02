@@ -84,6 +84,10 @@ namespace Hitek.GSU.Logic.Providers
 
             ClaimsIdentity identity = await user.GenerateUserIdentityAsync(_userManager, "JWT");
 
+            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+            identity.AddClaim(new Claim("sub", context.UserName));
+            identity.AddClaim(new Claim("role", "user"));
+
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {
                     {

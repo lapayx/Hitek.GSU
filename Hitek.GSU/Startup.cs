@@ -33,5 +33,8 @@ namespace Hitek.GSU
 
             DIConfig.container.EnablePerWebRequestScope();
         }
+
+
+
     }
 }
