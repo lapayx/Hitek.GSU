@@ -20,16 +20,19 @@ namespace Hitek.GSU.Logic.Providers
 
         AuthRepository _repoAuthRepository;
         private readonly string _publicClientId;
+        private AppUserManager _userManager;
 
-        public ApplicationOAuthProvider(AuthRepository _repoAuthRepository)
+        public ApplicationOAuthProvider(AuthRepository _repoAuthRepository, AppUserManager _userManager)
         {
             this._repoAuthRepository = _repoAuthRepository;
-            
+            this._userManager = _userManager;
+
+
         }
 
         public ApplicationOAuthProvider()
         {
-            this._repoAuthRepository = new AuthRepository();
+           //this._repoAuthRepository = new AuthRepository();
 
         }
 
@@ -70,12 +73,16 @@ namespace Hitek.GSU.Logic.Providers
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
-            
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+            /*
+        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+        identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
+        identity.AddClaim(new Claim("sub", context.UserName));
+        identity.AddClaim(new Claim("role", "user"));
+
+        */
+
+            ClaimsIdentity identity = await user.GenerateUserIdentityAsync(_userManager, "JWT");
 
             var props = new AuthenticationProperties(new Dictionary<string, string>
                 {

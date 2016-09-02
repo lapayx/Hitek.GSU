@@ -117,6 +117,38 @@
                 return false;
 
             });
+            
+            $(".form-signin2").submit(function () {
+                $('.alert-info').show(1000);
+                $('.alert-danger').hide();
+
+                var loginData = {
+                    grant_type: 'password',
+                    client_id: 'ngAuthApp',
+                    username: $("#inputLogin").val().trim(),
+                    password: $("#inputPassword").val().trim()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Token',
+                    data: loginData
+                }).done(function (data) {
+                    //GSU.token = /*token_type + */"Bearer  " + data.access_token;
+                    // Cache the access token in session storage.
+                    $('.alert-info').hide();
+                    if (!data.error) {
+                        sessionStorage.setItem("token", JSON.stringify(data));
+                        console.log(data);
+                        document.location = "/";
+                    } else {
+                        $('.alert-danger').show();
+                    }
+                }).fail();
+
+                return false;
+
+            });
 
 
 
