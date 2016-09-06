@@ -66,7 +66,7 @@ namespace Hitek.GSU.Tests.Service
                 }
             };
 
-            var testRes = testService.GetTestById(1);
+            var testRes = testService.GetTestById(1,true);
             Assert.AreEqual(etalon.ToJSON(),testRes.ToJSON() ,"Не совпадают"); 
   
         }

@@ -7,11 +7,11 @@ namespace Hitek.GSU.Logic.Interfaces
     public interface IWorkTestRepository : ISavingRepository
     {
 
-        IDbSet<WorkTest> Test { get; }
+        IDbSet<WorkTest> WorkTest { get; }
 
-        IDbSet<WorkTestAnswer> TestAnswer { get; }
+        IDbSet<WorkTestAnswer> WorkTestAnswer { get; }
 
-        IDbSet<WorkTestQuestion> TestQuestion { get; }
+        IDbSet<WorkTestQuestion> WorkTestQuestion { get; }
     }
       
 }
