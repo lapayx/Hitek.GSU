@@ -28,11 +28,7 @@ namespace Hitek.GSU.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.Roles.AddOrUpdate(
-                  p => p.Name,
-                  new RoleLongPk { Name = "Admin" },
-                  new RoleLongPk { Name  = "Teacher" }
-                );
+          
         }
     }
 }

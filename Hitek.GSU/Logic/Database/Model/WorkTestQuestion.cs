@@ -17,6 +17,12 @@ namespace Hitek.GSU.Logic.Database.Model
         [Required]
         public long TestQuestionId { get; set; }
 
+        [StringLength(200)]
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Text { get; set; }
 
         public virtual WorkTest WorkTest { get; set; }
         public virtual TestQuestion TestQuestion { get; set; }

@@ -12,7 +12,7 @@ namespace Hitek.GSU.Logic.Database.Map
     {
         public WorkTestQuestionMap()
         {
-            ToTable("WorkTestQuestion");
+            ToTable("WorkTestQuestions");
             HasKey(t => t.Id);
            /* Property(t => t.Id).IsRequired().HasColumnName("Id").HasColumnType("NVarCAHR");
             Property(t => t.Secret)

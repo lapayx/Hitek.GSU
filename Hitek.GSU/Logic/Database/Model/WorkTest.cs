@@ -21,6 +21,9 @@ namespace Hitek.GSU.Logic.Database.Model
 
         public DateTime? EndDate { get; set; }
 
+        [StringLength(200)]
+        [Required]
+        public string Name { get; set; }
 
 
 

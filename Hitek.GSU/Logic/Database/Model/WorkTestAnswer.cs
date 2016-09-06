@@ -12,12 +12,18 @@ namespace Hitek.GSU.Logic.Database.Model
         public long Id { get; set; }
 
         [Required]
-        public long WorkQuestionId { get; set; }
+        public long WorkTestQuestionId { get; set; }
 
         [Required]
         public long TestAnswerId { get; set; }
 
-        public bool IsMark { get; set; }
+        [StringLength(200)]
+        [Required]
+        public string Text { get; set; }
+
+        public bool IsRight { get; set; }
+
+        public bool IsAnswered { get; set; }
 
         public DateTime? DateAnswered { get; set; }
 

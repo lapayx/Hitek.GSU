@@ -11,19 +11,19 @@ namespace Hitek.GSU.Logic.Database
     public partial class Repository: IWorkTestRepository
     {
 
-        public IDbSet<WorkTest> Test
+        public IDbSet<WorkTest> WorkTest
         {
             get { return this.entity.WorkTest; }
         }
 
-        public IDbSet<WorkTestAnswer> TestAnswer
+        public IDbSet<WorkTestAnswer> WorkTestAnswer
         {
-            get { return this.entity.; }
+            get { return this.entity.WorkTestAnswer; }
         }
 
-        public IDbSet<WorkTestQuestion> TestQuestion
+        public IDbSet<WorkTestQuestion> WorkTestQuestion
         {
-            get { return this.entity.TestQuestion; }
+            get { return this.entity.WorkTestQuestion; }
         }
         
     }

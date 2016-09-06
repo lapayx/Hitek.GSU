@@ -25,3 +25,46 @@ CREATE TABLE [Client] (
 
 
 GO
+
+CREATE TABLE [WorkTests] (
+    [Id]        BIGINT   IDENTITY (1, 1) NOT NULL,
+    [TestId]    BIGINT   NOT NULL,
+    [UserId]    BIGINT   NOT NULL,
+	[Name]    NVARCHAR(200)   NOT NULL,
+    [StartDate] DATETIME NOT NULL,
+    [EndDate]   DATETIME NULL,
+    CONSTRAINT [PKWorkTests] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FKWorkTests_Tests_TestId] FOREIGN KEY ([TestId]) REFERENCES [Tests] ([Id])
+);
+Go
+
+CREATE TABLE [WorkTestQuestions] (
+    [Id]             BIGINT IDENTITY (1, 1) NOT NULL,
+    [WorkTestId]     BIGINT NOT NULL,
+    [TestQuestionId] BIGINT NOT NULL,
+    [Name] NVARCHAR(200) NOT NULL, 
+    [Text] NVARCHAR(MAX) NOT NULL, 
+    CONSTRAINT [PKWorkTestQuestions] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FKWorkTestQuestions_TestQuestions_TestQuestionId] FOREIGN KEY ([TestQuestionId]) REFERENCES [TestQuestions] ([Id]),
+    CONSTRAINT [FKWorkTestQuestions_WorkTests_WorkTestId] FOREIGN KEY ([WorkTestId]) REFERENCES [WorkTests] ([Id]) 
+);
+go
+
+CREATE TABLE [WorkTestAnswers] (
+    [Id]                  BIGINT         IDENTITY (1, 1) NOT NULL,
+    [WorkTestQuestionId]      BIGINT         NOT NULL,
+    [TestAnswerId]        BIGINT         NOT NULL,
+    [IsAnswered]          BIT            DEFAULT ((0)) NOT NULL,
+    [DateAnswered]        DATETIME       NULL,
+    [Text]                NVARCHAR (200) NOT NULL,
+    [isRight]             BIT            DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_WorkTestAnswers] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_WorkTestAnswersWorkTestQuestions_WorkTestQuestion_Id] FOREIGN KEY ([WorkTestQuestionId]) REFERENCES [WorkTestQuestions] ([Id]),
+    CONSTRAINT [FK_WorkTestAnswers_TestAnswers_TestAnswerId] FOREIGN KEY ([TestAnswerId]) REFERENCES [TestAnswers] ([Id])
+);
+
+
+go
+
+
+
