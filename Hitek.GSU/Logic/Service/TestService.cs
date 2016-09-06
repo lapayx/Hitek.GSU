@@ -5,18 +5,21 @@ using System.Web;
 using Hitek.GSU.Logic.Interfaces;
 using Hitek.GSU.Models;
 using Database = Hitek.GSU.Logic.Database;
+using DB = Hitek.GSU.Logic.Database.Model;
 
 namespace Hitek.GSU.Logic.Service
 {
     public class TestService : ITestService
     {
         readonly ITestRepository testRepository;
+        readonly IWorkTestRepository workTestRepository;
         IAccountService accountService;
         Random random;
-        public TestService(ITestRepository testRepositpry, IAccountService accountService)
+        public TestService(ITestRepository testRepositpry, IAccountService accountService, IWorkTestRepository workTestRepository)
         {
             this.testRepository = testRepositpry;
             this.accountService = accountService;
+            this.workTestRepository = workTestRepository;
             this.random = new Random((int)DateTime.Now.Ticks);
         }
 
@@ -65,6 +68,54 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
+        private long generatetest(long testId) {
+
+            DB.WorkTest test = null;
+            var t = testRepository.Test.FirstOrDefault(x => x.Id == testId);
+
+            if (t != null)
+            {
+                test = new DB.WorkTest()
+                {
+                    UserId = accountService.GetCurrentUserId(),
+                    TestId = testId,
+                    StartDate = DateTime.UtcNow,
+                };
+
+                workTestRepository.Test.Add(test);
+                workTestRepository.SaveChanges();
+
+                foreach (var q in t.TestQuestions.OrderBy(x => random.Next()).Take(t.CountQuestionForShow))
+                {
+                    if (q.IsHide)
+                        continue;
+                    DB.WorkTestQuestion qu = new DB.WorkTestQuestion
+                    {
+                        WorkTestId = test.Id,
+                        
+                        
+                    };
+
+                    foreach (var a in q.TestAnswers.OrderBy(x => random.Next()))
+                    {
+                        if (a.IsHide)
+                            continue;
+                        qu.Answers.Add(new TestAnswer
+                        {
+                            Id = a.Id,
+                            Text = a.Text,
+                            Name = ""
+
+                        });
+                    }
+                    res.Questions.Add(qu);
+                }
+
+            }
+            return res;
+
+            return 0;
+        }
         public object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw)
         {
 
@@ -91,27 +142,7 @@ namespace Hitek.GSU.Logic.Service
             return new { id = tt.Id, res = r, total = raw.answers.Count, right = right };
         }
 
-        public HistoryResult GetHistoryTestById(long id)
-        {
-            HistoryResult res = testRepository.TestHistory.Where(x => x.Id == id).Select(x => new HistoryResult() { Id = x.Id, Name = x.Test.Name, Result = x.Result, Date = x.Date }).FirstOrDefault();
-            if (res == null)
-                res = new HistoryResult();
-            return res;
-        }
-        public IList<HistoryResult> GetAllHistoryTestByUserId(long id)
-        {
-            IList<HistoryResult> res = testRepository.TestHistory
-                                        .Where(x => x.AccountId == id)
-                                        .Select(x => new HistoryResult()
-                                        {
-                                            Id = x.Id,
-                                            Name = x.Test.Name,
-                                            Result = x.Result,
-                                            Date = x.Date
-                                        })
-                                        .ToList();
-            return res;
-        }
+       
 
         public ICollection<TestInfo> GetAllTest()
         {

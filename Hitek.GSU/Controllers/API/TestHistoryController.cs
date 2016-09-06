@@ -14,10 +14,10 @@ namespace Hitek.GSU.Controllers.API
     public class TestHistoryController : ApiController
     {
 
-        readonly ITestService testservice;
+        readonly ITestHistoryService testservice;
         IAccountService accountService;
 
-        public TestHistoryController(ITestService testservice,IAccountService accountService)
+        public TestHistoryController(ITestHistoryService testservice,IAccountService accountService)
         {
             this.testservice = testservice;
             this.accountService = accountService;

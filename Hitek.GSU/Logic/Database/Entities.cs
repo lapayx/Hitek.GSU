@@ -23,6 +23,8 @@ namespace Hitek.GSU.Logic.Database
         public virtual DbSet<TestHistory> TestHistory { get; set; }
 
         public virtual DbSet<WorkTest> WorkTest { get; set; }
+        public virtual DbSet<WorkTestAnswer> WorkTestAnswer { get; set; }
+        public virtual DbSet<WorkTestQuestion> WorkTestQuestion { get; set; }
 
 
         //    public virtual DbSet<Role> Role { get; set; }
@@ -45,6 +47,10 @@ namespace Hitek.GSU.Logic.Database
             modelBuilder.Configurations.Add(new UserRoleLongPkMap());
            modelBuilder.Configurations.Add(new ClientMap());
             modelBuilder.Configurations.Add(new RefreshTokenMap());
+
+            modelBuilder.Configurations.Add(new WorkTestMap());
+            modelBuilder.Configurations.Add(new WorkTestAnswerMap());
+            modelBuilder.Configurations.Add(new WorkTestQuestionMap());
 
             base.OnModelCreating(modelBuilder);
            
