@@ -49,7 +49,9 @@ namespace Hitek.GSU.Logic.Service
                         Id = q.Id,
                         Name = q.Name,
                         Text = q.Text,
+                        IsSingleAnswer = q.WorkTestAnswers.Where(x=>x.IsRight).Count() == 1 ,
                         Answers = new List<TestAnswer>()
+                        
                     };
 
                     foreach (var a in q.WorkTestAnswers)
@@ -58,8 +60,7 @@ namespace Hitek.GSU.Logic.Service
                         {
                             Id = a.Id,
                             Text = a.Text,
-                            Name = ""
-
+                            IsAnswered = a.IsAnswered
                         });
                     }
                     res.Questions.Add(qu);
