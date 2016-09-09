@@ -72,12 +72,15 @@
             return raw;
         }
     });
+
     FullTest.AnswerModel = Backbone.Model.extend({
+        urlRoot: "api/WorkTestAnswer/",
+        url: "api/WorkTestAnswer/",
         defaults: {
             name: "",
             text: "",
             id: null,
-            isChecked: false
+            isAnswered: false
         },
         parse: function (raw) {
             // raw.name = raw.Name;

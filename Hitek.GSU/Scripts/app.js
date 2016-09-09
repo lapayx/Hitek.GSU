@@ -56,10 +56,10 @@ GSU.cache = {};
 
 GSU.on("start", function (options) {
     
-     if (!sessionStorage.getItem("token")) {
+    if (!localStorage.getItem("token")) {
      document.location = "/Home/Login";
      } else {
-         var tObj = JSON.parse(sessionStorage.getItem("token"));
+         var tObj = JSON.parse(localStorage.getItem("token"));
          GSU.token = "Bearer " + tObj.access_token;
      }
      

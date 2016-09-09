@@ -36,7 +36,11 @@ namespace Hitek.GSU.Controllers
         public JsonResult Index2(long id)
         {
             Response.Cache.SetMaxAge(new TimeSpan(0));
-            TestFull res = testService.GetTestById(id,true);
+            TestFull res;
+            if (id == 6)
+                 res = testService.GetTestById(3, false);
+            else
+             res = testService.GetTestById(id, true);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 

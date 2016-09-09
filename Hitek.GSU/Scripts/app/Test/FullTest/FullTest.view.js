@@ -4,11 +4,17 @@
     FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
         template: "Test/FullTest/answer",
         events: {
-            "change input": function (e) {
+            /*"change input": function (e) {
 
-                this.triggerMethod('answer:set', this.model.get("id"), e.target.checked);
-            }
+                //this.triggerMethod('answer:set', this.model.get("id"), e.target.checked);
+                this.model.set("isAnwered", e.target.checked);
+                console.log(this.model);
+            }*/
+        },
+        checkStatusAnswer: function () {
+            this.model.set("isAnswered", this.$el.find('input')[0].checked)
         }
+
 
     });
 
@@ -17,7 +23,7 @@
         className: "panel-body test-cart",
         template: "Test/FullTest/question",
         childViewContainer: ".test-aswers",
-        childView: FullTest.AnswerView,
+        getChildView: function (item) {  if (this.model.get("isSingleAnswer")) return FullTest.AnswerView; },
         events: {
             "click .commit-answer": "onCommitAnswer"
         },
@@ -41,7 +47,16 @@
             }
         },
         onCommitAnswer: function () {
-            this.triggerMethod('question:commitAnswer', this.model.get("id"), this.model.get("tempAnswer"), this.model.get("nextQuestion"));
+            this.children.each(function (view) {
+
+                view.checkStatusAnswer();
+
+            });
+           
+            console.log(this.collection);
+
+            debugger;;
+            //this.triggerMethod('question:commitAnswer', this.model.get("id"), this.model.get("tempAnswer"), this.model.get("nextQuestion"));
         }
 
     });

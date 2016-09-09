@@ -217,6 +217,7 @@
     <Compile Include="Controllers\Admin\UserController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
+    <Compile Include="Controllers\API\WorkTestAnswerController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
