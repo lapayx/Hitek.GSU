@@ -9,6 +9,8 @@ using Hitek.GSU.Models;
 
 namespace Hitek.GSU.Controllers.API
 {
+    [RoutePrefix("api/WorkTestAnswer")]
+    [Authorize]
     public class WorkTestAnswerController : ApiController
     {
         readonly IWorkTestRepository workTestRep;
