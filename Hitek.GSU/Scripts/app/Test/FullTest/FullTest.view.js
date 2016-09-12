@@ -53,9 +53,12 @@
 
             });
            
-            console.log(this.collection);
-
-            debugger;;
+            this.collection.each(
+                function (e) {
+                    e.save();
+                }
+            )
+            //debugger;;
             //this.triggerMethod('question:commitAnswer', this.model.get("id"), this.model.get("tempAnswer"), this.model.get("nextQuestion"));
         }
 

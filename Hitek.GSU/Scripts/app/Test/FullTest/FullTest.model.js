@@ -75,7 +75,8 @@
 
     FullTest.AnswerModel = Backbone.Model.extend({
         urlRoot: "api/WorkTestAnswer/",
-        url: "api/WorkTestAnswer/",
+       // url: "api/WorkTestAnswer",
+        idAttribute: "id",
         defaults: {
             name: "",
             text: "",
