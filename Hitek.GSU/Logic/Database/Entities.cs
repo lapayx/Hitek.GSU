@@ -20,7 +20,7 @@ namespace Hitek.GSU.Logic.Database
         public virtual DbSet<Test> Test { get; set; }
         public virtual DbSet<TestQuestion> TestQuestion { get; set; }
         public virtual DbSet<TestAnswer> TestAnswer { get; set; } 
-        public virtual DbSet<TestHistory> TestHistory { get; set; }
+       // public virtual DbSet<TestHistory> TestHistory { get; set; }
 
         public virtual DbSet<WorkTest> WorkTest { get; set; }
         public virtual DbSet<WorkTestAnswer> WorkTestAnswer { get; set; }

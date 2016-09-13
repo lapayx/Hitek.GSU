@@ -8,9 +8,11 @@
 
             "Test/Result/:id": "showResult",
             "Test/Result": "showResultAll",
+            "Test/Exist/:id": "continueTest",
             "Test/ListDetail/:id": "showListDetail",
             "Test/List": "showList",
             "Test/:id": "show"
+
         }
     });
 
@@ -39,6 +41,11 @@
             var view = new Test.ListTestDetail.view({id: id});
             GSU.mainRegion.show(view);
 
+        },
+        continueTest: function (id) {
+            var view = new Test.FullTest.view({ id: id, exist:true });
+            GSU.mainRegion.show(view);
+
         }
     };
 
@@ -59,7 +66,10 @@
         GSU.navigate("Test/ListDetail/" + id);
         API.showListDetail(id);
     });
-
+    GSU.on("Test:continueTest", function (id) {
+        GSU.navigate("Test/Exist/" + id);
+        API.continueTest(id);
+    });
 
     GSU.addInitializer(function () {
         new Test.Router({

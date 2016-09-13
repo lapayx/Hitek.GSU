@@ -26,13 +26,6 @@ namespace Hitek.GSU.Logic.Database
             get { return this.entity.TestQuestion; }
         }
 
-
-        public IDbSet<TestHistory> TestHistory
-        {
-            get { return this.entity.TestHistory; }
-        }
-
-
         public IDbSet<TestSubject> TestSubject
         {
             get { return this.entity.TestSubject; }

@@ -8,6 +8,11 @@ namespace Hitek.GSU.Logic.Database.Model
 {
     public class WorkTest
     {
+        public WorkTest()
+        {
+            this.StartDate = DateTime.Now;
+        }
+
         [Key]
         public long Id { get; set; }
 
@@ -25,6 +30,8 @@ namespace Hitek.GSU.Logic.Database.Model
         [Required]
         public string Name { get; set; }
 
+
+        public float Result { get; set; }
 
 
         public  virtual Test Test { get; set; }

@@ -3,16 +3,10 @@
 
     FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
         template: "Test/FullTest/answer",
-        events: {
-            /*"change input": function (e) {
-
-                //this.triggerMethod('answer:set', this.model.get("id"), e.target.checked);
-                this.model.set("isAnwered", e.target.checked);
-                console.log(this.model);
-            }*/
-        },
         checkStatusAnswer: function () {
-            this.model.set("isAnswered", this.$el.find('input')[0].checked)
+            var isAnswer = this.$el.find('input')[0].checked;
+            this.model.set("isAnswered", isAnswer);
+            return isAnswer;
         }
 
 
@@ -25,41 +19,37 @@
         childViewContainer: ".test-aswers",
         getChildView: function (item) {  if (this.model.get("isSingleAnswer")) return FullTest.AnswerView; },
         events: {
-            "click .commit-answer": "onCommitAnswer"
+            "click .commit-answer": "onCommitAnswer",
+            "click .js-next-question": "showNextQuestion",
+            "click .js-preview-question": "showPreviewQuestion"
         },
         childEvents: {
-            'answer:set': "onChangeAnswer"
+            //'answer:set': "onChangeAnswer"
         },
         initialize: function () {
-            console.log(this.model);
+          
             this.collection = this.model.answers;
         },
-        onChangeAnswer: function (childView, answerId, status) {
-            var t = this.model.get("tempAnswer");
-            if (this.model.get("isSingleAnswer")) {
-                if (status)
-                    this.model.set("tempAnswer", answerId);
-                else
-                    this.model.set("tempAnswer", null);
-            }
-            else {
-                throw Error("Не реализовано несколько ответов");
-            }
+        showNextQuestion: function () {
+            this.triggerMethod('question:nextQuestion', this.model, this.model.get("nextQuestion"));
+        },
+        showPreviewQuestion: function () {
+            this.triggerMethod('question:nextQuestion', this.model, this.model.get("previosQuestion"));
         },
         onCommitAnswer: function () {
+            var isAnswered = false;
             this.children.each(function (view) {
-
-                view.checkStatusAnswer();
-
+                isAnswered = view.checkStatusAnswer() || isAnswered;
             });
            
             this.collection.each(
                 function (e) {
                     e.save();
                 }
-            )
+            );
+            this.model.set("isAnswered", isAnswered);
             //debugger;;
-            //this.triggerMethod('question:commitAnswer', this.model.get("id"), this.model.get("tempAnswer"), this.model.get("nextQuestion"));
+            this.triggerMethod('question:nextQuestion', this.model, this.model.get("nextQuestion"));
         }
 
     });
@@ -109,16 +99,13 @@
         },
         childEvents: {
             'show:changeQuestion': function (childView, id) {
-                this.model.answers.get(this.model.get("currentQuestionId")).set("isCurrent", false);
-
+               // this.model.answers.get(this.model.get("currentQuestionId")).set("isCurrent", false);
+                this.model.questions.get(this.model.get("currentQuestionId")).set("isCurrent", false);
                 this.model.set("currentQuestionId", id);
             },
-            'question:commitAnswer': function (childView, id, answer, nextQuestion) {
-                if (answer) {
-                    this.model.answers.get(id).set("answerId", answer);
-                    this.model.questions.get(id).answers.get(answer).set("isChecked", true)
-                }
-                this.model.answers.get(this.model.get("currentQuestionId")).set("isCurrent", false);
+            'question:nextQuestion': function (childView, currentQuestion,nextQuestion) {
+               
+                currentQuestion.set("isCurrent", false);
                 if (nextQuestion)
                     this.model.set("currentQuestionId", nextQuestion);
                 else
@@ -129,8 +116,11 @@
         },
         initialize: function (paramId) {
             GSU.loadMask.show();
-            this.model = new FullTest.TestModel({id: paramId.id});
-            this.model.fetch();
+            this.model = new FullTest.TestModel({ id: paramId.id });
+            this.model.fetch({ 
+                data: { exist: paramId.exist},
+                processData: true
+            });
         },
 
         onSyncModel: function () {
@@ -138,7 +128,7 @@
             if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
                 if (this.model.questions && this.model.questions.length > 0) {
-                    this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
+                     this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
                 }
             }
             else {
@@ -147,19 +137,29 @@
 
         },
         onChangeCurrentQuestionId: function (model) {
-            var cq = this.model.get("currentQuestionId");
-            this.model.answers.get(cq).set("isCurrent", true);
-            var v = new FullTest.QuestionView({model: this.model.questions.get(cq)})
+            var cq = this.model.questions.get(this.model.get("currentQuestionId"));
+            cq.set("isCurrent", true);
+            var v = new FullTest.QuestionView({model: cq})
             this.content.show(v);
-            this.questionPagination.show(new FullTest.QuestionPaginationView({collection: this.model.answers}));
+
+  
+            var t = this.model.questions.models.map(
+                function (item, key) {
+                    return {
+                        num: key + 1,
+                        isAnswered: item.get("isAnswered"),
+                        isCurrent: item.get("isCurrent"),
+                        questionId: item.get("id")
+                    };
+                }
+            );
+            this.questionPagination.show(new FullTest.QuestionPaginationView({ collection: new Backbone.Collection(t) }));
         },
         onComliteTest: function () {
             var c = new Backbone.Model();
             c.url = "Test/Check";
             c.set("idTest", this.model.get("id"));
-            c.set("answers", this.model.answers.toJSON());
             c.on("sync", function (r, mod, xht) {
-                debugger;
                 if (mod.id) {
                     GSU.trigger("Test:showResult", mod.id);
 

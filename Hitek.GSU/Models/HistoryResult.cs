@@ -8,7 +8,8 @@ namespace Hitek.GSU.Models
     public class HistoryResult :Entity
     {
         public double Result { get; set; }
-        public DateTime Date { get; set; }
-        
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
     }
 }
