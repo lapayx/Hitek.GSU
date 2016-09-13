@@ -1,9 +1,13 @@
-﻿<tr>
+﻿<tr <% if(endDate == undefined) {print('class="warning"');} %>>
     <td><%- id %></td>
     <td><%- name %></td>
     <td><%- result %>%</td>
-    <td><%- dateString %></td>
+    <td><%- startSateString %></td>
+    <td><%- endSateString %></td>
     <td>
-        <button type="button" class="btn btn-link"> Подробнее</button>
+<%  if(endDate == undefined) { %>
+        <button type="button" class="btn btn-link js-continue-test"> Продолжить тест</button>
+        <% } %>
+        <!--<button type="button" class="btn btn-link "> Подробнее</button>-->
     </td>
 </tr>

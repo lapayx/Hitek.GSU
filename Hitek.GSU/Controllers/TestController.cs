@@ -33,14 +33,12 @@ namespace Hitek.GSU.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public JsonResult Index2(long id)
+        public JsonResult Index2(long id,bool exist = false)
         {
             Response.Cache.SetMaxAge(new TimeSpan(0));
             TestFull res;
-            if (id == 6)
-                 res = testService.GetTestById(3, false);
-            else
-             res = testService.GetTestById(id, true);
+           
+             res = testService.GetTestById(id, !exist);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 

@@ -126,28 +126,31 @@ namespace Hitek.GSU.Logic.Service
 
         public object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw)
         {
+            long id = raw.idTest;
 
-            int right = 0;
-            foreach (var q in raw.answers)
+
+
+            float right = 0;
+            int total = workTestRepository.WorkTestQuestion.Where(x => x.WorkTestId == id).Count();
+
+            var t = workTestRepository.WorkTestAnswer
+                .Where(x => x.WorkTestQuestion.WorkTestId == id)
+                .GroupBy(x => x.WorkTestQuestionId)
+                .Select(x => new { isRight = x.Count(y => y.IsRight), isAnswered = x.Count(y => y.IsAnswered == y.IsRight && y.IsRight) }).ToList();
+
+            foreach (var x in t)
             {
-                long ra = testRepository.TestAnswer.Where(x => x.TestQuestionId == q.QuestionId && x.IsRight == true).Select(x => x.Id).FirstOrDefault();
-                if (ra == q.AnswerId)
-                    right += 1;
+                right += (x.isAnswered < x.isRight) ? (float)x.isAnswered / x.isRight : (float)x.isRight / x.isAnswered;
 
             }
-            float r = (float)right / raw.answers.Count;
 
-            Hitek.GSU.Logic.Database.Model.TestHistory tt = new Hitek.GSU.Logic.Database.Model.TestHistory()
-            {
-                Result = r,
-                TestId = raw.idTest,
-                AccountId = accountService.GetCurrentUserId()
-            };
+            var test = workTestRepository.WorkTest.Where(x => x.Id == id).FirstOrDefault();
+            test.Result = right / total;
+            test.EndDate = DateTime.UtcNow;
 
-            testRepository.TestHistory.Add(tt);
             testRepository.SaveChanges();
 
-            return new { id = tt.Id, res = r, total = raw.answers.Count, right = right };
+            return new object();
         }
 
        

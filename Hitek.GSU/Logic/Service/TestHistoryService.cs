@@ -9,32 +9,39 @@ namespace Hitek.GSU.Logic.Service
 {
     public class TestHistoryService: ITestHistoryService
     {
-        readonly ITestRepository testRepository;
+        readonly IWorkTestRepository testRepository;
 
-        public TestHistoryService(ITestRepository testRepositpry, IAccountService accountService)
+        public TestHistoryService(IWorkTestRepository testRepositpry, IAccountService accountService)
         {
             this.testRepository = testRepositpry;
         }
 
         public HistoryResult GetHistoryTestById(long id)
         {
-            HistoryResult res = testRepository.TestHistory.Where(x => x.Id == id)
-                .Select(x => new HistoryResult() { Id = x.Id, Name = x.Test.Name, Result = x.Result, Date = x.Date })
+            HistoryResult res = testRepository.WorkTest.Where(x => x.Id == id)
+                .Select(x => new HistoryResult() {
+                    Id = x.Id,
+                    Name = x.Test.Name,
+                    Result = x.Result,
+                    EndDate = x.EndDate,
+                    StartDate = x.StartDate
+                })
                 .FirstOrDefault();
 
             return res;
         }
         public IList<HistoryResult> GetAllHistoryTestByUserId(long userId)
         {
-            IList<HistoryResult> res = testRepository.TestHistory
-                                        .Where(x => x.AccountId == userId)
+            IList<HistoryResult> res = testRepository.WorkTest
+                                        .Where(x => x.UserId == userId)
                                         .OrderByDescending(x=>x.Id)
                                         .Select(x => new HistoryResult()
                                         {
                                             Id = x.Id,
                                             Name = x.Test.Name,
                                             Result = x.Result,
-                                            Date = x.Date
+                                            EndDate = x.EndDate,
+                                            StartDate = x.StartDate
                                         })
                                         .ToList();
             return res;

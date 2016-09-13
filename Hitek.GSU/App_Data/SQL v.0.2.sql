@@ -33,6 +33,7 @@ CREATE TABLE [WorkTests] (
 	[Name]    NVARCHAR(200)   NOT NULL,
     [StartDate] DATETIME NOT NULL,
     [EndDate]   DATETIME NULL,
+	[Result] REAL NOT NULL DEFAULT 0, 
     CONSTRAINT [PKWorkTests] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FKWorkTests_Tests_TestId] FOREIGN KEY ([TestId]) REFERENCES [Tests] ([Id])
 );
@@ -66,5 +67,12 @@ CREATE TABLE [WorkTestAnswers] (
 
 go
 
+
+insert into [WorkTests] (TestId,UserId,EndDate,Name,Result,StartDate) 
+SELECT i.TestId,i.AccountId,i.Date,t.Name,i.Result, '2000-08-01' from TestHistories i inner join Tests t on i.TestId=t.Id
+
+go;
+ Drop table [TestHistories];
+ go
 
 
