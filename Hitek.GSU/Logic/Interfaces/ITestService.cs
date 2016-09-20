@@ -14,12 +14,15 @@ namespace Hitek.GSU.Logic.Interfaces
 
         ICollection<TestInfo> GetTestBySubjectId(long subjectId);
 
+        TestInfo GetTestById(long id);
         /// <summary>
         /// Получение теста его вопросов и ответов по ID
         /// </summary>
         /// <param name="id">ID Теста</param>
         /// <returns></returns>
-        TestFull GetTestById(long id,bool isNew);
+        TestFull GetExistTestById(long id);
+
+        long GenerateTest(long id);
 
         object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
 

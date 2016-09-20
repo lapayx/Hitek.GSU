@@ -1,8 +1,18 @@
 ﻿GSU.module("Test.FullTest", function (FullTest, GSU, Backbone, Marionette, $, _) {
 
 
-    FullTest.AnswerView = Backbone.Marionette.ItemView.extend({
-        template: "Test/FullTest/answer",
+    FullTest.SingleAnswerView = Backbone.Marionette.ItemView.extend({
+        template: "Test/FullTest/singleAnswer",
+        checkStatusAnswer: function () {
+            var isAnswer = this.$el.find('input')[0].checked;
+            this.model.set("isAnswered", isAnswer);
+            return isAnswer;
+        }
+
+
+    });
+    FullTest.MaltyAnswerView = Backbone.Marionette.ItemView.extend({
+        template: "Test/FullTest/multyAnswer",
         checkStatusAnswer: function () {
             var isAnswer = this.$el.find('input')[0].checked;
             this.model.set("isAnswered", isAnswer);
@@ -17,7 +27,16 @@
         className: "panel-body test-cart",
         template: "Test/FullTest/question",
         childViewContainer: ".test-aswers",
-        getChildView: function (item) {  if (this.model.get("isSingleAnswer")) return FullTest.AnswerView; },
+        getChildView: function (item) {
+            if (this.model.get("isSingleAnswer"))
+            {
+                return FullTest.SingleAnswerView;
+            }
+            else
+            {
+                return 
+            }
+        },
         events: {
             "click .commit-answer": "onCommitAnswer",
             "click .js-next-question": "showNextQuestion",
@@ -119,21 +138,22 @@
             this.model = new FullTest.TestModel({ id: paramId.id });
             this.model.fetch({ 
                 data: { exist: paramId.exist},
-                processData: true
+                processData: true,
+                error: function (model, xhr, req) {     
+                    GSU.trigger("Error", xhr.status);
+                }
             });
         },
 
         onSyncModel: function () {
-            GSU.loadMask.hide();
-            if (this.model.get("id") && this.model.get("id") > 0) {
+            
+        
                 this.render();
                 if (this.model.questions && this.model.questions.length > 0) {
                      this.model.set("currentQuestionId", this.model.questions.at(0).get("id"));
                 }
-            }
-            else {
-                GSU.trigger("Error:404");
-            }
+            
+           GSU.loadMask.hide();
 
         },
         onChangeCurrentQuestionId: function (model) {

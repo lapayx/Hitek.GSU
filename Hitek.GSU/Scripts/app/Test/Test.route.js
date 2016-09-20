@@ -18,7 +18,7 @@
 
     var API = {
         show: function (id) {
-            var view = new Test.FullTest.view({id: id});
+            var view = new Test.GenerateTest.view({ id: id });
             GSU.mainRegion.show(view);
 
         },

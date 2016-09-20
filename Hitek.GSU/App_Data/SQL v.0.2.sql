@@ -34,6 +34,7 @@ CREATE TABLE [WorkTests] (
     [StartDate] DATETIME NOT NULL,
     [EndDate]   DATETIME NULL,
 	[Result] REAL NOT NULL DEFAULT 0, 
+	[IsCanShowResultAnswer] Bit not null default 0,
     CONSTRAINT [PKWorkTests] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FKWorkTests_Tests_TestId] FOREIGN KEY ([TestId]) REFERENCES [Tests] ([Id])
 );

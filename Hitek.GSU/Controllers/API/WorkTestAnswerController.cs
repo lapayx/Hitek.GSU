@@ -14,9 +14,11 @@ namespace Hitek.GSU.Controllers.API
     public class WorkTestAnswerController : ApiController
     {
         readonly IWorkTestRepository workTestRep;
-        public WorkTestAnswerController(IWorkTestRepository workTestRep) {
+        IAccountService accountService;
+        public WorkTestAnswerController(IWorkTestRepository workTestRep, IAccountService accountService) {
 
             this.workTestRep = workTestRep;
+            this.accountService = accountService;
 
         }
        
@@ -38,15 +40,27 @@ namespace Hitek.GSU.Controllers.API
         }
 */
         // PUT: api/WorkTestAnswer/5
-        public void Put(int id, TestAnswer value)
+        public HttpResponseMessage Put(int id, TestAnswer value)
         {
-            var answer = workTestRep.WorkTestAnswer.Where(x => x.Id == id).FirstOrDefault();
+            var answer = workTestRep
+                .WorkTestAnswer
+                .Where(x => 
+                    x.Id == id 
+                    && x.WorkTestQuestion.WorkTest.EndDate == null 
+                    && x.WorkTestQuestion.WorkTest.UserId == accountService.GetCurrentUserId() 
+                    )
+                .FirstOrDefault();
             if (answer != null)
             {
                 answer.IsAnswered = value.IsAnswered;
+                answer.DateAnswered = DateTime.UtcNow;
                 workTestRep.SaveChanges();
             }
-
+            else
+            {
+                return new HttpResponseMessage(HttpStatusCode.Forbidden);
+            }
+            return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
         // DELETE: api/WorkTestAnswer/5

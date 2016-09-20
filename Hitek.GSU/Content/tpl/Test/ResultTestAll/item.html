@@ -1,7 +1,7 @@
 ﻿<tr <% if(endDate == undefined) {print('class="warning"');} %>>
     <td><%- id %></td>
-    <td><%- name %></td>
-    <td><%- result %>%</td>
+    <td> <%- name %></td>
+    <td><% if(endDate != undefined) { %> <%- result %>% <% } else {%>-<% } %></td>
     <td><%- startSateString %></td>
     <td><%- endSateString %></td>
     <td>
