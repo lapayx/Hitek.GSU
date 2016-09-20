@@ -23,13 +23,33 @@ namespace Hitek.GSU.Logic.Service
             this.random = new Random((int)DateTime.Now.Ticks);
         }
 
-        public TestFull GetTestById(long id,  bool isNew)
+        public TestInfo GetTestById(long id)
+        {
+            var test = testRepository.Test
+                .Where(x => x.Id == id && !x.IsHide)
+                
+                .FirstOrDefault();
+            if (test == null)
+                return null;
+            var res =  new TestInfo() {
+                    Id = test.Id,
+                    Name = test.Name
+                                      
+                };
+            if(test.TestSubject != null)
+            {
+                res.TestSubjectId = (long)test.TestSubjectId;
+                res.TestSubjectName = test.TestSubject.Name;
+            }
+            return res;
+        }
+
+     
+
+        public TestFull GetExistTestById(long id)
         {
             long testId = id;
-            if (isNew)
-            {
-                testId = generateTest(id);
-            }
+          
 
             TestFull res = new TestFull();
             var t = workTestRepository.WorkTest.FirstOrDefault(x => x.Id == testId);
@@ -40,7 +60,8 @@ namespace Hitek.GSU.Logic.Service
                 {
                     Id = t.Id,
                     Name = t.Name,
-                    Questions = new List<TestQuestion>()
+                    Questions = new List<TestQuestion>(),
+                    EndDate = t.EndDate
                 };
                 foreach (var q in t.WorkTestQuestions)
                 {
@@ -70,7 +91,7 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-        private long generateTest(long testId) {
+        public long GenerateTest(long testId) {
 
             DB.WorkTest test = null;
             var t = testRepository.Test.FirstOrDefault(x => x.Id == testId);
@@ -121,7 +142,7 @@ namespace Hitek.GSU.Logic.Service
             }
             if(test != null)
             return test.Id;
-            return 0;
+            return -1;
         }
 
         public object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw)
@@ -282,5 +303,7 @@ namespace Hitek.GSU.Logic.Service
             }
             return res;
         }
+
+      
     }
 }

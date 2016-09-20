@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='default' Clean='clean' ProjectOpened='build' />
+﻿/// <binding Clean='clean' />
 
 "use strict";
 
@@ -99,13 +99,49 @@ gulp.task("html:json", function () {
 });
 
 gulp.task("build", [
-    "html:css",
-    "html:image",
-    "html:fonts",
-    "html:js",
-    "html:html"
+    //"html:css",
+    //"html:image",
+    //"html:fonts",
+    //"html:js",
+    //"html:html"
    // "html:json"
+   "Template"
 ]);
+var isRelease = true;
+if (process.env.NODE_ENV && process.env.NODE_ENV !== 'Release') {
+    isRelease = false;
+    console.log("no");
+}
+gulp.task("Template", function () {
+    var templatePath = "Content/tpl/";
+
+    return gulp.src('Views/Shared/_Layout.cshtml') //Выберем файлы по нужному пути
+         .pipe(inject(gulp.src([templatePath + "**/*.html"]), {
+
+             starttag: '<!-- inject:template -->',
+             transform: function (filepath, file) {
+                 console.log('ddd');
+                 var fileName = filepath.replace("/" + templatePath, "");
+                 fileName = fileName.replace(".html", "");
+                 fileName = fileName.replace(/\//g, "-");
+                 return ' <script type="text/template" id="' + fileName + '"> ' + file.contents.toString('utf8').replace(/\n/g, "").replace(/\r/g, "") + ' </script>';
+             }
+         }))
+        .pipe(inject(gulp.src(["Scripts/override/Backbone.Marionette.TemplateCache.prototype.loadTemplate.Relise"]), {
+
+            starttag: '<!-- inject:js-relise -->',
+            transform: function (filepath, file) {
+                console.log('ddd');
+                var fileName = filepath.replace("/" + templatePath, "");
+                fileName = fileName.replace(".html", "");
+                fileName = fileName.replace(/\//g, "-");
+                return ' <script> ' + file.contents.toString('utf8').replace(/\n/g, "").replace(/\r/g, "") + '</script>';
+            }
+        }))
+         .pipe(gulp.dest('Views/Shared/')) //Выплюнем их в папку build
+    // .pipe(reload({stream: true})); //И перезагрузим наш сервер для обновлений
+});
+
 
 gulp.task("html:jsapp", ["build"], function () {
     return gulp.src(path.build.html + '*.html') //Выберем файлы по нужному пути
@@ -155,8 +191,26 @@ gulp.task("html:jsapp", ["build"], function () {
          .pipe(gulp.dest(path.build.html)) //Выплюнем их в папку build
     // .pipe(reload({stream: true})); //И перезагрузим наш сервер для обновлений
 });
-
 gulp.task('clean', function () {
+    var templatePath = "Content/tpl/";
+    return gulp.src('Views/Shared/_Layout.cshtml') //Выберем файлы по нужному пути
+        .pipe(inject(gulp.src([templatePath + "**/*.html"]), {
+
+            starttag: '<!-- inject:template -->',
+            transform: function (filepath, file) {
+                return ' <!-- nothink -->';
+            }
+        }))
+       .pipe(inject(gulp.src(["Scripts/override/Backbone.Marionette.TemplateCache.prototype.loadTemplate.Relise"]), {
+
+           starttag: '<!-- inject:js-relise -->',
+           transform: function (filepath, file) {
+               
+               return ' <!-- nothink -->';
+           }
+       }))
+        .pipe(gulp.dest('Views/Shared/'))
+
     return gulp.src([path.build.js, path.build.css, path.build.html + "*.html"], { read: false }).pipe(clean());
 })
 

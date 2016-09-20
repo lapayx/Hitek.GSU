@@ -5,6 +5,8 @@ using Hitek.GSU.Models.Validation.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,16 +32,49 @@ namespace Hitek.GSU.Controllers
             Response.Cache.SetMaxAge(new TimeSpan(0));
             return Json(testService.GetAllTest(), JsonRequestBehavior.AllowGet);
         }
-
         [HttpGet]
         [Route("{id}")]
-        public JsonResult Index2(long id,bool exist = false)
+        public ActionResult Index2(long id)
         {
-            Response.Cache.SetMaxAge(new TimeSpan(0));
+           
+           
+           
+            var  res = testService.GetTestById(id);
+            if(res == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Route("Exist/{id}")]
+        public ActionResult GetExistTest(long id,bool exist = false)
+        {
+           
             TestFull res;
            
-             res = testService.GetTestById(id, !exist);
+             res = testService.GetExistTestById(id);
+            if(res.EndDate != null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [Route("Generate/{id}")]
+        public ActionResult GenerateTest(long id)
+        {
+            Response.Cache.SetMaxAge(new TimeSpan(0));
+            long  res;
+
+            res = testService.GenerateTest(id);
+            if (res < 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            return Json(new { id = res }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

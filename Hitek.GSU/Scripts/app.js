@@ -57,20 +57,34 @@ GSU.cache = {};
 GSU.on("start", function (options) {
     
     if (!localStorage.getItem("token")) {
-     document.location = "/Home/Login";
-     } else {
-         var tObj = JSON.parse(localStorage.getItem("token"));
-         GSU.token = "Bearer " + tObj.access_token;
-     }
+        document.location = "/Home/Login";
+    }
+    var tObj = JSON.parse(localStorage.getItem("token"));
+    GSU.token = "Bearer " + tObj.access_token;
+     
      
 
-
+    $("#gsu-user-name").text(tObj.userName);
     if (Backbone.history) {
         Backbone.history.start();
     }
     if (this.getCurrentRoute() === "") {
         GSU.trigger("Main:show");
     }
+
+
+});
+
+GSU.on("logout", function (options) {
+
+    if (!localStorage.getItem("token")) {
+        document.location = "/Home/Login";
+    } else {
+        localStorage.removeItem("token");
+        document.location = "/Home/Login";
+    }
+
+
 
 
 });

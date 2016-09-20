@@ -7,7 +7,7 @@
             this.answers = new FullTest.AnswerForViewCollection();
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "Test/",
+        urlRoot: "Test/Exist/",
         defaults: {
             id: null,
             name: "Заголовок",
