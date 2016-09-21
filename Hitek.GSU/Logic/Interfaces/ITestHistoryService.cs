@@ -13,7 +13,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// </summary>
         /// <param name="id">ID истории</param>
         /// <returns></returns>
-        HistoryResult GetHistoryTestById(long id);
+        TestFull GetHistoryTestById(long id);
 
         /// <summary>
         /// История прохождения тестов пользователя по ID.

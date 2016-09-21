@@ -10,23 +10,17 @@ namespace Hitek.GSU.Logic.Service
     public class TestHistoryService: ITestHistoryService
     {
         readonly IWorkTestRepository testRepository;
+        readonly ITestService testService;
 
-        public TestHistoryService(IWorkTestRepository testRepositpry, IAccountService accountService)
+        public TestHistoryService(IWorkTestRepository testRepositpry, ITestService testService)
         {
             this.testRepository = testRepositpry;
+            this.testService = testService;
         }
 
-        public HistoryResult GetHistoryTestById(long id)
+        public TestFull GetHistoryTestById(long id)
         {
-            HistoryResult res = testRepository.WorkTest.Where(x => x.Id == id)
-                .Select(x => new HistoryResult() {
-                    Id = x.Id,
-                    Name = x.Test.Name,
-                    Result = x.Result,
-                    EndDate = x.EndDate,
-                    StartDate = x.StartDate
-                })
-                .FirstOrDefault();
+            var res = testService.GetExistTestById(id,true);
 
             return res;
         }
@@ -41,7 +35,8 @@ namespace Hitek.GSU.Logic.Service
                                             Name = x.Test.Name,
                                             Result = x.Result,
                                             EndDate = x.EndDate,
-                                            StartDate = x.StartDate
+                                            StartDate = x.StartDate,
+                                            IsCanShowResultAnswer  = x.IsCanShowResultAnswer
                                         })
                                         .ToList();
             return res;

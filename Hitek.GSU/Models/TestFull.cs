@@ -9,6 +9,7 @@ namespace Hitek.GSU.Models
     {
         public DateTime? EndDate { get; set; }
         public int CountQuestion { get; set; }
+        public bool IsCanShowResultAnswer { get; set; }
         public IList<TestQuestion> Questions { get; set; }
     }
 }

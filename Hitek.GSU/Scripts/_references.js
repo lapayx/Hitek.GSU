@@ -36,6 +36,7 @@
 /// <reference path="app/test/listtestdetail/listtestdetail.collection.js" />
 /// <reference path="app/test/listtestdetail/listtestdetail.model.js" />
 /// <reference path="app/test/listtestdetail/listtestdetail.view.js" />
+/// <reference path="app/test/resulttest/resulttest.collection.js" />
 /// <reference path="app/test/resulttest/resulttest.model.js" />
 /// <reference path="app/test/resulttest/resulttest.view.js" />
 /// <reference path="app/test/resulttestall/resulttestall.collection.js" />

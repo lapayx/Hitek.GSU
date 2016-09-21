@@ -4,7 +4,7 @@
     ResultTestAll.ItemView = Backbone.Marionette.ItemView.extend({
         template: "Test/ResultTestAll/item",
         events: {
-          //  "click button": "showDeteil",
+            "click .js-answers-test": "showDeteil",
             "click .js-continue-test": "continueTest"
         },
         showDeteil: function () {

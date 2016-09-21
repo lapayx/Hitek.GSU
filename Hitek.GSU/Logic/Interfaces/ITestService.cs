@@ -20,7 +20,7 @@ namespace Hitek.GSU.Logic.Interfaces
         /// </summary>
         /// <param name="id">ID Теста</param>
         /// <returns></returns>
-        TestFull GetExistTestById(long id);
+        TestFull GetExistTestById(long id,bool withRightAnswer=false);
 
         long GenerateTest(long id);
 
