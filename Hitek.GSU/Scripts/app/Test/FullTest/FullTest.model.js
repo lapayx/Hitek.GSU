@@ -4,7 +4,6 @@
     FullTest.TestModel = Backbone.Model.extend({
         constructor: function () {
             this.questions = new FullTest.QuestionCollection();
-            this.answers = new FullTest.AnswerForViewCollection();
             Backbone.Model.apply(this, arguments);
         },
         urlRoot: "Test/Exist/",
@@ -85,23 +84,4 @@
             return raw;
         }
     });
-
-    FullTest.AnswerForSyncModel = Backbone.Model.extend({
-        defaults: {
-            questionId: 0,
-            answerId: 0
-        }
-    });
-
-    FullTest.AnswerForViewModel = Backbone.Model.extend({
-        defaults: {
-            id: 0,
-            questionId: null,
-            answerId: null,
-            num: 0,
-            isCurrent: false
-        }
-    });
-
-
 });

@@ -46,13 +46,13 @@ namespace Hitek.GSU.Logic.Service
 
      
 
-        public TestFull GetExistTestById(long id)
+        public TestFull GetExistTestById(long id, bool withRightAnswer = false)
         {
             long testId = id;
           
 
             TestFull res = new TestFull();
-            var t = workTestRepository.WorkTest.FirstOrDefault(x => x.Id == testId);
+            var t = workTestRepository.WorkTest.FirstOrDefault(x => x.Id == testId );
 
             if (t != null)
             {
@@ -61,7 +61,8 @@ namespace Hitek.GSU.Logic.Service
                     Id = t.Id,
                     Name = t.Name,
                     Questions = new List<TestQuestion>(),
-                    EndDate = t.EndDate
+                    EndDate = t.EndDate,
+                    IsCanShowResultAnswer = t.IsCanShowResultAnswer
                 };
                 foreach (var q in t.WorkTestQuestions)
                 {
@@ -81,7 +82,9 @@ namespace Hitek.GSU.Logic.Service
                         {
                             Id = a.Id,
                             Text = a.Text,
-                            IsAnswered = a.IsAnswered
+                            IsAnswered = a.IsAnswered,
+                            IsRight = withRightAnswer ? a.IsRight: false
+
                         });
                     }
                     res.Questions.Add(qu);
@@ -304,6 +307,6 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-      
+     
     }
 }

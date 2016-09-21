@@ -10,11 +10,5 @@
         model: FullTest.QuestionModel
     });
 
-    FullTest.AnswerForViewCollection = Backbone.Collection.extend({
-        model: FullTest.AnswerForViewModel
-    });
-    FullTest.AnswerForSyncCollection = Backbone.Collection.extend({
-        model: FullTest.AnswerForSyncModel
-    });
 
 });

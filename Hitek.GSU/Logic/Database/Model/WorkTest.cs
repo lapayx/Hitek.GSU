@@ -17,7 +17,7 @@ namespace Hitek.GSU.Logic.Database.Model
         public long Id { get; set; }
 
         [Required]
-        public long  TestId { get; set; }
+        public long TestId { get; set; }
 
         [Required]
         public long UserId { get; set; }
@@ -32,6 +32,7 @@ namespace Hitek.GSU.Logic.Database.Model
 
 
         public float Result { get; set; }
+        public bool IsCanShowResultAnswer {get;set;}
 
 
         public  virtual Test Test { get; set; }

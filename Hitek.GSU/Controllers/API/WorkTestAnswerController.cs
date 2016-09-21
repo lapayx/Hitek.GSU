@@ -42,12 +42,13 @@ namespace Hitek.GSU.Controllers.API
         // PUT: api/WorkTestAnswer/5
         public HttpResponseMessage Put(int id, TestAnswer value)
         {
+            long userID = accountService.GetCurrentUserId();
             var answer = workTestRep
                 .WorkTestAnswer
                 .Where(x => 
                     x.Id == id 
                     && x.WorkTestQuestion.WorkTest.EndDate == null 
-                    && x.WorkTestQuestion.WorkTest.UserId == accountService.GetCurrentUserId() 
+                    && x.WorkTestQuestion.WorkTest.UserId == userID
                     )
                 .FirstOrDefault();
             if (answer != null)

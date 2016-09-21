@@ -282,6 +282,12 @@
     <None Include="package.json" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="Content\tpl\Test\ResultTest\resultTestTemplate.html" />
+    <Content Include="Content\tpl\Test\ResultTest\multyAnswer.html" />
+    <Content Include="Content\tpl\Test\ResultTest\question.html" />
+    <Content Include="Content\tpl\Test\ResultTest\questionPagination.html" />
+    <Content Include="Content\tpl\Test\ResultTest\questionPaginationItem.html" />
+    <Content Include="Content\tpl\Test\ResultTest\singleAnswer.html" />
     <Content Include="Content\tpl\Test\FullTest\multyAnswer.html" />
     <Content Include="Content\tpl\Test\GenerateTest\main.html" />
     <Content Include="Scripts\app\Test\GenerateTest\GenerateTest.view.js" />
@@ -333,7 +339,6 @@
     <Content Include="Content\tpl\Test\ListTestDetail\main.html" />
     <Content Include="Content\tpl\Test\ListTest\item.html" />
     <Content Include="Content\tpl\Test\ListTest\main.html" />
-    <Content Include="Content\tpl\Test\ResultTest\main.html" />
     <Content Include="Content\tpl\Test\ResultTestAll\item.html" />
     <Content Include="Content\tpl\Test\ResultTestAll\main.html" />
     <Content Include="favicon.ico" />
@@ -378,12 +383,13 @@
     <Content Include="Scripts\app\Test\ListTest\ListTest.collection.js" />
     <Content Include="Scripts\app\Test\ListTest\ListTest.model.js" />
     <Content Include="Scripts\app\Test\ListTest\ListTest.view.js" />
+    <Content Include="Scripts\app\Test\ResultTest\ResultTest.collection.js" />
+    <Content Include="Scripts\app\Test\ResultTest\ResultTest.model.js" />
+    <Content Include="Scripts\app\Test\ResultTest\ResultTest.view.js" />
     <Content Include="Scripts\app\Test\Test.route.js" />
     <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.collection.js" />
     <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.model.js" />
     <Content Include="Scripts\app\Test\ResultTestAll\ResultTestAll.view.js" />
-    <Content Include="Scripts\app\Test\ResultTest\ResultTest.model.js" />
-    <Content Include="Scripts\app\Test\ResultTest\ResultTest.view.js" />
     <Content Include="Scripts\override\Backbone.Marionette.TemplateCache.prototype.loadTemplate.js" />
     <Content Include="Scripts\plugin\tree.js" />
     <Content Include="Scripts\polyfill\Date.parse.js" />
