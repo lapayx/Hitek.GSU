@@ -88,7 +88,7 @@
     <script>
 
         $(function () {
-            $(".form-signin").submit(function () {
+            $(".form-signin2").submit(function () {
                 $('.alert-info').show(1000);
                 $('.alert-danger').hide();
 
@@ -108,6 +108,38 @@
                     $('.alert-info').hide();
                     if (data.success) {
                         //sessionStorage.setItem("token", "Bearer  " + data.access_token);
+                        document.location = "/";
+                    } else {
+                        $('.alert-danger').show();
+                    }
+                }).fail();
+
+                return false;
+
+            });
+            
+            $(".form-signin").submit(function () {
+                $('.alert-info').show(1000);
+                $('.alert-danger').hide();
+
+                var loginData = {
+                    grant_type: 'password',
+                    client_id: 'ngAuthApp',
+                    username: $("#inputLogin").val().trim(),
+                    password: $("#inputPassword").val().trim()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Token',
+                    data: loginData
+                }).done(function (data) {
+                    //GSU.token = /*token_type + */"Bearer  " + data.access_token;
+                    // Cache the access token in session storage.
+                    $('.alert-info').hide();
+                    if (!data.error) {
+                        localStorage.setItem("token", JSON.stringify(data));
+                        console.log(data);
                         document.location = "/";
                     } else {
                         $('.alert-danger').show();

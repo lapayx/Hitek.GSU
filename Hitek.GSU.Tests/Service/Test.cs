@@ -6,7 +6,7 @@ using Hitek.GSU.Logic.Interfaces;
 using Moq;
 using System.Data.Entity;
 using System.Linq;
-using DB = Hitek.GSU.Logic.Database;
+using DB = Hitek.GSU.Logic.Database.Model;
 using M = Hitek.GSU.Models;
 
 namespace Hitek.GSU.Tests.Service
@@ -66,7 +66,7 @@ namespace Hitek.GSU.Tests.Service
                 }
             };
 
-            var testRes = testService.GetTestById(1);
+            var testRes = testService.GetTestById(1,true);
             Assert.AreEqual(etalon.ToJSON(),testRes.ToJSON() ,"Не совпадают"); 
   
         }

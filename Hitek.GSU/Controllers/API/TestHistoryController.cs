@@ -10,13 +10,14 @@ using Microsoft.AspNet.Identity;
 
 namespace Hitek.GSU.Controllers.API
 {
+    [Authorize]
     public class TestHistoryController : ApiController
     {
 
-        readonly ITestService testservice;
+        readonly ITestHistoryService testservice;
         IAccountService accountService;
 
-        public TestHistoryController(ITestService testservice,IAccountService accountService)
+        public TestHistoryController(ITestHistoryService testservice,IAccountService accountService)
         {
             this.testservice = testservice;
             this.accountService = accountService;
@@ -25,14 +26,18 @@ namespace Hitek.GSU.Controllers.API
         // GET: api/TestHistory
         public IEnumerable<HistoryResult> Get()
         {
-            User.Identity.GetUserId();
             return this.testservice.GetAllHistoryTestByUserId(accountService.GetCurrentUserId());
         }
 
         // GET: api/TestHistory/5
-        public HistoryResult Get(long id)
+        public TestFull Get(long id)
         {
-            return this.testservice.GetHistoryTestById(id);
+           var res = this.testservice.GetHistoryTestById(id);
+            if (res == null || !res.IsCanShowResultAnswer)
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
+            return res;
         }
 
 

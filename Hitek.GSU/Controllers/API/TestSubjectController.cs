@@ -10,6 +10,7 @@ using Hitek.GSU.Models;
 namespace Hitek.GSU.Controllers.API
 {
     [RoutePrefix("api/TestSubject")]
+    [Authorize]
     public class TestSubjectController : ApiController
     {
         readonly ITestSubjectService subjectService;
@@ -31,13 +32,13 @@ namespace Hitek.GSU.Controllers.API
             return subjectService.GetTestSubjectById(id);
         }
 
-      
+        [Authorize(Roles = "Admin, Teacher")]
         // POST: api/TestSubject
         public void Post(TestSubject value)
         {
             this.subjectService.AddTestSubject(value);
         }
-
+        [Authorize(Roles = "Admin, Teacher")]
         // PUT: api/TestSubject/5
         public void Put(long id, TestSubject value)
         {
@@ -45,6 +46,7 @@ namespace Hitek.GSU.Controllers.API
             
         }
 
+        [Authorize(Roles = "Admin, Teacher")]
         // DELETE: api/TestSubject/5
         public void Delete(int id)
         {

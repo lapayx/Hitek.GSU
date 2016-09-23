@@ -4,11 +4,15 @@
     ResultTestAll.ItemView = Backbone.Marionette.ItemView.extend({
         template: "Test/ResultTestAll/item",
         events: {
-            "click button": "showDeteil"
-
+            "click .js-answers-test": "showDeteil",
+            "click .js-continue-test": "continueTest"
         },
         showDeteil: function () {
             GSU.trigger("Test:showResult", this.model.get("id"));
+
+        },
+        continueTest: function () {
+            GSU.trigger("Test:continueTest", this.model.get("id"));
 
         }
     });
@@ -30,7 +34,7 @@
 
         },
         onSyncModel: function () {
-            GSU.loadMask.hide();
+           // GSU.loadMask.hide();
             if (this.model.get("id") && this.model.get("id") > 0) {
                 this.render();
             }

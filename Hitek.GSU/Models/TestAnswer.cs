@@ -9,5 +9,6 @@ namespace Hitek.GSU.Models
     {
         public string Text { get; set; }
         public bool IsRight { get; set; }
+        public bool IsAnswered { get; set; }
     }
 }

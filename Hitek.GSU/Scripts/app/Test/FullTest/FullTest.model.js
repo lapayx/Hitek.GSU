@@ -4,10 +4,9 @@
     FullTest.TestModel = Backbone.Model.extend({
         constructor: function () {
             this.questions = new FullTest.QuestionCollection();
-            this.answers = new FullTest.AnswerForViewCollection();
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "Test/",
+        urlRoot: "Test/Exist/",
         defaults: {
             id: null,
             name: "Заголовок",
@@ -19,27 +18,19 @@
         parse: function (raw) {
             // raw.name = raw.Name;
             // raw.id = raw.Id;
-            this.questions.reset(raw.questions, {parse: true});
+            this.questions.reset(raw.questions, { parse: true });
             this.addNavigationQuestion();
-            var cq = 1
-            for (var i = 1; i <= this.questions.length; i++) {
-                var q = this.questions.at(i - 1);
-                this.answers.add(
-                    {
-                        id: q.get("id"),
-                        num: i,
-                        questionId: q.get("id"),
-                        isCurrent: (i == cq)
-                    }
-                )
-            }
             return raw;
         },
         addNavigationQuestion: function () {
             var prev = null,
                 c = null;
             for (var i = 0; i < this.questions.length; i++) {
+                
                 c = this.questions.at(i);
+                if (i == 0) {
+                    c.set("isCurrent", true);
+                }
                 if (prev) {
                     prev.set("nextQuestion", c.get("id"));
                     c.set("previosQuestion", prev.get("id"));
@@ -60,24 +51,31 @@
             name: "",
             text: "",
             isSingleAnswer: true,
-            tempAnswer: null,
+            isCurrent: false,
+            isAnswered: false,
             nextQuestion: null,
             previosQuestion: null
         },
         parse: function (raw) {
-            this.answers.reset(raw.answers, {parse: true});
+            this.answers.reset(raw.answers, { parse: true });
+            raw.isAnswered = !!this.answers.models.find(function (item) { return item.get("isAnswered") === true; });
+
             //raw.name = raw.Name;
             // raw.id = raw.Id;
             // raw.text = raw.Text;
             return raw;
         }
     });
+
     FullTest.AnswerModel = Backbone.Model.extend({
+        urlRoot: "api/WorkTestAnswer/",
+       // url: "api/WorkTestAnswer",
+        idAttribute: "id",
         defaults: {
             name: "",
             text: "",
             id: null,
-            isChecked: false
+            isAnswered: false
         },
         parse: function (raw) {
             // raw.name = raw.Name;
@@ -86,23 +84,4 @@
             return raw;
         }
     });
-
-    FullTest.AnswerForSyncModel = Backbone.Model.extend({
-        defaults: {
-            questionId: 0,
-            answerId: 0
-        }
-    });
-
-    FullTest.AnswerForViewModel = Backbone.Model.extend({
-        defaults: {
-            id: 0,
-            questionId: null,
-            answerId: null,
-            num: 0,
-            isCurrent: false
-        }
-    });
-
-
 });
