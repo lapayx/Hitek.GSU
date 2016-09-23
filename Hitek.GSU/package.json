@@ -1,0 +1,22 @@
+{
+  "name": "hite.gsu",
+  "version": "1.0.0",
+  "description": "my project",
+  "dependencies": { },
+  "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-inject": "^4.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-watch": "^4.3.5",
+    "rimraf": "^2.5.2"
+  },
+  "author": "",
+  "license": "ISC"
+}

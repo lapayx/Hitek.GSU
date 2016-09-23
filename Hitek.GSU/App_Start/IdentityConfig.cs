@@ -97,6 +97,8 @@ namespace Hitek.GSU
                 this.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser, long>(dataProtector);
             }
         }
+
+        //public override 
        /// <summary> 
        /// Use Custom approach to verify password 
        /// </summary> 
@@ -142,7 +144,9 @@ namespace Hitek.GSU
 
         public override async Task<SignInStatus> PasswordSignInAsync(string userName, string password, bool isPersistent, bool shouldLockout)
         {
-            if ( false && Membership.Provider.ValidateUser(userName, password))
+
+
+            if (  Membership.Providers["ADMembershipProviderMain"].ValidateUser(userName, password))
             {
 
                 var user = UserManager.FindByName(userName);
@@ -150,10 +154,12 @@ namespace Hitek.GSU
                 {
                    // return SignInStatus.Failure;
                     ApplicationUser newAccount = new ApplicationUser(){
-                        UserName = userName
-                        
+                        UserName = userName,
+                        Email = $"{userName}@gsu.by"
+
+
                     };
-                    await UserManager.CreateAsync(newAccount);
+                    var result = await UserManager.CreateAsync(newAccount);
                     user = UserManager.FindByName(userName);
                 }
 

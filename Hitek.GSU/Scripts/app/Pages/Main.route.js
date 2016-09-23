@@ -4,7 +4,8 @@
     Main.Router = Marionette.AppRouter.extend({
         appRoutes: {
             // "info": "showInfo",
-            "Main": "show"
+            "Main": "show",
+            "LogOut": "logOut"
         }
     });
 
@@ -13,12 +14,19 @@
             var view = new Main.view();
             GSU.mainRegion.show(view);
 
+        },
+        logOut: function () {
+            GSU.trigger("logout");
         }
     };
 
     GSU.on("Main:show", function (id) {
         GSU.navigate("Main");
         API.show(id);
+    });
+    GSU.on("Main:logOut", function (id) {
+        GSU.navigate("LogOut");
+        API.logOut(id);
     });
 
     /*  PresentationMedal.model = Backbone.Model.extend({

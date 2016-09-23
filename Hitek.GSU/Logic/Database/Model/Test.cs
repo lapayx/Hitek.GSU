@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Hitek.GSU.Logic.Database
+namespace Hitek.GSU.Logic.Database.Model
 {
     public class Test
     {
@@ -30,6 +30,8 @@ namespace Hitek.GSU.Logic.Database
 
         public virtual ICollection<TestQuestion> TestQuestions { get; set; }
         public virtual ICollection<TestHistory> TestHistories { get; set; }
+
+        public virtual ICollection<WorkTest> WorkTests { get; set; }
 
     }
 

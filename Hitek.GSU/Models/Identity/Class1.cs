@@ -9,6 +9,34 @@ using System.Web;
 
 namespace Hitek.GSU.Models
 {
+    public enum ApplicationTypes
+    {
+        JavaScript = 0,
+        NativeConfidential = 1
+    }
+
+    public class Client
+    {
+        public string Id { get; set; }
+        public string Secret { get; set; }
+        public string Name { get; set; }
+        public ApplicationTypes ApplicationType { get; set; }
+        public bool Active { get; set; }
+        public int RefreshTokenLifeTime { get; set; }
+        public string AllowedOrigin { get; set; }
+    }
+
+    public class RefreshToken
+    {
+        public string Id { get; set; }
+        public string Subject { get; set; }
+        public string ClientId { get; set; }
+        public DateTime IssuedUtc { get; set; }
+        public DateTime ExpiresUtc { get; set; }
+        public string ProtectedTicket { get; set; }
+    }
+
+
 
     public class UserRoleLongPk : IdentityUserRole<long>
     {

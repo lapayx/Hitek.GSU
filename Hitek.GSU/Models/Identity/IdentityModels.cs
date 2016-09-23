@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.ComponentModel.DataAnnotations;
 
 namespace Hitek.GSU.Models
 {
@@ -13,6 +12,10 @@ namespace Hitek.GSU.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, RoleLongPk, long,
         UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
+
+        public DbSet<Client> Client { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+
         public ApplicationDbContext()
             : base("EntityContext")
         {
@@ -24,13 +27,13 @@ namespace Hitek.GSU.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            /*
-            modelBuilder.HasDefaultSchema("public");
+            
+           /* modelBuilder.HasDefaultSchema("dbo");
             modelBuilder.Configurations.Add(new ApplicationUserMap());
-            modelBuilder.Configurations.Add(new UserRoleIntPkMap());
-            modelBuilder.Configurations.Add(new UserLoginIntPkMap());
-            modelBuilder.Configurations.Add(new UserClaimIntPkMap());
-            modelBuilder.Configurations.Add(new RoleIntPkMap());*/
+            modelBuilder.Configurations.Add(new UserRoleLongPkMap());
+            modelBuilder.Configurations.Add(new UserLoginLongPkMap());
+            modelBuilder.Configurations.Add(new UserClaimLongPkMap());
+            modelBuilder.Configurations.Add(new RoleLongPkMap());*/
 
         }
     }

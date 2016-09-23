@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using Hitek.GSU.Logic.Database;
+using Hitek.GSU.Logic.Database.Model;
 
 namespace Hitek.GSU.Logic.Interfaces
 {
@@ -20,10 +21,6 @@ namespace Hitek.GSU.Logic.Interfaces
         /// </summary>
         IDbSet<TestQuestion> TestQuestion { get; }
         
-        /// <summary>
-        /// История прохождения тестов.
-        /// </summary>
-        IDbSet<TestHistory> TestHistory { get; }
 
         /// <summary>
         /// Темы тестов.
