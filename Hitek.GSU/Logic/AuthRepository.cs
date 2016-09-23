@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Security;
 
 namespace Hitek.GSU.Logic
 {
@@ -53,11 +54,41 @@ namespace Hitek.GSU.Logic
         */
         public async Task<ApplicationUser> FindUser(string userName, string password)
         {
+            ApplicationUser user = null;
 #if DEBUG
-            ApplicationUser user = await _userManager.FindByNameAsync(userName);
+             user = await _userManager.FindByNameAsync(userName);
 
 #else
-            ApplicationUser user = await _userManager.FindAsync(userName, password);
+            var separateUsername = userName.ToLower().Split('\\');
+            if (separateUsername.Length == 2)
+            {
+                string domen = char.ToUpper((separateUsername[0])[0])+ separateUsername[0].Substring(1);
+                userName = separateUsername[1];
+                MembershipProvider membersip = Membership.Providers["ADMembershipProvider"+ domen];
+               
+                if (membersip !=null & membersip.ValidateUser(userName, password))
+                {
+
+                    user = _userManager.FindByName(userName);
+                    if (user == null)
+                    {
+                        // return SignInStatus.Failure;
+                        ApplicationUser newAccount = new ApplicationUser()
+                        {
+                            UserName = userName,
+                            Email = $"{userName}@gsu.by"
+
+
+                        };
+                        var result = await _userManager.CreateAsync(newAccount);
+                        user = _userManager.FindByName(userName);
+                    }
+                }
+            }
+            else
+            {
+                user = await _userManager.FindAsync(userName, password);
+            }
 #endif
 
             return user;

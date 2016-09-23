@@ -72,8 +72,11 @@ go
 insert into [WorkTests] (TestId,UserId,EndDate,Name,Result,StartDate) 
 SELECT i.TestId,i.AccountId,i.Date,t.Name,i.Result, '2000-08-01' from TestHistories i inner join Tests t on i.TestId=t.Id
 
-go;
  Drop table [TestHistories];
  go
+ Drop table [__MigrationHistory];
+ go
 
+ INSERT INTO [Client] ([Id], [Secret], [Name], [ApplicationType], [Active], [RefreshTokenLifeTime], [AllowedOrigin]) VALUES (N'ngAuthApp', N'IxrAjDoa2FqElO7IhrSrUJELhUckePEPVpaePlS_Xaw', N'Angular', 0, 1, 14400, N'*')
+go
 
