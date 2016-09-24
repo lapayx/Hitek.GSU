@@ -63,10 +63,10 @@ namespace Hitek.GSU.Logic
             if (separateUsername.Length == 2)
             {
                 string domen = char.ToUpper((separateUsername[0])[0])+ separateUsername[0].Substring(1);
-                userName = separateUsername[1];
+
                 MembershipProvider membersip = Membership.Providers["ADMembershipProvider"+ domen];
                
-                if (membersip !=null & membersip.ValidateUser(userName, password))
+                if (membersip !=null & membersip.ValidateUser(separateUsername[1], password))
                 {
 
                     user = _userManager.FindByName(userName);
