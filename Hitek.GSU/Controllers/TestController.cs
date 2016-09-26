@@ -55,6 +55,10 @@ namespace Hitek.GSU.Controllers
             TestFull res;
            
              res = testService.GetExistTestById(id);
+            if (res == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
             if(res.EndDate != null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);

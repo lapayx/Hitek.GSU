@@ -138,6 +138,7 @@
                     // Cache the access token in session storage.
                     $('.alert-info').hide();
                     if (!data.error) {
+                        data.role = data.role.split(",");
                         localStorage.setItem("token", JSON.stringify(data));
                         console.log(data);
                         document.location = "/";
