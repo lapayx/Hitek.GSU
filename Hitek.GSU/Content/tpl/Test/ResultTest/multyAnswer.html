@@ -1,4 +1,4 @@
-﻿<div class="col-sm-12">
+﻿<div class="col-sm-12 <% if(isAnswered && !isRight ) print('answer uncorrect bg-danger ');  if(isRight) print('answer correct bg-success'); %> ">
     <div class="radio">
         <label>
             <input type="checkbox" name="answer" value="<%- id %>" <% if(isAnswered) print('checked="checked"'); %> /> <%-

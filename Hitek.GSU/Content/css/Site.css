@@ -104,3 +104,16 @@ min-height:300px;
     border:1px solid #94a0b4;
     color:#000
 }
+
+.answer{
+    border-radius: 10px;
+    border:1px solid green;
+}
+.answer.correct {
+    border-color:green;
+}
+
+.answer.uncorrect {
+    border-color:red;
+    
+}
