@@ -76,7 +76,7 @@ namespace Hitek.GSU.Logic
                         ApplicationUser newAccount = new ApplicationUser()
                         {
                             UserName = userName,
-                            Email = $"{userName}@gsu.by"
+                            Email = $"{separateUsername[1]}@gsu.by"
 
 
                         };
