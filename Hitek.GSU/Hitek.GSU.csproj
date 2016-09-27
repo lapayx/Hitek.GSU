@@ -221,7 +221,6 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\TestSubjectController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
     <Compile Include="Logic\AuthRepository.cs" />
     <Compile Include="Logic\CustomJwtFormat.cs" />
