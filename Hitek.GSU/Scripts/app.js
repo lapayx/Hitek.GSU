@@ -56,13 +56,18 @@ GSU.cache = {};
 
 GSU.on("start", function (options) {
     
+
+   
+
     if (!localStorage.getItem("token")) {
         document.location = "/Home/Login";
     }
     var tObj = JSON.parse(localStorage.getItem("token"));
     GSU.token = "Bearer " + tObj.access_token;
      
-     
+    if (_.indexOf(tObj.role, "Teacher") > -1) {
+        $(".role-teacher").show();
+    }
 
     $("#gsu-user-name").text(tObj.userName);
     if (Backbone.history) {
@@ -73,18 +78,16 @@ GSU.on("start", function (options) {
     }
 
 
+
 });
 
 GSU.on("logout", function (options) {
 
-    if (!localStorage.getItem("token")) {
-        document.location = "/Home/Login";
-    } else {
+    if (localStorage.getItem("token")) {
         localStorage.removeItem("token");
-        document.location = "/Home/Login";
     }
 
-
+    document.location = "/Home/Login";
 
 
 });
