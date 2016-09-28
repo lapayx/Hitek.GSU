@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace Hitek.GSU.Controllers.API
 {
     [RoutePrefix("api/Test")]
-    //[Authorize]
+    [Authorize]
     public class TestController : ApiController
     {
 
@@ -37,9 +37,45 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // GET: api/Test/5
-        public TestFull Get(long id)
+        public TestInfo Get(long id)
         {
-            return testservice.GetTestById(id);
+            var res = testservice.GetTestById(id);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
+        }
+
+        [Route("Exist/{id}")]
+        public TestFull GetExistTest(long id, bool exist = false)
+        {
+
+            TestFull res;
+
+            res = testservice.GetExistTestById(id);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            if (res.EndDate != null)
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
+            return res;
+        }
+
+        [Route("Generate/{id}")]
+        public object GetGenerateTest(long id)
+        {
+            long res;
+
+            res = testservice.GenerateTest(id);
+            if (res < 0)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return new { id = res };
         }
 
         [Route("Edit/{id}")]
@@ -61,6 +97,7 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // DELETE: api/Test/5
+        [Authorize(Roles = "Admin, Teacher")]
         public void Delete(long id)
         {
             this.testservice.DeleteTestById(id);
@@ -73,11 +110,13 @@ namespace Hitek.GSU.Controllers.API
         }
 
         [Route("Edit")]
+        [Authorize(Roles = "Admin, Teacher")]
         public object PostCreateTest(CreatingTest mod)
         {
             return testservice.CreateOrEditTest(mod);
         }
         [Route("Edit")]
+        [Authorize(Roles = "Admin, Teacher")]
         public object PutChangeTest(CreatingTest mod)
         {
             return testservice.CreateOrEditTest(mod);

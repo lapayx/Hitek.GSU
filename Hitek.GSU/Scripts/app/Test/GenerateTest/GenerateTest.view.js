@@ -31,7 +31,7 @@
         startTest: function () {
           GSU.loadMask.show();
             var c = new Backbone.Model();
-            c.url = "Test/Generate/" +this.model.get("id");
+            c.url = "api/Test/Generate/" +this.model.get("id");
             //c.set("id", this.model.get("id"));
             c.on("sync", function (r, mod, xht) {
                 if (mod.id) {

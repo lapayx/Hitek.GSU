@@ -59,7 +59,8 @@
         },
         parse: function (raw) {
             this.answers.reset(raw.answers, { parse: true });
-            raw.isRight = this.answers.where({ isAnswered: true }).length == this.answers.where({ isAnswered: true, isRight: true }).length && this.answers.where({ isAnswered: true, isRight: true }).length>0;
+            raw.isRight = this.answers.where({ isRight: true }).length == this.answers.where({ isAnswered: true, isRight: true }).length;
+       
             return raw;
         }
     });

@@ -24,6 +24,8 @@ namespace Hitek.GSU.Logic.Database.Model
 
         public int CountQuestionForShow { get; set; }
 
+        public bool IsCanShowResultAnswer { get; set; }
+
         public bool IsHide { get; set; }
 
         public virtual TestSubject TestSubject { get; set; }

@@ -24,7 +24,7 @@
             <h2 class="form-signin-heading">Форма входа</h2>
             <div >
                 <div class="alert alert-danger alert-dismissable form-alert" style="display:none;">
-                    Ошибка при входе
+                    Введены неверные данные
                 </div>
                 <div class="alert alert-info form-alert " style="display:none;">
                     <img src="~/Content/image/loading_circle.gif" width="20" /> Выполняется вход
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="inputLogin">Логин входа </label>
-                <input type="text" id="inputLogin" class="form-control" placeholder="Логин" required autofocus>
+                <input type="text" id="inputLogin" class="form-control" placeholder="домен\логин" required autofocus>
             </div>
             <div class="form-group">
                 <label for="inputPassword" >Пароль</label>
@@ -138,13 +138,14 @@
                     // Cache the access token in session storage.
                     $('.alert-info').hide();
                     if (!data.error) {
+                        data.role = data.role.split(",");
                         localStorage.setItem("token", JSON.stringify(data));
                         console.log(data);
                         document.location = "/";
                     } else {
                         $('.alert-danger').show();
                     }
-                }).fail();
+                }).fail(function () { $('.alert-info').hide();$('.alert-danger').show(); });
 
                 return false;
 

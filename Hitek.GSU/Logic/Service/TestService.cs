@@ -106,7 +106,8 @@ namespace Hitek.GSU.Logic.Service
                     UserId = accountService.GetCurrentUserId(),
                     TestId = testId,
                     StartDate = DateTime.UtcNow,
-                    Name = t.Name
+                    Name = t.Name,
+                    IsCanShowResultAnswer = t.IsCanShowResultAnswer
                 };
 
                 workTestRepository.WorkTest.Add(test);
@@ -276,7 +277,7 @@ namespace Hitek.GSU.Logic.Service
                                 answer.IsHide = true;
                             }
                             answer.IsRight = a.IsRight;
-                            answer.Text = a.Content;
+                            answer.Text = a.Text;
                             answer.TestQuestionId = question.Id;
                             testRepository.SaveChanges();
                         }
@@ -300,7 +301,7 @@ namespace Hitek.GSU.Logic.Service
                 res.Questions = this.testRepository.TestQuestion.Where(x => x.TestId == res.Id && !x.IsHide).Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion { Id = x.Id, Title = x.Name, Content = x.Text }).ToList();
                 foreach (var q in res.Questions)
                 {
-                    q.Answers = this.testRepository.TestAnswer.Where(x => x.TestQuestionId == q.Id && !x.IsHide).Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer { Id = x.Id, Content = x.Text, IsRight = x.IsRight }).ToList();
+                    q.Answers = this.testRepository.TestAnswer.Where(x => x.TestQuestionId == q.Id && !x.IsHide).Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer { Id = x.Id, Text = x.Text, IsRight = x.IsRight }).ToList();
                 }
 
             }
