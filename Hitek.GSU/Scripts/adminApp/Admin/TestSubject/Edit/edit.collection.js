@@ -5,7 +5,7 @@
 
     Edit.TreeCollection = Backbone.Collection.extend({
         model: Edit.TreeModel,
-        url: "TestSubject/"
+        url: "api/TestSubject/"
     });
 
 });

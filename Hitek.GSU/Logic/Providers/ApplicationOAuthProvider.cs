@@ -32,31 +32,31 @@ namespace Hitek.GSU.Logic.Providers
 
         public ApplicationOAuthProvider()
         {
-           //this._repoAuthRepository = new AuthRepository();
+            //this._repoAuthRepository = new AuthRepository();
 
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-           /* var userManager = context.OwinContext.GetUserManager<AppUserManager>();
+            /* var userManager = context.OwinContext.GetUserManager<AppUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
-            if (user == null)
-            {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-                return;
-            }
+             if (user == null)
+             {
+                 context.SetError("invalid_grant", "The user name or password is incorrect.");
+                 return;
+             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+                OAuthDefaults.AuthenticationType);
+             ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                 CookieAuthenticationDefaults.AuthenticationType);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);*/
+             AuthenticationProperties properties = CreateProperties(user.UserName);
+             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+             context.Validated(ticket);
+             context.Request.Context.Authentication.SignIn(cookiesIdentity);*/
 
 
             var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
@@ -68,11 +68,11 @@ namespace Hitek.GSU.Logic.Providers
 
             ApplicationUser user = await _repoAuthRepository.FindUser(context.UserName, context.Password);
 
-                if (user == null)
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
+            if (user == null)
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
 
             /*
         var identity = new ClaimsIdentity(context.Options.AuthenticationType);
@@ -85,20 +85,18 @@ namespace Hitek.GSU.Logic.Providers
             ClaimsIdentity identity = await user.GenerateUserIdentityAsync(_userManager, "JWT");
 
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+            // identity.AddClaim(new Claim("sub", context.UserName));
+            // identity.AddClaim(new Claim("role", "user"));
 
-            var props = new AuthenticationProperties(new Dictionary<string, string>
-                {
-                    {
-                        "as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId
-                    },
-                    {
-                        "userName", context.UserName
-                    }
-                });
-
-            var ticket = new AuthenticationTicket(identity, props);
+            var props = new Dictionary<string, string>();
+            props.Add("as:client_id", (context.ClientId == null) ? string.Empty : context.ClientId);
+            props.Add("userName", context.UserName);
+            props.Add("role", String.Join(",", identity.Claims
+                       .Where(c => c.Type == ClaimTypes.Role)
+                       .Select(c => c.Value)
+                       .ToArray()));
+   
+            var ticket = new AuthenticationTicket(identity, new AuthenticationProperties(props));
             context.Validated(ticket);
 
         }
@@ -113,7 +111,7 @@ namespace Hitek.GSU.Logic.Providers
             return Task.FromResult<object>(null);
         }
 
-    
+
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
@@ -136,9 +134,9 @@ namespace Hitek.GSU.Logic.Providers
                 return Task.FromResult<object>(null);
             }
 
-            
-                client = _repoAuthRepository.FindClient(context.ClientId);
-            
+
+            client = _repoAuthRepository.FindClient(context.ClientId);
+
 
             if (client == null)
             {

@@ -2,7 +2,7 @@
 
 
     GenerateTest.model = Backbone.Model.extend({
-        urlRoot: "Test/",
+        urlRoot: "api/Test/",
         idAttribute: "id",
         defaults: {
             id: 0,

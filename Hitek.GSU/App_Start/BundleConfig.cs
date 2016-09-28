@@ -47,6 +47,11 @@ namespace Hitek.GSU
                 .IncludeDirectory("~/Scripts/app/", "*.collection.js", true)
                 .IncludeDirectory("~/Scripts/app/", "*.view.js", true)
                 .IncludeDirectory("~/Scripts/app/", "*.route.js", true)
+
+                .IncludeDirectory("~/Scripts/adminApp/", "*.model.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.collection.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.view.js", true)
+                .IncludeDirectory("~/Scripts/adminApp/", "*.route.js", true)
                 /*
                 .IncludeDirectory("~/Scripts/app/Action/", "*.js", true)*/
                 //.IncludeDirectory("~/Scripts/app/modul/", "*.js", true)

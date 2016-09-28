@@ -40,10 +40,14 @@ namespace Hitek.GSU.Controllers.API
         }
         [Authorize(Roles = "Admin, Teacher")]
         // PUT: api/TestSubject/5
-        public void Put(long id, TestSubject value)
+        public void Put(long id, TestSubjectForAdd value)
         {
-            this.subjectService.EditTestSubject(id, value);
-            
+            TestSubject e = new TestSubject() { Name = value.Name, ParentId = (value.IsParent == false) ? value.ParentId : null };
+            bool res = this.subjectService.EditTestSubject(id, e);
+
+            if (!res)
+                NotFound(); 
+
         }
 
         [Authorize(Roles = "Admin, Teacher")]
