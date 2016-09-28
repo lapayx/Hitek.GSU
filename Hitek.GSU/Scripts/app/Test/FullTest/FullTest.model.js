@@ -6,7 +6,7 @@
             this.questions = new FullTest.QuestionCollection();
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "Test/Exist/",
+        urlRoot: "api/Test/Exist/",
         defaults: {
             id: null,
             name: "Заголовок",

@@ -34,7 +34,7 @@
             }
             else
             {
-                return 
+                return FullTest.MaltyAnswerView;
             }
         },
         events: {
@@ -177,13 +177,10 @@
         },
         onComliteTest: function () {
             var c = new Backbone.Model();
-            c.url = "Test/Check";
+            c.url = "api/Test/Check";
             c.set("idTest", this.model.get("id"));
             c.on("sync", function (r, mod, xht) {
-                if (mod.id) {
-                    GSU.trigger("Test:showResult", mod.id);
-
-                }
+                GSU.trigger("Test:showResultAll");
             });
             c.save();
 

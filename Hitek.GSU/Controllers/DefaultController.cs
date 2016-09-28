@@ -61,7 +61,7 @@ namespace Hitek.GSU.Controllers
                             continue;
                         }
                         ta = new CreatingTestAnswer();
-                        ta.Content = line.Substring(1);
+                        ta.Text = line.Substring(1);
                         if (line[0] == '=') {
                             ta.IsRight = true;
                         }
