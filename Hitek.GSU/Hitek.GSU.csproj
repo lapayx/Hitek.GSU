@@ -215,12 +215,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Admin\UserController.cs" />
+    <Compile Include="Controllers\API\TestAnswerController.cs" />
+    <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
     <Compile Include="Controllers\API\WorkTestAnswerController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Extention\JsonCamelCaseResult.cs" />
     <Compile Include="Logic\AuthRepository.cs" />
     <Compile Include="Logic\CustomJwtFormat.cs" />
@@ -281,6 +282,7 @@
     <None Include="package.json" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="App_Data\SQL v.0.3.sql" />
     <Content Include="Content\tpl\Test\ResultTest\resultTestTemplate.html" />
     <Content Include="Content\tpl\Test\ResultTest\multyAnswer.html" />
     <Content Include="Content\tpl\Test\ResultTest\question.html" />
@@ -290,6 +292,7 @@
     <Content Include="Content\tpl\Test\FullTest\multyAnswer.html" />
     <Content Include="Content\tpl\Test\GenerateTest\main.html" />
     <Content Include="Scripts\app\Test\GenerateTest\GenerateTest.view.js" />
+    <Content Include="settings.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SQL v.0.2.sql" />

@@ -5,7 +5,8 @@
 
     Edit.AnswerCollection = Backbone.Collection.extend({
         model: Edit.AnswerModel,
-        //url: "api/TestSubject/",
+        url: "api/TestAnswer/",
+        urlRoot: "api/TestAnswer/",
         getDataForJSON: function () {
             var res = [];
             _.each(this.models, function (c, num, collection) {

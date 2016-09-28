@@ -8,22 +8,34 @@
 
             Backbone.Model.apply(this, arguments);
         },
-        urlRoot: "Test/Edit/",
+        urlRoot: "api/Test/Edit/",
+        idAttribute :"id",
         defaults: function(){
             return {
                 //   isParent: false,
                 title: "Новый тест",
                 subjectId: 0,
-                countQuestion: 10
+                countQuestion: 10,
+                isCanShowResultAnswer:false
             }
         },
         parse: function (raw) {
+            var newRaw = { 
+                countQuestion: raw.countQuestion,
+                id: raw.id,
+                subjectId: raw.subjectId,
+                title: raw.title,
+                isCanShowResultAnswer: raw.isCanShowResultAnswer
+
+
+            };
             // raw.name = raw.Name;
             // raw.id = raw.Id;
+
             if (raw && raw.questions) {
                 this.questions.reset(raw.questions, {parse: true});
             }
-            return raw;
+            return newRaw;
         },
         getDataForJSON: function () {
             var res = new Backbone.Model();
@@ -45,6 +57,7 @@
             Backbone.Model.apply(this, arguments);
         },
         //urlRoot: "api/TestSubject/",
+        idAttribute: "id",
         defaults: {
             isRemoved: false,
             title: "",
@@ -52,11 +65,14 @@
 
         },
         parse: function (raw) {
-            // raw.name = raw.Name;
-            // raw.id = raw.Id;
+            var n = {};
+            n.title = raw.title;
+             n.id = raw.id;
+             n.content = raw.content;
+
             this.answers.reset(raw.answers, {parse: true});
 
-            return raw;
+            return n;
         },
         getDataForJSON: function () {
             var res = new Backbone.Model();
@@ -72,10 +88,12 @@
 
     Edit.AnswerModel = Backbone.Model.extend({
 
-        // urlRoot: "api/TestSubject/",
+        urlRoot: "api/TestAnswer/",
+        url: "api/TestAnswer/",
+        idAttribute: "id",
         defaults: {
             isRight: false,
-            content: "",
+            text: "",
             isRemoved: false
         }
 
