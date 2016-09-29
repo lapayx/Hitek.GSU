@@ -89,12 +89,13 @@
     Edit.AnswerModel = Backbone.Model.extend({
 
         urlRoot: "api/TestAnswer/",
-        url: "api/TestAnswer/",
+        //url: "api/TestAnswer/",
         idAttribute: "id",
         defaults: {
             isRight: false,
             text: "",
-            isRemoved: false
+            isRemoved: false,
+            testQuestionId: -1
         }
 
     })
