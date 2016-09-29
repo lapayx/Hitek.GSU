@@ -18,7 +18,7 @@
 
 
         changeContent: function (event) {
-            this.model.set("content", event.target.value);
+            this.model.set("text", event.target.value);
         },
 
         toggleIsRight: function (e) {
@@ -36,11 +36,12 @@
         },
 
         deleteAnswer: function () {
-            if (!this.model.id) {
+            if (this.model.isNew()) {
                 this.model.destroy();
             } else {
                 this.model.set("isRemoved", true);
-                this.render();
+                this.model.collection.trigger("update");
+               // this.render();
             }
 
         }
@@ -176,10 +177,14 @@
 
 
             this.model.questions.forEach(function (item, index, collection) {
-                item.answers.fetch({ remove: false});
-                /*item.answers.forEach(function (it) {
-                    console.log(it);
-                })*/
+                item.answers.forEach(function (it) {
+                    if (it.isNew() || it.changedAttributes()) {
+                        if (it.isNew()) {
+                            it.set("testQuestionId", item.id);
+                        }
+                        it.save();
+                    }
+                })
             })
 
             return;

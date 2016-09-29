@@ -34,11 +34,13 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // POST api/<controller>
-        public void Post(TestAnswer value)
+        public TestAnswer Post(TestAnswer value)
         {
-
+            testRep.TestAnswer.Attach(value);
             testRep.TestAnswer.Add(value);
+
             testRep.SaveChanges();
+            return value;
         }
 
         // PUT api/<controller>/5
