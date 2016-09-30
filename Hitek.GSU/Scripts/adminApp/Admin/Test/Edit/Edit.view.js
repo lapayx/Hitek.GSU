@@ -25,14 +25,15 @@
             e.preventDefault();
             var oldState = this.model.get("isRight");
             this.model.set("isRight", !oldState);
-            var btn = $(e.target);
+            /*var btn = $(e.target);
             btn.toggleClass("btn-success");
             btn.toggleClass("btn-danger");
             if (!oldState) {
                 btn.text("Верный");
             } else {
                 btn.text("Неверный");
-            }
+            }*/
+            this.trigger("answers:rerender");
         },
 
         deleteAnswer: function () {
@@ -40,8 +41,7 @@
                 this.model.destroy();
             } else {
                 this.model.set("isRemoved", true);
-                this.model.collection.trigger("update");
-               // this.render();
+                this.trigger("answers:rerender")
             }
 
         }
@@ -60,6 +60,9 @@
             "click .js-test-edit-question-delete": "deleteQuestion"
 
 
+        },
+        childEvents: {
+            'answers:rerender': "rerenderChild"
         },
         modelEvents: {
             //  "sync": "onSyncModel"
@@ -82,18 +85,29 @@
         },
 
         changeContent: function (event) {
-            this.model.set("content", event.target.value);
+            this.model.set("text", event.target.value);
         },
 
         deleteQuestion: function () {
 
-            if (!this.model.id) {
+  /*          if (!this.model.id) {
                 this.model.destroy();
             } else {
                 this.model.set("isRemoved", true);
                 this.render();
             }
+*/
+            if (this.model.isNew()) {
+                this.model.destroy();
+            } else {
+                this.model.set("isRemoved", true);
+                this.trigger("questions:rerender")
+            }
 
+        },
+
+        rerenderChild: function () {
+            this.render();
         }
 
     });
@@ -114,6 +128,9 @@
             "click .js-test-add-question": "addQuestion"
 
         },
+        childEvents: {
+            'questions:rerender': "rerenderChild"
+        },
         modelEvents: {
             "sync": "onSyncModel"
         },
@@ -121,7 +138,9 @@
         collectionEvents: {
             "sync": "onSyncCollection"
         },
-
+        rerenderChild: function () {
+            this.render();
+        },
         initialize: function (paramId) {
             GSU.loadMask.show();
             if (paramId.id > 0) {
@@ -175,14 +194,36 @@
 
 
 
-
+            var selfModel = this.model;
             this.model.questions.forEach(function (item, index, collection) {
+                if (item.isNew() || item.changedAttributes()) {
+
+                    if (item.isNew()) {
+                        item.set("testId", selfModel.id);
+                    }
+
+                    if (item.get("isRemoved")) {
+                        item.answers.forEach(function (it) {
+                            it.destroy()
+                        });
+                        item.destroy();
+                        return;
+                    } 
+
+                    item.save({ wait: true });
+                   
+                }
+
                 item.answers.forEach(function (it) {
                     if (it.isNew() || it.changedAttributes()) {
                         if (it.isNew()) {
                             it.set("testQuestionId", item.id);
                         }
-                        it.save();
+                        if (it.get("isRemoved")) {
+                            it.destroy();
+                        } else {
+                            it.save();
+                        }
                     }
                 })
             })

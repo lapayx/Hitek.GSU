@@ -23,8 +23,6 @@ namespace Hitek.GSU.Logic.Database.Model
 
         public virtual TestQuestion TestQuestion { get; set; } 
 
-        public virtual ICollection<WorkTestAnswer> WorkTestAnswers { get; set; }
-
     }
 
    
