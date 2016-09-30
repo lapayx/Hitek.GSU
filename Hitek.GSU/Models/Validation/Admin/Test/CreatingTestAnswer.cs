@@ -12,6 +12,7 @@ namespace Hitek.GSU.Models.Validation.Admin.Test
         public string Text { get; set; }
 
         public bool IsRight { get; set; }
+        public long TestQuestionId { get; set; }
 
         public bool IsRemoved { get; set; }
     }

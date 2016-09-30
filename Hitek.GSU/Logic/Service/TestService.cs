@@ -255,7 +255,7 @@ namespace Hitek.GSU.Logic.Service
                     }
                     question.Name = q.Title;
                     question.TestId = workTest.Id;
-                    question.Text = q.Content;
+                    question.Text = q.Text;
 
                     testRepository.SaveChanges();
 
@@ -294,14 +294,33 @@ namespace Hitek.GSU.Logic.Service
             Models.Validation.Admin.Test.CreatingTest res;
             res = this.testRepository.Test
                     .Where(x => x.Id == id)
-                    .Select(x => new Models.Validation.Admin.Test.CreatingTest { Id = x.Id, Title = x.Name, SubjectId = (long)x.TestSubjectId, CountQuestion = x.CountQuestionForShow })
+                    .Select(x => new Models.Validation.Admin.Test.CreatingTest {
+                        Id = x.Id,
+                        Title = x.Name,
+                        SubjectId = (long)x.TestSubjectId,
+                        CountQuestion = x.CountQuestionForShow
+                    })
                     .FirstOrDefault();
             if (res != null)
             {
-                res.Questions = this.testRepository.TestQuestion.Where(x => x.TestId == res.Id && !x.IsHide).Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion { Id = x.Id, Title = x.Name, Content = x.Text }).ToList();
+                res.Questions = this.testRepository.TestQuestion
+                    .Where(x => x.TestId == res.Id && !x.IsHide)
+                    .Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion {
+                        Id = x.Id,
+                        Title = x.Name,
+                        Text = x.Text,
+                        TestId = x.TestId
+                    }).ToList();
                 foreach (var q in res.Questions)
                 {
-                    q.Answers = this.testRepository.TestAnswer.Where(x => x.TestQuestionId == q.Id && !x.IsHide).Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer { Id = x.Id, Text = x.Text, IsRight = x.IsRight }).ToList();
+                    q.Answers = this.testRepository.TestAnswer
+                        .Where(x => x.TestQuestionId == q.Id && !x.IsHide)
+                        .Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer {
+                            Id = x.Id,
+                            Text = x.Text,
+                            IsRight = x.IsRight,
+                            TestQuestionId = x.TestQuestionId
+                        }).ToList();
                 }
 
             }

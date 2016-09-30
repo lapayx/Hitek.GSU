@@ -18,6 +18,7 @@
 
     Edit.QuestionCollection = Backbone.Collection.extend({
         model: Edit.QuestionModel,
+        url: "api/TestQuestion/",
         //url: "api/TestSubject/",
         getDataForJSON: function () {
             var res = [];

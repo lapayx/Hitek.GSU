@@ -218,6 +218,7 @@
     <Compile Include="Controllers\API\TestAnswerController.cs" />
     <Compile Include="Controllers\API\TestController.cs" />
     <Compile Include="Controllers\API\TestHistoryController.cs" />
+    <Compile Include="Controllers\API\TestQuestionController.cs" />
     <Compile Include="Controllers\API\TestSubjectController.cs" />
     <Compile Include="Controllers\API\WorkTestAnswerController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />

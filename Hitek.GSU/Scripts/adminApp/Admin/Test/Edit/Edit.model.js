@@ -56,20 +56,21 @@
 
             Backbone.Model.apply(this, arguments);
         },
-        //urlRoot: "api/TestSubject/",
+        urlRoot: "api/TestQuestion/",
         idAttribute: "id",
         defaults: {
             isRemoved: false,
             title: "",
-            content: ""
+            text: "",
+            testId: 0
 
         },
         parse: function (raw) {
             var n = {};
             n.title = raw.title;
              n.id = raw.id;
-             n.content = raw.content;
-
+             n.text = raw.text;
+             n.testId = raw.testId;
             this.answers.reset(raw.answers, {parse: true});
 
             return n;
@@ -96,6 +97,9 @@
             text: "",
             isRemoved: false,
             testQuestionId: -1
+        },
+        onDestroy: function () {
+            console.log(arguments);
         }
 
     })
