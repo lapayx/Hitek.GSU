@@ -60,18 +60,25 @@
         idAttribute: "id",
         defaults: {
             isRemoved: false,
-            title: "",
+            name: "",
             text: "",
             testId: 0
 
         },
         parse: function (raw) {
-            var n = {};
-            n.title = raw.title;
-             n.id = raw.id;
-             n.text = raw.text;
-             n.testId = raw.testId;
-            this.answers.reset(raw.answers, {parse: true});
+           var  n = {};
+            if (raw) {
+                
+                n.name = raw.name;
+                n.id = raw.id;
+                n.text = raw.text;
+                n.testId = raw.testId;
+                this.answers.reset(raw.answers, { parse: true });
+               
+            }
+            if (this.previousAttributes() && this.previousAttributes().answers) {
+                this.answers.reset(this.previousAttributes().answers, { parse: true });
+            }
 
             return n;
         },

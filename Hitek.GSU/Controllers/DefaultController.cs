@@ -54,7 +54,7 @@ namespace Hitek.GSU.Controllers
                             }
                             tq = new CreatingTestQuestion();
 
-                            tq.Title = line.Substring(line.IndexOf("::") + 2, line.IndexOf("::",3) + 2);
+                            tq.Name = line.Substring(line.IndexOf("::") + 2, line.IndexOf("::",3) + 2);
                             tq.Text = line.Substring(line.IndexOf("::",3)+2);
                             tq.Answers = new List<CreatingTestAnswer>();
                             tq.IsRemoved = false;

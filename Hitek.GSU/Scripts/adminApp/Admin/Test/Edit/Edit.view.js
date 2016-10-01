@@ -1,11 +1,11 @@
 ﻿GSU.module("Admin.Test.Edit", function (Edit, GSU, Backbone, Marionette, $, _) {
-"use strict";
+    "use strict";
 
     Edit.AnswerView = Backbone.Marionette.ItemView.extend({
         template: "Admin/Test/Edit/answer",
 
         events: {
-            "keyup .js-test-edit-answer-content": "changeContent",
+            "change .js-test-edit-answer-content": "changeContent",
             "click .js-test-edit-answer-isRight": "toggleIsRight",
             "click .js-test-edit-answer-delete": "deleteAnswer",
 
@@ -25,23 +25,24 @@
             e.preventDefault();
             var oldState = this.model.get("isRight");
             this.model.set("isRight", !oldState);
-            /*var btn = $(e.target);
+            var btn = $(e.target);
             btn.toggleClass("btn-success");
             btn.toggleClass("btn-danger");
             if (!oldState) {
                 btn.text("Верный");
             } else {
                 btn.text("Неверный");
-            }*/
-            this.trigger("answers:rerender");
+            }
+
         },
 
         deleteAnswer: function () {
+            event.preventDefault()
             if (this.model.isNew()) {
                 this.model.destroy();
             } else {
                 this.model.set("isRemoved", true);
-                this.trigger("answers:rerender")
+                this.$el.hide();
             }
 
         }
@@ -55,14 +56,14 @@
         childView: Edit.AnswerView,
         events: {
             "click .js-test-add-answer": "addAnswer",
-            "keyup .js-test-edit-question-title": "changeTitle",
-            "keyup .js-test-edit-question-content": "changeContent",
+            "change .js-test-edit-question-title": "changeTitle",
+            "change .js-test-edit-question-content": "changeContent",
             "click .js-test-edit-question-delete": "deleteQuestion"
 
 
         },
         childEvents: {
-            'answers:rerender': "rerenderChild"
+            
         },
         modelEvents: {
             //  "sync": "onSyncModel"
@@ -81,7 +82,7 @@
             this.collection.add({});
         },
         changeTitle: function (event) {
-            this.model.set("title", event.target.value);
+            this.model.set("name", event.target.value);
         },
 
         changeContent: function (event) {
@@ -90,24 +91,20 @@
 
         deleteQuestion: function () {
 
-  /*          if (!this.model.id) {
-                this.model.destroy();
-            } else {
-                this.model.set("isRemoved", true);
-                this.render();
-            }
-*/
+            /*          if (!this.model.id) {
+                          this.model.destroy();
+                      } else {
+                          this.model.set("isRemoved", true);
+                          this.render();
+                      }
+          */
             if (this.model.isNew()) {
                 this.model.destroy();
             } else {
                 this.model.set("isRemoved", true);
-                this.trigger("questions:rerender")
+                this.$el.hide();
             }
 
-        },
-
-        rerenderChild: function () {
-            this.render();
         }
 
     });
@@ -138,14 +135,11 @@
         collectionEvents: {
             "sync": "onSyncCollection"
         },
-        rerenderChild: function () {
-            this.render();
-        },
         initialize: function (paramId) {
             GSU.loadMask.show();
             if (paramId.id > 0) {
 
-                this.model = new Edit.TestModel({id: paramId.id});
+                this.model = new Edit.TestModel({ id: paramId.id });
                 this.model.fetch();
             }
             else {
@@ -192,10 +186,30 @@
         onSubmit: function (event) {
             event.preventDefault()
 
+            var updateAnswerCallback = function (item) {
+                for (var i = 0; i < item.answers.models.length; i++)
+                {
+                    var it = item.answers.models[i];
 
+                    if (it.isNew() || it.changedAttributes()) {
+                        if (it.isNew()) {
+                            it.set("testQuestionId", item.id);
+                        }
+                        if (it.get("isRemoved")) {
+                            it.destroy();
+                        } else {
+                            it.save({});
+                        }
+                    }
+                }
+
+            }
 
             var selfModel = this.model;
-            this.model.questions.forEach(function (item, index, collection) {
+
+            for (var i = 0; i < this.model.questions.models.length; i++) {
+                var item = this.model.questions.models[i];
+
                 if (item.isNew() || item.changedAttributes()) {
 
                     if (item.isNew()) {
@@ -207,31 +221,22 @@
                             it.destroy()
                         });
                         item.destroy();
-                        return;
-                    } 
+                        continue
 
-                    item.save({ wait: true });
-                   
-                }
-
-                item.answers.forEach(function (it) {
-                    if (it.isNew() || it.changedAttributes()) {
-                        if (it.isNew()) {
-                            it.set("testQuestionId", item.id);
-                        }
-                        if (it.get("isRemoved")) {
-                            it.destroy();
-                        } else {
-                            it.save();
-                        }
                     }
-                })
-            })
+                    else {
+                        item.set("answers", item.answers.toJSON())
+                        item.save({},{ success: updateAnswerCallback});
+                    }
+                } else {
+                    updateAnswerCallback(item);
+                }
+            }
 
             return;
             //console.log(this.model.getDataForJSON().toJSON());
             var c = this.model.getDataForJSON();
-            
+
             c.url = "api/Test/Edit";
             //c.set("idTest", this.model.get("id"));
             //c.set("answers", this.model.answers.toJSON());
