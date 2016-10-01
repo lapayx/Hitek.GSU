@@ -13,7 +13,7 @@
     </label>
 
     <div class="clearfix"></div>
-    <button class="btn btn-default <% if(isRight) { print('btn-success');} else { print('btn-danger');} %> js-test-edit-answer-isRight">
+    <button type="button"  class="btn btn-default <% if(isRight) { print('btn-success');} else { print('btn-danger');} %> js-test-edit-answer-isRight">
         <% if(isRight) { print('Верный');} else { print(' Неверный');} %>
     </button>
 </div>
@@ -23,6 +23,6 @@
     </label>
 
     <div class="clearfix"></div>
-    <button class="btn btn-default btn-danger js-test-edit-answer-delete">Удалить</button>
+    <button type="button" class="btn btn-default btn-danger js-test-edit-answer-delete">Удалить</button>
 </div>
 </div>

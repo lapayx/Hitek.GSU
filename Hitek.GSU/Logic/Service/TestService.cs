@@ -253,7 +253,7 @@ namespace Hitek.GSU.Logic.Service
                     {
                         question.IsHide = true;
                     }
-                    question.Name = q.Title;
+                    question.Name = q.Name;
                     question.TestId = workTest.Id;
                     question.Text = q.Text;
 
@@ -307,7 +307,7 @@ namespace Hitek.GSU.Logic.Service
                     .Where(x => x.TestId == res.Id && !x.IsHide)
                     .Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion {
                         Id = x.Id,
-                        Title = x.Name,
+                        Name = x.Name,
                         Text = x.Text,
                         TestId = x.TestId
                     }).ToList();
