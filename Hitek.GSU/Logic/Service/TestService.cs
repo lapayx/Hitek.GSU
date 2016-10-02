@@ -167,7 +167,8 @@ namespace Hitek.GSU.Logic.Service
 
             foreach (var x in t)
             {
-                right += (x.isAnswered < x.isRight) ? (float)x.isAnswered / x.isRight : (float)x.isRight / x.isAnswered;
+                if (x.isRight>0)
+                    right += (x.isAnswered < x.isRight) ? (float)x.isAnswered / x.isRight : (float)x.isRight / x.isAnswered;
 
             }
 
@@ -228,6 +229,7 @@ namespace Hitek.GSU.Logic.Service
             workTest.Name = raw.Title;
             workTest.CountQuestionForShow = raw.CountQuestion;
             workTest.TestSubjectId = raw.SubjectId;
+            workTest.IsCanShowResultAnswer = raw.IsCanShowResultAnswer;
             if (raw.Id == null)
             {
                 this.testRepository.Test.Attach(workTest);
@@ -253,7 +255,8 @@ namespace Hitek.GSU.Logic.Service
                         Id = x.Id,
                         Title = x.Name,
                         SubjectId = (long)x.TestSubjectId,
-                        CountQuestion = x.CountQuestionForShow
+                        CountQuestion = x.CountQuestionForShow,
+                        IsCanShowResultAnswer = x.IsCanShowResultAnswer
                     })
                     .FirstOrDefault();
             if (res != null)

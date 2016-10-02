@@ -13,6 +13,8 @@ namespace Hitek.GSU.Models.Validation.Admin.Test
 
         public int CountQuestion { get; set; }
 
+        public bool IsCanShowResultAnswer { get; set; }
+
         public ICollection<CreatingTestQuestion> Questions { get; set; }
     }
 }

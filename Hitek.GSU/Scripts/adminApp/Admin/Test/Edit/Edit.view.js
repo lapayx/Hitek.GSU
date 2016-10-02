@@ -122,6 +122,7 @@
             "keyup #test-edit-title": "changeTitle",
             "change #test-edit-subjectId": "changeSubjectId",
             "change #СountQuestion": "changeСountQuestion",
+            "change #isCanShowResultAnswer": "changeIsCanShowResultAnswer",
             "click .js-test-add-question": "addQuestion"
 
         },
@@ -182,6 +183,9 @@
         changeСountQuestion: function (event) {
             this.model.set("countQuestion", event.target.value);
 
+        },
+        changeIsCanShowResultAnswer: function () {
+            this.model.set("isCanShowResultAnswer", event.target.checked);
         },
         onSubmit: function (event) {
             event.preventDefault()

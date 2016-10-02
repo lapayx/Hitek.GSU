@@ -25,7 +25,7 @@
             var a =  _.clone(this.attributes);
 
             // Filter the data to send to the server
-            a.questions = null;
+            a.questions=null;
 
             //options.data = JSON.stringify(attrs);
 
@@ -81,22 +81,31 @@
             testId: 0
 
         },
+        save: function (attrs, options) {
+
+            var o = options || {};
+            var a = _.clone(this.attributes);
+
+            // Filter the data to send to the server
+            a.answers = null;
+
+            //options.data = JSON.stringify(attrs);
+
+            // Proxy the call to the original save function
+            return Backbone.Model.prototype.save.call(this, a, o);
+        },
         parse: function (raw) {
-           var  n = {};
+      
             if (raw) {
                 
-                n.name = raw.name;
-                n.id = raw.id;
-                n.text = raw.text;
-                n.testId = raw.testId;
                 this.answers.reset(raw.answers, { parse: true });
-               
+                delete raw.answers;
             }
             if (this.previousAttributes() && this.previousAttributes().answers) {
                 this.answers.reset(this.previousAttributes().answers, { parse: true });
             }
 
-            return n;
+            return raw
         },
         getDataForJSON: function () {
             var res = new Backbone.Model();
