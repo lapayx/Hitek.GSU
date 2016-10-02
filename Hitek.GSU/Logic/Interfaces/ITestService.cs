@@ -26,7 +26,7 @@ namespace Hitek.GSU.Logic.Interfaces
 
         object CheckTest(Hitek.GSU.Models.Validation.Test.TestForCheack raw);
 
-        object CreateOrEditTest(Hitek.GSU.Models.Validation.Admin.Test.CreatingTest raw);
+        Hitek.GSU.Models.Validation.Admin.Test.CreatingTest CreateOrEditTest(Hitek.GSU.Models.Validation.Admin.Test.CreatingTest raw);
 
         
 

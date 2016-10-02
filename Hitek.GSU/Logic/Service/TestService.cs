@@ -27,16 +27,17 @@ namespace Hitek.GSU.Logic.Service
         {
             var test = testRepository.Test
                 .Where(x => x.Id == id && !x.IsHide)
-                
+
                 .FirstOrDefault();
             if (test == null)
                 return null;
-            var res =  new TestInfo() {
-                    Id = test.Id,
-                    Name = test.Name
-                                      
-                };
-            if(test.TestSubject != null)
+            var res = new TestInfo()
+            {
+                Id = test.Id,
+                Name = test.Name
+
+            };
+            if (test.TestSubject != null)
             {
                 res.TestSubjectId = (long)test.TestSubjectId;
                 res.TestSubjectName = test.TestSubject.Name;
@@ -44,15 +45,15 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-     
+
 
         public TestFull GetExistTestById(long id, bool withRightAnswer = false)
         {
             long testId = id;
-          
+
 
             TestFull res = new TestFull();
-            var t = workTestRepository.WorkTest.FirstOrDefault(x => x.Id == testId );
+            var t = workTestRepository.WorkTest.FirstOrDefault(x => x.Id == testId);
 
             if (t != null)
             {
@@ -71,9 +72,9 @@ namespace Hitek.GSU.Logic.Service
                         Id = q.Id,
                         Name = q.Name,
                         Text = q.Text,
-                        IsSingleAnswer = q.WorkTestAnswers.Where(x=>x.IsRight).Count() == 1 ,
+                        IsSingleAnswer = q.WorkTestAnswers.Where(x => x.IsRight).Count() == 1,
                         Answers = new List<TestAnswer>()
-                        
+
                     };
 
                     foreach (var a in q.WorkTestAnswers)
@@ -83,7 +84,7 @@ namespace Hitek.GSU.Logic.Service
                             Id = a.Id,
                             Text = a.Text,
                             IsAnswered = a.IsAnswered,
-                            IsRight = withRightAnswer ? a.IsRight: false
+                            IsRight = withRightAnswer ? a.IsRight : false
 
                         });
                     }
@@ -94,7 +95,8 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-        public long GenerateTest(long testId) {
+        public long GenerateTest(long testId)
+        {
 
             DB.WorkTest test = null;
             var t = testRepository.Test.FirstOrDefault(x => x.Id == testId);
@@ -144,8 +146,8 @@ namespace Hitek.GSU.Logic.Service
                 }
 
             }
-            if(test != null)
-            return test.Id;
+            if (test != null)
+                return test.Id;
             return -1;
         }
 
@@ -178,7 +180,7 @@ namespace Hitek.GSU.Logic.Service
             return new object();
         }
 
-       
+
 
         public ICollection<TestInfo> GetAllTest()
         {
@@ -206,7 +208,7 @@ namespace Hitek.GSU.Logic.Service
         }
 
 
-        public object CreateOrEditTest(Models.Validation.Admin.Test.CreatingTest raw)
+        public Models.Validation.Admin.Test.CreatingTest CreateOrEditTest(Models.Validation.Admin.Test.CreatingTest raw)
         {
             Database.Model.Test workTest;
             if (raw.Id != null)
@@ -216,75 +218,27 @@ namespace Hitek.GSU.Logic.Service
             else
             {
                 workTest = new Database.Model.Test();
-                workTest.AutorId = 0;
+                workTest.AutorId = accountService.GetCurrentUserId();
                 workTest.CountQuestionForShow = 10;
             }
 
             if (workTest == null)
-                return false;
-            else
+                return null;
+
+            workTest.Name = raw.Title;
+            workTest.CountQuestionForShow = raw.CountQuestion;
+            workTest.TestSubjectId = raw.SubjectId;
+            if (raw.Id == null)
             {
-                workTest.Name = raw.Title;
-                workTest.CountQuestionForShow = raw.CountQuestion;
-                workTest.TestSubjectId = raw.SubjectId;
-                if (raw.Id == null)
-                    this.testRepository.Test.Add(workTest);
-
-                this.testRepository.SaveChanges();
-
+                this.testRepository.Test.Attach(workTest);
+                this.testRepository.Test.Add(workTest);
             }
-            Database.Model.TestQuestion question;
-            Database.Model.TestAnswer answer;
-            foreach (var q in raw.Questions)
-            {
-                if (q.Id != null)
-                {
-                    question = this.testRepository.TestQuestion.Where(x => x.Id == q.Id).FirstOrDefault();
-                }
-                else
-                {
-                    question = new Database.Model.TestQuestion();
-                    this.testRepository.TestQuestion.Add(question);
-                }
+            this.testRepository.SaveChanges();
 
-                if (question != null)
-                {
-                    if (q.IsRemoved == true)
-                    {
-                        question.IsHide = true;
-                    }
-                    question.Name = q.Name;
-                    question.TestId = workTest.Id;
-                    question.Text = q.Text;
+            raw.Id = workTest.Id;
 
-                    testRepository.SaveChanges();
 
-                    foreach (var a in q.Answers)
-                    {
-                        if (a.Id != null)
-                        {
-                            answer = testRepository.TestAnswer.Where(x => x.Id == a.Id).FirstOrDefault();
-                        }
-                        else
-                        {
-                            answer = new Database.Model.TestAnswer();
-                            testRepository.TestAnswer.Add(answer);
-                        }
-                        if (answer != null)
-                        {
-                            if (a.IsRemoved)
-                            {
-                                answer.IsHide = true;
-                            }
-                            answer.IsRight = a.IsRight;
-                            answer.Text = a.Text;
-                            answer.TestQuestionId = question.Id;
-                            testRepository.SaveChanges();
-                        }
-                    }
-                }
-            }
-            return 1;
+            return raw;
 
         }
 
@@ -294,7 +248,8 @@ namespace Hitek.GSU.Logic.Service
             Models.Validation.Admin.Test.CreatingTest res;
             res = this.testRepository.Test
                     .Where(x => x.Id == id)
-                    .Select(x => new Models.Validation.Admin.Test.CreatingTest {
+                    .Select(x => new Models.Validation.Admin.Test.CreatingTest
+                    {
                         Id = x.Id,
                         Title = x.Name,
                         SubjectId = (long)x.TestSubjectId,
@@ -305,7 +260,8 @@ namespace Hitek.GSU.Logic.Service
             {
                 res.Questions = this.testRepository.TestQuestion
                     .Where(x => x.TestId == res.Id && !x.IsHide)
-                    .Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion {
+                    .Select(x => new Models.Validation.Admin.Test.CreatingTestQuestion
+                    {
                         Id = x.Id,
                         Name = x.Name,
                         Text = x.Text,
@@ -315,7 +271,8 @@ namespace Hitek.GSU.Logic.Service
                 {
                     q.Answers = this.testRepository.TestAnswer
                         .Where(x => x.TestQuestionId == q.Id && !x.IsHide)
-                        .Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer {
+                        .Select(x => new Models.Validation.Admin.Test.CreatingTestAnswer
+                        {
                             Id = x.Id,
                             Text = x.Text,
                             IsRight = x.IsRight,
@@ -327,6 +284,6 @@ namespace Hitek.GSU.Logic.Service
             return res;
         }
 
-     
+
     }
 }
