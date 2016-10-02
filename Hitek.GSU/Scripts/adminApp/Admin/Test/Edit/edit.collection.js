@@ -27,6 +27,16 @@
 
             })
             return res;
+        },
+        prepareCollection: function () {
+            
+            for( var i =0 ; i < this.models.length; i++)
+            {
+                var item = this.models[i];
+                item.set("answers", item.answers.toJSON());
+            }
+
         }
+        
     })
 });

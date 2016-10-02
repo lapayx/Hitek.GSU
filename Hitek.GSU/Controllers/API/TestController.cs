@@ -78,12 +78,7 @@ namespace Hitek.GSU.Controllers.API
             return new { id = res };
         }
 
-        [Route("Edit/{id}")]
-        // GET: api/Test/5
-        public CreatingTest GetForEdit(long id)
-        {
-            return testservice.GetTestForEditById(id);
-        }
+        
 
 
         // POST: api/Test
@@ -109,17 +104,34 @@ namespace Hitek.GSU.Controllers.API
             return testservice.CheckTest(mod);
         }
 
-        [Route("Edit")]
+        [Route("Edit/{id}")]
         [Authorize(Roles = "Admin, Teacher")]
-        public object PostCreateTest(CreatingTest mod)
+        // GET: api/Test/5
+        public CreatingTest GetForEdit(long id)
         {
-            return testservice.CreateOrEditTest(mod);
+            return testservice.GetTestForEditById(id);
         }
+
         [Route("Edit")]
         [Authorize(Roles = "Admin, Teacher")]
-        public object PutChangeTest(CreatingTest mod)
+        public CreatingTest PostCreateTest(CreatingTest mod)
         {
-            return testservice.CreateOrEditTest(mod);
+            var res = testservice.CreateOrEditTest(mod);
+            if (res == null) {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
+        }
+        [Route("Edit/{id}")]
+        [Authorize(Roles = "Admin, Teacher")]
+        public CreatingTest PutChangeTest(long id, CreatingTest mod)
+        {
+            var res = testservice.CreateOrEditTest(mod);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
         }
     }
 }

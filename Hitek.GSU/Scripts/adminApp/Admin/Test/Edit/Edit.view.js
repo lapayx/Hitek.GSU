@@ -63,7 +63,7 @@
 
         },
         childEvents: {
-            
+
         },
         modelEvents: {
             //  "sync": "onSyncModel"
@@ -121,7 +121,7 @@
             "submit": "onSubmit",
             "keyup #test-edit-title": "changeTitle",
             "change #test-edit-subjectId": "changeSubjectId",
-            "keyup #СountQuestion": "changeСountQuestion",
+            "change #СountQuestion": "changeСountQuestion",
             "click .js-test-add-question": "addQuestion"
 
         },
@@ -140,7 +140,11 @@
             if (paramId.id > 0) {
 
                 this.model = new Edit.TestModel({ id: paramId.id });
-                this.model.fetch();
+                this.model.fetch({
+                    error: function (model, xhr, req) {
+                        GSU.trigger("Error", xhr.status);
+                    }
+                });
             }
             else {
                 this.model = new Edit.TestModel();
@@ -151,19 +155,15 @@
 
             this.SubjectTest = new Backbone.Collection();
             this.SubjectTest.url = "api/TestSubject/";
-            this.SubjectTest.on("sync", this.renderTestSubjectSelect, this);
+            this.SubjectTest.on("sync", this.onRender, this);
             this.SubjectTest.fetch();
             //this.render();
         },
 
         onSyncModel: function () {
             GSU.loadMask.hide();
-            if (this.model.get("id") && this.model.get("id") > 0) {
-                this.render();
-            }
-            else {
-                GSU.trigger("Error:404");
-            }
+            this.render();
+
         },
         onSyncCollection: function () {
             GSU.loadMask.hide();
@@ -187,8 +187,7 @@
             event.preventDefault()
 
             var updateAnswerCallback = function (item) {
-                for (var i = 0; i < item.answers.models.length; i++)
-                {
+                for (var i = 0; i < item.answers.models.length; i++) {
                     var it = item.answers.models[i];
 
                     if (it.isNew() || it.changedAttributes()) {
@@ -203,66 +202,74 @@
                     }
                 }
 
-            }
+            };
+            var updateQuestionCallback = function (itemTest) {
+                for (var i = 0; i < itemTest.questions.models.length; i++) {
+                    var item = itemTest.questions.models[i];
 
-            var selfModel = this.model;
+                    if (item.isNew() || item.changedAttributes()) {
 
-            for (var i = 0; i < this.model.questions.models.length; i++) {
-                var item = this.model.questions.models[i];
+                        if (item.isNew()) {
+                            item.set("testId", itemTest.id);
+                        }
 
-                if (item.isNew() || item.changedAttributes()) {
+                        if (item.get("isRemoved")) {
+                            item.answers.forEach(function (it) {
+                                it.destroy()
+                            });
+                            item.destroy();
+                            continue
 
-                    if (item.isNew()) {
-                        item.set("testId", selfModel.id);
+                        }
+                        else {
+                            item.set("answers", item.answers.toJSON())
+                            item.save({}, { success: updateAnswerCallback });
+                        }
+                    } else {
+                        updateAnswerCallback(item);
                     }
 
-                    if (item.get("isRemoved")) {
-                        item.answers.forEach(function (it) {
-                            it.destroy()
-                        });
-                        item.destroy();
-                        continue
 
-                    }
-                    else {
-                        item.set("answers", item.answers.toJSON())
-                        item.save({},{ success: updateAnswerCallback});
-                    }
-                } else {
-                    updateAnswerCallback(item);
                 }
+            };
+            var item = this.model;
+
+            if (item.isNew() || item.changedAttributes()) {
+
+
+
+                if (item.get("isRemoved")) {
+                    item.questions.forEach(function (it) {
+
+                        it.destroy()
+                    });
+                    item.destroy();
+                }
+                else {
+                    item.questions.prepareCollection();
+                    item.set("questions", item.questions.toJSON())
+                    item.save({}, { success: updateQuestionCallback });
+                }
+            } else {
+                updateQuestionCallback(item);
             }
-
-            return;
-            //console.log(this.model.getDataForJSON().toJSON());
-            var c = this.model.getDataForJSON();
-
-            c.url = "api/Test/Edit";
-            //c.set("idTest", this.model.get("id"));
-            //c.set("answers", this.model.answers.toJSON());
-            c.on("sync", function (r, mod, xht) {
-
-                GSU.trigger("Admin:TestSubject:show");
-
-
-            });
-            c.save();
 
 
         },
+
         addQuestion: function () {
             this.model.questions.add({});
         },
-        renderTestSubjectSelect: function () {
-            console.log(this);
+        onRender: function () {
             var tesSubjectId = this.model.get("subjectId");
             var inputSelect = this.$el.find("#test-edit-subjectId");
-            _.each(this.SubjectTest, function (c, num, collection) {
-                var model = collection.at(num);
-                var s =
-                    inputSelect.append($("<option value='" + model.id + "' " + ((tesSubjectId == model.id) ? "selected" : "") + " >" + model.get("name") + "</option>"))
+            var res = "";
+            for (var i = 0; i < this.SubjectTest.length ; i++) {
+                var model = this.SubjectTest.models[i];
+                res += "<option value='" + model.id + "' " + ((tesSubjectId == model.id) ? "selected" : "") + " >" + model.get("name") + "</option>";
 
-            })
+            }
+            inputSelect.append($(res));
 
         }
 

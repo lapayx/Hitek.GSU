@@ -14,12 +14,26 @@
             return {
                 //   isParent: false,
                 title: "Новый тест",
-                subjectId: 0,
+                subjectId: -41,
                 countQuestion: 10,
                 isCanShowResultAnswer:false
             }
+        }, 
+        save: function (attrs, options) {
+    
+            var o = options || {};
+            var a =  _.clone(this.attributes);
+
+            // Filter the data to send to the server
+            a.questions = null;
+
+            //options.data = JSON.stringify(attrs);
+
+            // Proxy the call to the original save function
+            return Backbone.Model.prototype.save.call(this, a, o);
         },
         parse: function (raw) {
+            /*debugger;
             var newRaw = { 
                 countQuestion: raw.countQuestion,
                 id: raw.id,
@@ -31,20 +45,22 @@
             };
             // raw.name = raw.Name;
             // raw.id = raw.Id;
-
+            */
             if (raw && raw.questions) {
-                this.questions.reset(raw.questions, {parse: true});
+                this.questions.reset(raw.questions, { parse: true });
+                raw.questions = null;
             }
-            return newRaw;
+
+            if (this.previousAttributes() && this.previousAttributes().questions) {
+                this.questions.reset(this.previousAttributes().questions, { parse: true });
+            }
+
+           
+            return raw;
         },
         getDataForJSON: function () {
-            var res = new Backbone.Model();
-            res.set("id", this.get("id"));
-            res.set("title", this.get("title"));
-            res.set("countQuestion", this.get("countQuestion"));
-            res.set("subjectId", this.get("subjectId"));
-            res.set("questions", this.questions.getDataForJSON());
-
+            var res = this.toJSON();
+            res.questions = this.questions.getDataForJSON();
             return res;
         }
 
