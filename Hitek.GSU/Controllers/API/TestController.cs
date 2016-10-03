@@ -12,7 +12,7 @@ using System.Web.Http;
 namespace Hitek.GSU.Controllers.API
 {
     [RoutePrefix("api/Test")]
-    //[Authorize]
+    [Authorize]
     public class TestController : ApiController
     {
 
@@ -37,17 +37,48 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // GET: api/Test/5
-        public TestFull Get(long id)
+        public TestInfo Get(long id)
         {
-            return testservice.GetTestById(id);
+            var res = testservice.GetTestById(id);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
         }
 
-        [Route("Edit/{id}")]
-        // GET: api/Test/5
-        public CreatingTest GetForEdit(long id)
+        [Route("Exist/{id}")]
+        public TestFull GetExistTest(long id, bool exist = false)
         {
-            return testservice.GetTestForEditById(id);
+
+            TestFull res;
+
+            res = testservice.GetExistTestById(id);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            if (res.EndDate != null)
+            {
+                throw new HttpResponseException(HttpStatusCode.Forbidden);
+            }
+            return res;
         }
+
+        [Route("Generate/{id}")]
+        public object GetGenerateTest(long id)
+        {
+            long res;
+
+            res = testservice.GenerateTest(id);
+            if (res < 0)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return new { id = res };
+        }
+
+        
 
 
         // POST: api/Test
@@ -61,6 +92,7 @@ namespace Hitek.GSU.Controllers.API
         }
 
         // DELETE: api/Test/5
+        [Authorize(Roles = "Admin, Teacher")]
         public void Delete(long id)
         {
             this.testservice.DeleteTestById(id);
@@ -72,15 +104,34 @@ namespace Hitek.GSU.Controllers.API
             return testservice.CheckTest(mod);
         }
 
-        [Route("Edit")]
-        public object PostCreateTest(CreatingTest mod)
+        [Route("Edit/{id}")]
+        [Authorize(Roles = "Admin, Teacher")]
+        // GET: api/Test/5
+        public CreatingTest GetForEdit(long id)
         {
-            return testservice.CreateOrEditTest(mod);
+            return testservice.GetTestForEditById(id);
         }
+
         [Route("Edit")]
-        public object PutChangeTest(CreatingTest mod)
+        [Authorize(Roles = "Admin, Teacher")]
+        public CreatingTest PostCreateTest(CreatingTest mod)
         {
-            return testservice.CreateOrEditTest(mod);
+            var res = testservice.CreateOrEditTest(mod);
+            if (res == null) {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
+        }
+        [Route("Edit/{id}")]
+        [Authorize(Roles = "Admin, Teacher")]
+        public CreatingTest PutChangeTest(long id, CreatingTest mod)
+        {
+            var res = testservice.CreateOrEditTest(mod);
+            if (res == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return res;
         }
     }
 }

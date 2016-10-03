@@ -33,7 +33,11 @@ namespace Hitek.GSU.Controllers.API
         public TestFull Get(long id)
         {
            var res = this.testservice.GetHistoryTestById(id);
-            if (res == null || !res.IsCanShowResultAnswer)
+            if (res == null )
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            if ( !res.IsCanShowResultAnswer)
             {
                 throw new HttpResponseException(HttpStatusCode.Forbidden);
             }

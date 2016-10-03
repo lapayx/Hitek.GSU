@@ -54,14 +54,14 @@ namespace Hitek.GSU.Controllers
                             }
                             tq = new CreatingTestQuestion();
 
-                            tq.Title = line.Substring(line.IndexOf("::") + 2, line.IndexOf("::",3) + 2);
-                            tq.Content = line.Substring(line.IndexOf("::",3)+2);
+                            tq.Name = line.Substring(line.IndexOf("::") + 2, line.IndexOf("::",3) + 2);
+                            tq.Text = line.Substring(line.IndexOf("::",3)+2);
                             tq.Answers = new List<CreatingTestAnswer>();
                             tq.IsRemoved = false;
                             continue;
                         }
                         ta = new CreatingTestAnswer();
-                        ta.Content = line.Substring(1);
+                        ta.Text = line.Substring(1);
                         if (line[0] == '=') {
                             ta.IsRight = true;
                         }

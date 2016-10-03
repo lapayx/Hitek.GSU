@@ -28,7 +28,6 @@ namespace Hitek.GSU.Logic.Database.Model
         public DateTime? DateAnswered { get; set; }
 
         public virtual WorkTestQuestion WorkTestQuestion { get;set;}
-        public virtual TestAnswer TestAnswer { get; set; }
 
     }
 }
