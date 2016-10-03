@@ -130,7 +130,7 @@
             this.content.show(v);
 
   
-            var t = this.model.questions.models.map(
+            var t = this.model.questions.map(
                 function (item, key) {
                     return {
                         num: key + 1,

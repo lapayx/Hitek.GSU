@@ -184,7 +184,7 @@
             this.model.set("countQuestion", event.target.value);
 
         },
-        changeIsCanShowResultAnswer: function () {
+        changeIsCanShowResultAnswer: function (event) {
             this.model.set("isCanShowResultAnswer", event.target.checked);
         },
         onSubmit: function (event) {
