@@ -58,7 +58,7 @@
         },
         parse: function (raw) {
             this.answers.reset(raw.answers, { parse: true });
-            raw.isAnswered = !!this.answers.models.find(function (item) { return item.get("isAnswered") === true; });
+            raw.isAnswered = !!this.answers.find(function (item) { return item.get("isAnswered") === true; });
 
             //raw.name = raw.Name;
             // raw.id = raw.Id;
