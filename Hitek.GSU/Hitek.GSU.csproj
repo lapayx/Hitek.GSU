@@ -300,9 +300,6 @@
     <Content Include="App_Data\SQL v.0.1.sql" />
     <Content Include="App_Data\SqlForDelete.sql" />
     <Content Include="App_Data\StudTest.mdf" />
-    <Content Include="App_Data\StudTest_log.ldf">
-      <DependentUpon>StudTest.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\css\bootstrap-theme.css" />
     <Content Include="Content\css\bootstrap-theme.min.css" />
     <Content Include="Content\css\bootstrap.css" />
