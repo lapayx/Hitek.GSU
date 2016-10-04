@@ -117,7 +117,7 @@
                 return false;
 
             });
-            
+
             $(".form-signin").submit(function () {
                 $('.alert-info').show(1000);
                 $('.alert-danger').hide();
@@ -131,7 +131,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/Token',
+                    url: '@HttpRuntime.AppDomainAppVirtualPath/Token',
                     data: loginData
                 }).done(function (data) {
                     //GSU.token = /*token_type + */"Bearer  " + data.access_token;
@@ -145,7 +145,7 @@
                     } else {
                         $('.alert-danger').show();
                     }
-                }).fail(function () { $('.alert-info').hide();$('.alert-danger').show(); });
+                }).fail(function () { $('.alert-info').hide(); $('.alert-danger').show(); });
 
                 return false;
 

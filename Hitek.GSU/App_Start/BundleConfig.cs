@@ -65,8 +65,12 @@ namespace Hitek.GSU
                 .IncludeDirectory("~/Scripts/adminApp/", "*.collection.js", true)
                 .IncludeDirectory("~/Scripts/adminApp/", "*.view.js", true)
                 .IncludeDirectory("~/Scripts/adminApp/", "*.route.js", true)
+                .Include("~/Scripts/ie8.js")
                 );
 
+            bundles.Add(new ScriptBundle("~/bundles/ie8")
+               .Include("~/Scripts/ie8.js")
+               );
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
