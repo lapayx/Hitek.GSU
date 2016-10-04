@@ -120,7 +120,7 @@ gulp.task("Template", function () {
 
              starttag: '<!-- inject:template -->',
              transform: function (filepath, file) {
-                 console.log('ddd');
+                 console.log(filepath);
                  var fileName = filepath.replace("/" + templatePath, "");
                  fileName = fileName.replace(".html", "");
                  fileName = fileName.replace(/\//g, "-");

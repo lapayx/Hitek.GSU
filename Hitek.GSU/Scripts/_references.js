@@ -43,6 +43,7 @@
 /// <reference path="app/test/resulttestall/resulttestall.model.js" />
 /// <reference path="app/test/resulttestall/resulttestall.view.js" />
 /// <reference path="app/test/test.route.js" />
+/// <reference path="ie8.js" />
 /// <reference path="override/backbone.marionette.compositeview.prototype.attachelcontent.js" />
 /// <reference path="override/backbone.marionette.itemview.prototype.attachelcontent.js" />
 /// <reference path="override/backbone.marionette.stackview.js" />

@@ -6,6 +6,7 @@ GSU.addRegions({
 
 });
 
+GSU.ApplicationPath = "/";
 
 GSU.navigate = function (route, options) {
     options || (options = {});
@@ -54,12 +55,17 @@ GSU.message = function (msg, type) {
 
 GSU.cache = {};
 
+GSU.isRun = false;
+
 GSU.on("start", function (options) {
     
-
+    if (GSU.isRun) {
+        return;
+    }
+    GSU.isRun = true;
    
     if (!localStorage.getItem("token")) {
-        document.location = "/Home/Login";
+        document.location = GSU.ApplicationPath+"Home/Login";
         return;
     }
     var tObj = JSON.parse(localStorage.getItem("token"));
@@ -87,7 +93,7 @@ GSU.on("logout", function (options) {
         localStorage.removeItem("token");
     }
 
-    document.location = "/Home/Login";
+    document.location = GSU.ApplicationPath+"Home/Login";
 
 
 });

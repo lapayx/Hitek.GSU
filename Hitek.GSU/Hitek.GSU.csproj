@@ -293,6 +293,7 @@
     <Content Include="Content\tpl\Test\FullTest\multyAnswer.html" />
     <Content Include="Content\tpl\Test\GenerateTest\main.html" />
     <Content Include="Scripts\app\Test\GenerateTest\GenerateTest.view.js" />
+    <Content Include="Scripts\ie8.js" />
     <Content Include="settings.config" />
   </ItemGroup>
   <ItemGroup>
