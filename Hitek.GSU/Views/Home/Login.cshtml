@@ -131,7 +131,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '@HttpRuntime.AppDomainAppVirtualPath/Token',
+                    url: '@HttpRuntime.AppDomainAppVirtualPath/Token'.replace("//", "/"),
                     data: loginData
                 }).done(function (data) {
                     //GSU.token = /*token_type + */"Bearer  " + data.access_token;
@@ -141,7 +141,7 @@
                         data.role = data.role.split(",");
                         localStorage.setItem("token", JSON.stringify(data));
                         console.log(data);
-                        document.location = "/";
+                        document.location = "@HttpRuntime.AppDomainAppVirtualPath/".replace("//", "/");
                     } else {
                         $('.alert-danger').show();
                     }
