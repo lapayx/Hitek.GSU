@@ -69,8 +69,17 @@ GSU.on("start", function (options) {
         return;
     }
     var tObj = JSON.parse(localStorage.getItem("token"));
+
+
+    if (tObj['.expires'] === undefined || Math.floor(((new Date(tObj['.expires'])).getTime() - (new Date()).getTime()) / 1000 / 60 / 60 / 24) < 0) {
+        document.location = GSU.ApplicationPath + "Home/Login";
+        return;
+    }
+
+
     GSU.token = "Bearer " + tObj.access_token;
      
+
     if (_.indexOf(tObj.role, "Teacher") > -1) {
         $(".role-teacher").show();
     }

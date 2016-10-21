@@ -284,6 +284,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="App_Data\SQL v.0.3.sql" />
+    <Content Include="App_Data\StudTest_log.ldf">
+      <DependentUpon>StudTest.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\tpl\Test\ResultTest\resultTestTemplate.html" />
     <Content Include="Content\tpl\Test\ResultTest\multyAnswer.html" />
     <Content Include="Content\tpl\Test\ResultTest\question.html" />
