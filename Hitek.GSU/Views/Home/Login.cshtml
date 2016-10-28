@@ -35,6 +35,16 @@
                 <input type="text" id="inputLogin" class="form-control" placeholder="домен\логин" required autofocus>
             </div>
             <div class="form-group">
+                <label for="domen">
+                    Домен
+                </label>
+                <select id="domen" class="form-control">
+                    <option value="main">main</option>
+                    <option value="math">math</option>
+                    <option value="">-</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="inputPassword" >Пароль</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
             </div>
@@ -122,6 +132,7 @@
                 $('.alert-info').show(1000);
                 $('.alert-danger').hide();
 
+
                 var loginData = {
                     grant_type: 'password',
                     client_id: 'ngAuthApp',
@@ -129,6 +140,9 @@
                     password: $("#inputPassword").val().trim()
                 };
 
+                if ($("#domen").val().trim() != '') {
+                    loginData.username = $("#domen").val().trim() + '\\' + loginData.username;
+                }
                 $.ajax({
                     type: 'POST',
                     url: '@HttpRuntime.AppDomainAppVirtualPath/Token'.replace("//", "/"),
