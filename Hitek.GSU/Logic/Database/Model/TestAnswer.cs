@@ -11,7 +11,7 @@ namespace Hitek.GSU.Logic.Database.Model
         [Key] 
         public long Id { get; set; }
 
-        [StringLength(200)]
+   
         [Required] 
         public string Text { get; set; }
 

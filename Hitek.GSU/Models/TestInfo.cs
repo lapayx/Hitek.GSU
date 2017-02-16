@@ -9,5 +9,6 @@ namespace Hitek.GSU.Models
     {
         public long TestSubjectId { get; set; }
         public string TestSubjectName { get; set; }
+        public bool IsHide { get; set; }
     }
 }

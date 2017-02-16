@@ -16,38 +16,47 @@ namespace Hitek.GSU.Logic.Service
 
         long currentId;
 
-        public  AccountService(AppSignInManager signInManager)
+        public AccountService(AppSignInManager signInManager)
         {
             this.signInManager = signInManager;
             this.initial();
-            
+
         }
 
 
-        protected   void initial() {
+        protected void initial()
+        {
 
             currentId = HttpContext.Current.User.Identity.GetUserId<long>();
-           
+
         }
 
-        public long GetCurrentUserId() {
+        public long GetCurrentUserId()
+        {
             return currentId;
         }
-        public ApplicationUser  GetCurrentUser()
+        //public User  GetCurrentUser()
+        // {
+        //    return this.signInManager.UserManager.FindByIdAsync(currentId).Result;
+        //}
+
+
+        public IList<User> GetAllUsers()
         {
-            return this.signInManager.UserManager.FindByIdAsync(currentId).Result;
+            return this.signInManager.UserManager.Users.ToList()
+                .Select(x => new User { Id = x.Id, LastLoginDate = (x.LastLoginDate != null) ? ((DateTime)x.LastLoginDate).ToLocalTime() : x.LastLoginDate, RegistrationDate = x.RegistrationDate.ToLocalTime(), UserName = x.UserName })
+                .ToList();
         }
 
 
-        public IList<ApplicationUser> GetAllUsers()
+        public User GetUserById(long id)
         {
-            return this.signInManager.UserManager.Users.ToList();
-        }
+            var x = this.signInManager.UserManager.FindByIdAsync(id).Result;
+            return new User { Id = x.Id,
+                LastLoginDate = (x.LastLoginDate!=null)  ?((DateTime)x.LastLoginDate).ToLocalTime() : x.LastLoginDate,
+                RegistrationDate = x.RegistrationDate.ToLocalTime() ,
+                UserName = x.UserName };
 
-
-        public ApplicationUser GetUserById(long id)
-        {
-            return this.signInManager.UserManager.FindByIdAsync(id).Result;
         }
 
 
@@ -60,7 +69,7 @@ namespace Hitek.GSU.Logic.Service
 
         public bool RemoveRole(long userId, params string[] role)
         {
-            var res = this.signInManager.UserManager.RemoveFromRoles(userId,role);
+            var res = this.signInManager.UserManager.RemoveFromRoles(userId, role);
             return res.Succeeded;
         }
 

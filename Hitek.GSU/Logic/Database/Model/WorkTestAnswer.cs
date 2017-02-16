@@ -17,7 +17,7 @@ namespace Hitek.GSU.Logic.Database.Model
         [Required]
         public long TestAnswerId { get; set; }
 
-        [StringLength(200)]
+       
         [Required]
         public string Text { get; set; }
 

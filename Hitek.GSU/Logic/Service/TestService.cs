@@ -34,7 +34,8 @@ namespace Hitek.GSU.Logic.Service
             var res = new TestInfo()
             {
                 Id = test.Id,
-                Name = test.Name
+                Name = test.Name,
+                IsHide = test.IsHide
 
             };
             if (test.TestSubject != null)
@@ -188,7 +189,7 @@ namespace Hitek.GSU.Logic.Service
             return testRepository.Test.Where(x => !x.IsHide).Select(x => new TestInfo() { Id = x.Id, Name = x.Name }).ToList();
         }
 
-        public void DeleteTestById(long id)
+        public void DisableTestById(long id)
         {
             var t = this.testRepository.Test.Where(x => x.Id == id).FirstOrDefault();
             if (t != null)
@@ -197,6 +198,39 @@ namespace Hitek.GSU.Logic.Service
                 this.testRepository.SaveChanges();
             }
         }
+        public void EnableTestById(long id)
+        {
+            var t = this.testRepository.Test.Where(x => x.Id == id).FirstOrDefault();
+            if (t != null)
+            {
+                t.IsHide = false;
+                this.testRepository.SaveChanges();
+            }
+        }
+
+        public void DeleteTestById(long id)
+        {
+            var test = this.testRepository.Test.Where(x => x.Id == id).FirstOrDefault();
+            if(test != null)
+            {
+                var question = this.testRepository.TestQuestion.Where(x => x.TestId  == test.Id).ToList();
+                foreach(var q in question)
+                {
+                    var answer = testRepository.TestAnswer.Where(x => x.TestQuestionId == q.Id).ToList();
+                    foreach (var a in answer)
+                        testRepository.TestAnswer.Remove(a);
+                    testRepository.SaveChanges();
+                    testRepository.TestQuestion.Remove(q);
+                    testRepository.SaveChanges();
+                }
+                testRepository.Test.Remove(test);
+                testRepository.SaveChanges();
+
+            }
+          
+            
+        }
+
         public ICollection<TestInfo> GetTestBySubjectId(long subjectId)
         {
             IList<TestInfo> res = testRepository.Test.Where(x => x.TestSubjectId == subjectId && !x.IsHide).Select(x => new TestInfo()

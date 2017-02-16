@@ -6,7 +6,9 @@
         urlRoot: "api/Test/",
         defaults: {
             id: 0,
-            name: "Заголовок"
+            name: "Заголовок",
+            isHide: false
+
         }
     });
     List.SubjectInfoModel = Backbone.Model.extend({

@@ -78,6 +78,12 @@ namespace Hitek.GSU.Models
     //change bellow classes
     public class ApplicationUser : IdentityUser<long, UserLoginLongPk, UserRoleLongPk, UserClaimLongPk>
     {
+        public ApplicationUser() {
+            this.RegistrationDate = DateTime.UtcNow; 
+        }
+
+        public DateTime RegistrationDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(AppUserManager manager)
         {

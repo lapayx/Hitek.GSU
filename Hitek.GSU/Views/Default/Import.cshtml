@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Импорт Тестов</h2>
+<form action="" method="post" enctype="multipart/form-data">
+    Название теста : <input type="text" name="title" />
+    <br />
+    Категория теста: <select name="subjectId">
+        @foreach (var t in ViewBag.subjects)
+        {
+            <option value="@t.Id">@t.Name</option>
+        }
+    </select>
+    <br />
+    Файл форматат DOT.gsu.by UTF-8
+    <input type="file" name="file" />
+    <input type="submit" value="Сохранить" />
+
+</form>

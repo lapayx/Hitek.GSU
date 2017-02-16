@@ -10,10 +10,10 @@ namespace Hitek.GSU.Logic.Interfaces
     public interface IAccountService
     {
         long GetCurrentUserId();
-        ApplicationUser GetCurrentUser();
+        //User GetCurrentUser();
 
-        IList<ApplicationUser> GetAllUsers();
-        ApplicationUser GetUserById(long id);
+        IList<User> GetAllUsers();
+        User GetUserById(long id);
 
         bool AddRole(long userId, string role);
         bool RemoveRole(long userId, params string[] role);

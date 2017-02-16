@@ -142,7 +142,15 @@ namespace Hitek.GSU.Logic
             return refreshToken;
         }
 
-        public List<RefreshToken> GetAllRefreshTokens()
+        public async Task RefreshLastLoginDate(string userName) {
+            await _userManager.UpdateLastLoginDateAsync(userName);
+        }
+        public async Task UpdateLastLoginDateAsync(long userId)
+        {
+            await _userManager.UpdateLastLoginDateAsync(userId);
+        }
+
+        public List<RefreshToken> UpdateLastLoginDateAsync()
         {
             return _ctx.RefreshTokens.ToList();
         }

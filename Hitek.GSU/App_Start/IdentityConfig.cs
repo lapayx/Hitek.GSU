@@ -48,10 +48,12 @@ namespace Hitek.GSU
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class AppUserManager : UserManager<ApplicationUser, long> 
     {
+        private IUserStore<ApplicationUser, long> userStore;
         public AppUserManager(IUserStore<ApplicationUser, long> store)
         : base(store)
        {
-           
+
+            this.userStore = store;
             // Configure validation logic for usernames
            this.UserValidator = new UserValidator<ApplicationUser, long>(this)
             {
@@ -126,6 +128,20 @@ namespace Hitek.GSU
                }
            }
        }
+
+        public async  Task UpdateLastLoginDateAsync(long userId) {
+            var user = await userStore.FindByIdAsync(userId);
+            user.LastLoginDate = DateTime.UtcNow;
+            await userStore.UpdateAsync(user); 
+
+        }
+        public async Task UpdateLastLoginDateAsync(string userName)
+        {
+            var user = await userStore.FindByNameAsync(userName);
+            user.LastLoginDate = DateTime.UtcNow;
+            await userStore.UpdateAsync(user);
+
+        }
     }
 
 

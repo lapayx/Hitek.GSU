@@ -82,6 +82,7 @@ namespace Hitek.GSU.Logic.Providers
 
         */
 
+            await _repoAuthRepository.UpdateLastLoginDateAsync(user.Id); 
             ClaimsIdentity identity = await user.GenerateUserIdentityAsync(_userManager, "JWT");
 
             identity.AddClaim(new Claim(ClaimTypes.Name, context.UserName));

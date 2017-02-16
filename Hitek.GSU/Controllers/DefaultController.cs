@@ -1,4 +1,5 @@
-﻿using Hitek.GSU.Logic.Interfaces;
+﻿using Hitek.GSU.Logic.Database.Model;
+using Hitek.GSU.Logic.Interfaces;
 using Hitek.GSU.Models.Validation.Admin.Test;
 using System;
 using System.Collections.Generic;
@@ -9,21 +10,23 @@ using System.Web.Mvc;
 
 namespace Hitek.GSU.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     public class DefaultController : Controller
     {
         readonly ITestSubjectService subjectService;
         readonly ITestService testservice;
-        public DefaultController(ITestSubjectService service, ITestService testservice)
+        readonly ITestRepository repo;
+        public DefaultController(ITestSubjectService service, ITestService testservice, ITestRepository repo)
         {
             this.subjectService = service;
             this.testservice = testservice;
+            this.repo = repo;
         }
 
 
         [HttpGet]
         // GET: Default
-        public ActionResult Index()
+        public ActionResult Import()
         {
             ViewBag.subjects = subjectService.GetAllTestSubjects();
             return View();
@@ -31,7 +34,7 @@ namespace Hitek.GSU.Controllers
 
         [HttpPost]
         // GET: Default
-        public ActionResult Index(long subjectId,string title,HttpPostedFileBase file)
+        public ActionResult Import(long subjectId,string title,HttpPostedFileBase file)
             
         {
             string line;
@@ -77,7 +80,33 @@ namespace Hitek.GSU.Controllers
                 }
                 c.Close();
             }
-           
+            res.CountQuestion = res.Questions.Count;
+            res.Id = testservice.CreateOrEditTest(res).Id;
+            foreach (var rq in res.Questions)
+            {
+                TestQuestion q = new TestQuestion {
+                    Name = rq.Name,
+                    Text = rq.Text,
+                    TestId =(long)res.Id 
+                    };
+                repo.TestQuestion.Add(q);
+                repo.SaveChanges();
+                foreach(var ra in rq.Answers)
+                {
+                    TestAnswer a = new TestAnswer
+                    {
+                        TestQuestionId = q.Id,
+                        Text = ra.Text,
+                        IsRight = ra.IsRight
+                    };
+                    repo.TestAnswer.Add(a);
+                    repo.SaveChanges();
+                }
+                 
+
+
+
+            }
             return Json(testservice.CreateOrEditTest(res));
         }
 
